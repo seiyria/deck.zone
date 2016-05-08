@@ -3,13 +3,34 @@
     ☰
   </button>
   <div class="collapse navbar-toggleable-xs" id="navbar-header">
-    <a class="navbar-brand" [routerLink]="['/Home']">Castle Carnage</a>
-    <ul class="nav navbar-nav">
-      <li class="nav-item" [class.active]="router.isRouteActive(router.generate(['/Home']))">
-        <a class="nav-link" [routerLink]="['/Home']">Home</a>
-      </li>
+    <a class="navbar-brand" [routerLink]="['/Home']">deck.zone</a>
+    <ul class="nav navbar-nav" *ngIf="!router.isRouteActive(router.generate(['/Create', 'Root']))">
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/Play']">Play</a>
+        <a class="nav-link" (click)="createProject()">Create</a>
+      </li>
+    </ul>
+
+    <ul class="nav navbar-nav pull-xs-right" *ngIf="!(angularFire.auth | async)">
+      <li class="nav-item" dropdown>
+        <a class="nav-link" dropdownToggle>
+          Login
+        </a>
+        <ul class="dropdown-menu dropdown-menu-right">
+          <li *ngFor="#choice of ['Facebook', 'Google', 'Twitter']">
+            <a class="dropdown-item" (click)="login(choice)">Login with {{choice}}</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <ul class="nav navbar-nav pull-xs-right" *ngIf="angularFire.auth | async">
+      <li class="nav-item" dropdown>
+        <a class="nav-link" dropdownToggle>{{ (angularFire.auth | async).auth.token.name }} <b class="caret"></b></a>
+        <ul class="dropdown-menu dropdown-menu-right">
+          <li>
+            <a class="dropdown-item" (click)="logout()">Logout</a>
+          </li>
+        </ul>
       </li>
     </ul>
   </div>

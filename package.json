@@ -1,8 +1,8 @@
 {
-  "name": "castle-carnage-web",
+  "name": "deck.zone",
   "version": "0.0.1",
-  "description": "Castle Carnage for the web",
-  "repository": "https://github.com/seiyria/castle-carnage-web",
+  "description": "A game-creation helper for creating decks, tokens, chits, tiles, etc.",
+  "repository": "https://github.com/seiyria/deck.zone",
   "license": "MIT",
   "babel": {
     "presets": [
@@ -18,13 +18,18 @@
     "start": "webpack-dev-server --open --content-base src/ --inline --hot"
   },
   "dependencies": {
-    "angular2": "^2.0.0-beta.16",
+    "angular2": "2.0.0-beta.16",
+    "angularfire2": "^2.0.0-alpha.16",
     "bootstrap": "^4.0.0-alpha.2",
     "es6-promise": "^3.0.2",
     "es6-shim": "^0.35.0",
+    "firebase": "^2.4.2",
+    "lodash": "^4.11.2",
+    "ng2-ace": "0.0.1",
     "ng2-bootstrap": "^1.0.15",
+    "ng2-sweetalert2": "0.0.1",
     "reflect-metadata": "0.1.2",
-    "rxjs": "^5.0.0-beta.2",
+    "rxjs": "5.0.0-beta.2",
     "zone.js": "^0.6.12"
   },
   "devDependencies": {
@@ -32,6 +37,7 @@
     "babel-loader": "^6.2.4",
     "babel-plugin-transform-class-properties": "^6.6.0",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-polyfill": "^6.8.0",
     "babel-preset-es2015": "^6.3.13",
     "concurrently": "^2.0.0",
     "css-loader": "^0.23.1",

@@ -13,6 +13,10 @@ module.exports = {
   module: {
     loaders: [
       {
+        test: /ng2-(ace|sweetalert2)\/index\.js$/,
+        loaders: ['babel-loader']
+      },
+      {
         test: /\.js$/,
         loaders: ['babel-loader'],
         exclude: /node_modules/

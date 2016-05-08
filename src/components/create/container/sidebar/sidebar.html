@@ -1,0 +1,66 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-block no-padding-bottom">
+        <h4 class="card-title">
+          Scripts <button type="button" class="pull-md-right btn btn-xs btn-primary-outline" (click)="newFile()">New</button>
+        </h4>
+      </div>
+
+      <div class="card-text" *ngIf="internalProject && (scriptList | async)">
+        <p *ngIf="!(scriptList | async).length">No files in current project.</p>
+
+        <ul class="nav nav-pills nav-stacked">
+          <li class="nav-item"
+              *ngFor="#scriptObj of allScripts"
+              (mouseenter)="isVisible[scriptObj.key] = true"
+              (mouseleave)="isVisible[scriptObj.key] = false">
+            <a class="nav-link"
+               (click)="setActiveScript(scriptObj.key)"
+               [ngClass]="{active: scriptObj.key === internalProject.activeScript}">
+              <span>{{scriptObj.script.name}}</span>
+
+              <div class="btn-group pull-md-right">
+
+                <button class="btn btn-xs btn-info-outline"
+                        *ngIf="isVisible[scriptObj.key]"
+                        (click)="editFile(scriptObj)">e</button>
+
+                <button class="btn btn-xs btn-danger-outline"
+                        *ngIf="isVisible[scriptObj.key]"
+                        (click)="deleteFile(scriptObj)">x</button>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="card-text" *ngIf="!(scriptList | async)">
+        <p>Loading...</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-block no-padding-bottom">
+        <h4 class="card-title">
+          Resources <button type="button" class="pull-md-right btn btn-xs btn-primary-outline">New</button>
+        </h4>
+      </div>
+      <div class="card-text" *ngIf="internalProject.resources">
+        <p *ngIf="!(internalProject.resources.length)">No resources in current project.</p>
+
+        <ul>
+          <li *ngFor="#resource of internalProject.resources">
+            <span>{{resource.name}}</span>
+          </li>
+        </ul>
+      </div>
+      <div class="card-text" *ngIf="!internalProject.resources">
+        <p>Loading...</p>
+      </div>
+    </div>
+  </div>
+</div>
