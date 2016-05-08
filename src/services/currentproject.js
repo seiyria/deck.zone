@@ -1,6 +1,5 @@
 
-import { AngularFire, FirebaseObjectFactory } from 'angularfire2';
-import { Observable } from 'rxjs';
+import { AngularFire } from 'angularfire2';
 import { DefaultProject } from '../constants/defaultproject';
 import _ from 'lodash';
 
@@ -11,11 +10,20 @@ export class CurrentProjectService {
 
   constructor(angularFire) {
     this.angularFire = angularFire;
+    this.angularFire.auth.subscribe(auth => this.authData = auth);
   }
 
   createNewProject() {
     const projects = this.angularFire.list('/projects');
-    const newProject = projects.push(_.cloneDeep(DefaultProject));
+    const newProjectData = _.cloneDeep(DefaultProject);
+    if(this.authData) {
+      newProjectData.owner = this.authData.uid;
+    }
+
+    // TODO name with animal-id
+    newProjectData.createdAt = Date.now();
+
+    const newProject = projects.push(newProjectData);
 
     const split = newProject.toString().split('/');
     return split[split.length-1];

@@ -25,8 +25,12 @@
 
     <ul class="nav navbar-nav pull-xs-right" *ngIf="angularFire.auth | async">
       <li class="nav-item" dropdown>
-        <a class="nav-link" dropdownToggle>{{ (angularFire.auth | async).auth.token.name }} <b class="caret"></b></a>
+        <a class="nav-link active" dropdownToggle>{{ (angularFire.auth | async).auth.token.name }} <b class="caret"></b></a>
         <ul class="dropdown-menu dropdown-menu-right">
+          <li>
+            <a class="dropdown-item" [routerLink]="['/Projects']">My Projects</a>
+          </li>
+          <li class="dropdown-divider"></li>
           <li>
             <a class="dropdown-item" (click)="logout()">Logout</a>
           </li>

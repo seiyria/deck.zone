@@ -13,7 +13,7 @@ import { CurrentProjectService } from '../../services/currentproject';
   directives: [ROUTER_DIRECTIVES, DROPDOWN_DIRECTIVES],
   template
 })
-export class TitleBar {
+export class TitleBarComponent {
   static get parameters() {
     return [[Router], [AngularFire], [CurrentProjectService]];
   }

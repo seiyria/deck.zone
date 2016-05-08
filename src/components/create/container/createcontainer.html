@@ -1,19 +1,36 @@
 
 <div class="row" *ngIf="projectId">
+
   <div class="col-md-3">
-    <sidebar [project]="projectData | async" [projectId]="projectId" [api]="api"></sidebar>
+
+    <div class="row">
+      <div class="col-md-12">
+        <claimer [project]="projectData | async" [api]="api"></claimer>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <sidebar [project]="projectData | async" [projectId]="projectId" [api]="api"></sidebar>
+      </div>
+    </div>
+
   </div>
 
   <div class="col-md-9">
+
     <div class="row">
       <div class="col-md-12">
         <toolbar [project]="projectData | async" [api]="api"></toolbar>
       </div>
     </div>
+
     <div class="row">
       <div class="col-md-12 m-t-1">
         <creator [project]="projectData | async" [projectId]="projectId" [api]="api"></creator>
       </div>
     </div>
+
   </div>
+
 </div>

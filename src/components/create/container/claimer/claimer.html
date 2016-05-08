@@ -1,0 +1,9 @@
+<div *ngIf="!internalProject.owner">
+  <alert type="info" *ngIf="!(currentProjectService.angularFire.auth | async)">
+    This project is unclaimed. Sign in now to claim it!
+  </alert>
+
+  <alert type="info" *ngIf="currentProjectService.angularFire.auth | async">
+    This project is unclaimed. If it's yours, you can <button class="btn btn-sm btn-primary-outline" (click)="claim()">claim it</button>.
+  </alert>
+</div>

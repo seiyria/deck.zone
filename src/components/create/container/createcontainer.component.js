@@ -6,12 +6,13 @@ import { RouteParams, Router } from 'angular2/router';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { CreatorComponent } from './creator/creator.component';
+import { ClaimerComponent } from './claimer/claimer.component';
 
 import { CurrentProjectService } from '../../../services/currentproject';
 
 @Component({
   providers: [CurrentProjectService],
-  directives: [SidebarComponent, ToolbarComponent, CreatorComponent],
+  directives: [SidebarComponent, ToolbarComponent, CreatorComponent, ClaimerComponent],
   template
 })
 export class CreateContainerComponent {
@@ -40,7 +41,8 @@ export class CreateContainerComponent {
       writeFile:          (contents, index) => this.projectData._ref.child('scripts').child(index).child('contents').set(contents),
       newFile:            (name)            => this.scriptList.push({ name, contents: '' }),
       deleteFile:         (index)           => this.projectData._ref.child('scripts').child(index).remove(),
-      editFile:           (index, newName)  => this.projectData._ref.child('scripts').child(index).child('name').set(newName)
+      editFile:           (index, newName)  => this.projectData._ref.child('scripts').child(index).child('name').set(newName),
+      ownProject:         (newOwner)        => this.projectData._ref.child('owner').set(newOwner)
     };
 
   }
