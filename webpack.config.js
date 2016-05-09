@@ -30,6 +30,10 @@ module.exports = {
         loader: 'style!css!less'
       },
       {
+        test: /\.json/,
+        loader: 'json'
+      },
+      {
         test: /\.woff|\.woff2|\.svg|.eot|\.ttf/,
         loader: 'file'
       },

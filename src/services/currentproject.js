@@ -3,6 +3,8 @@ import { AngularFire } from 'angularfire2';
 import { DefaultProject } from '../constants/defaultproject';
 import _ from 'lodash';
 
+import { hri } from 'human-readable-ids';
+
 export class CurrentProjectService {
   static get parameters() {
     return [[AngularFire]];
@@ -20,7 +22,7 @@ export class CurrentProjectService {
       newProjectData.owner = this.authData.uid;
     }
 
-    // TODO name with animal-id
+    newProjectData.name = hri.random();
     newProjectData.createdAt = Date.now();
 
     const newProject = projects.push(newProjectData);

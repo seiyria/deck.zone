@@ -1,24 +1,26 @@
 
 import { Component } from '@angular/core';
-import { Router } from '@angular/router-deprecated';
+import { ROUTER_DIRECTIVES, Router } from '@angular/router-deprecated';
 import { AngularFire } from 'angularfire2';
 import { Subject } from 'rxjs';
 import template from './projectlist.html';
 
-import _ from 'lodash'
+import { CurrentProjectService } from '../../services/currentproject';
 
 @Component({
-  providers: [AngularFire],
+  providers: [AngularFire, CurrentProjectService],
+  directives: [ROUTER_DIRECTIVES],
   template
 })
 export class ProjectListComponent {
   static get parameters() {
-    return [[Router], [AngularFire]];
+    return [[Router], [AngularFire], [CurrentProjectService]];
   }
 
-  constructor(router, angularFire) {
+  constructor(router, angularFire, currentProjectService) {
     this.router = router;
     this.angularFire = angularFire;
+    this.currentProjectService = currentProjectService;
 
     this.angularFire.auth.subscribe(authData => {
 
@@ -36,10 +38,8 @@ export class ProjectListComponent {
     });
   }
 
-  /*
   createProject() {
     const id = this.currentProjectService.createNewProject();
     this.router.navigate(['/Create', 'Create', { projectId: id }]);
   }
-  */
 }
