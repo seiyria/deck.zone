@@ -1,7 +1,7 @@
 
-import { Component, EventEmitter } from 'angular2/core';
+import { Component, EventEmitter } from '@angular/core';
 import template from './createcontainer.html';
-import { RouteParams, Router } from 'angular2/router';
+import { RouteParams, Router } from '@angular/router-deprecated';
 
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';

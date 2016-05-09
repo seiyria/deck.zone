@@ -1,6 +1,6 @@
 
-import { Component } from 'angular2/core';
-import { ROUTER_DIRECTIVES, Router } from 'angular2/router';
+import { Component } from '@angular/core';
+import { ROUTER_DIRECTIVES, Router } from '@angular/router-deprecated';
 import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
 import template from './titlebar.html';
 import { DROPDOWN_DIRECTIVES } from 'ng2-bootstrap/components/dropdown';

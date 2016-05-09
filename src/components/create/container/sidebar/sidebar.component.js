@@ -1,8 +1,8 @@
 
 import _ from 'lodash';
 import { SweetAlertService } from 'ng2-sweetalert2';
-import { Component } from 'angular2/core';
-import { NgClass } from 'angular2/common';
+import { Component } from '@angular/core';
+import { NgClass } from '@angular/common';
 import template from './sidebar.html';
 import './sidebar.less';
 

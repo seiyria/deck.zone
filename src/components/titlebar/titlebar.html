@@ -16,7 +16,7 @@
           Login
         </a>
         <ul class="dropdown-menu dropdown-menu-right">
-          <li *ngFor="#choice of ['Facebook', 'Google', 'Twitter']">
+          <li *ngFor="let choice of ['Facebook', 'Google', 'Twitter']">
             <a class="dropdown-item" (click)="login(choice)">Login with {{choice}}</a>
           </li>
         </ul>

@@ -1,5 +1,5 @@
 
-import { Component } from 'angular2/core';
+import { Component } from '@angular/core';
 import template from './claimer.html';
 import { ProjectComponent } from '../project.component';
 import { AlertComponent } from 'ng2-bootstrap/components/alert';

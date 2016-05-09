@@ -1,5 +1,5 @@
 <ul>
-  <li *ngFor="#project of projects | async">
+  <li *ngFor="let project of projects | async">
     {{project | json}}
   </li>
 </ul>

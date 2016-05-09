@@ -1,6 +1,6 @@
 
-import { Component } from 'angular2/core';
-import { Router } from 'angular2/router';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router-deprecated';
 import { AngularFire } from 'angularfire2';
 import { Subject } from 'rxjs';
 import template from './projectlist.html';

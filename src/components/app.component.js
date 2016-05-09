@@ -1,5 +1,5 @@
 
-import { Component, Inject, provide, enableProdMode } from 'angular2/core';
+import { Component, Inject, provide, enableProdMode } from '@angular/core';
 import { TitleBarComponent } from './titlebar/titlebar.component';
 import template from './app.html'
 
@@ -7,7 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { CreateComponent } from './create/create.component';
 import { ProjectListComponent } from './projectlist/projectlist.component';
 
-import { RouteConfig, ROUTER_DIRECTIVES } from 'angular2/router';
+import { RouteConfig, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 
 import './app.less';
 

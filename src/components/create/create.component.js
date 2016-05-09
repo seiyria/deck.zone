@@ -1,7 +1,7 @@
 
-import { Component } from 'angular2/core';
+import { Component } from '@angular/core';
 import template from './create.html';
-import { RouteConfig, ROUTER_DIRECTIVES } from 'angular2/router';
+import { RouteConfig, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 
 import { CreateContainerComponent } from './container/createcontainer.component';
 import { InvalidProjectComponent } from './invalid/invalid.component';

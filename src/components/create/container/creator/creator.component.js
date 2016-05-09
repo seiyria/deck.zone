@@ -1,6 +1,6 @@
 
-import { Component } from 'angular2/core';
-import { NgClass } from 'angular2/common';
+import { Component } from '@angular/core';
+import { NgClass } from '@angular/common';
 import template from './creator.html';
 import './creator.less';
 import { ProjectComponent } from '../project.component';
@@ -31,6 +31,7 @@ export class CreatorComponent extends ProjectComponent {
   }
 
   onChange(data, index) {
+    // TODO debounce this
     this.api.writeFile(data, index);
   }
 
