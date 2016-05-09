@@ -1,7 +1,0 @@
-node_modules/
-npm-debug.log
-.DS_Store
-loki.json
-.config.js
-/*.env
-.idea
