@@ -5,6 +5,8 @@ import { AngularFire } from 'angularfire2';
 import { Subject } from 'rxjs';
 import template from './projectlist.html';
 
+import _ from 'lodash'
+
 @Component({
   providers: [AngularFire],
   template
@@ -17,18 +19,20 @@ export class ProjectListComponent {
   constructor(router, angularFire) {
     this.router = router;
     this.angularFire = angularFire;
-    this.projectSubject = new Subject();
-
-    this.projects = this.angularFire.list('/projects', {
-      query: {
-        orderByChild: 'owner',
-        equalTo: this.projectSubject
-      }
-    });
 
     this.angularFire.auth.subscribe(authData => {
-      this.projectSubject.next(authData.auth.uid);
-      console.log(authData.auth.uid);
+
+      // route home if not logged in
+      if(!authData) {
+        return router.navigate(['../Home']);
+      }
+
+      this.projects = this.angularFire.list('/projects', {
+        query: {
+          orderByChild: 'owner',
+          equalTo: authData.auth.uid
+        }
+      });
     });
   }
 
