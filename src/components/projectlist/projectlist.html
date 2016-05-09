@@ -1,5 +1,8 @@
 <div class="container">
   <div class="row">
+
+    <!-- TODO faded block that lets you enter in a name when creating a project, then creates a new project -->
+
     <div class="col-md-4" *ngFor="let project of projects | async">
       <div class="card">
 
@@ -7,11 +10,15 @@
           <h4 class="card-title">
             <a [routerLink]="['/Create', 'Create', { projectId: project.$key }]">{{project.name}}</a>
             <button type="button" class="pull-md-right btn btn-xs btn-primary-outline">s</button>
+
             <!-- TODO dropdown for project settings and delete project -->
+
           </h4>
         </div>
         <div class="card-text">
+
           <!-- TODO show first 3 of each as a preview -->
+
           <div class="row">
             <div class="col-md-6">Scripts: {{project.scripts.length}}</div>
             <div class="col-md-6">Resources: {{project.resources.length}}</div>

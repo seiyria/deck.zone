@@ -5,3 +5,4 @@ loki.json
 .config.js
 /*.env
 .idea
+dist
