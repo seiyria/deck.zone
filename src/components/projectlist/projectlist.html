@@ -1,23 +1,42 @@
 <div class="container">
   <div class="row">
 
-    <!-- TODO faded block that lets you enter in a name when creating a project, then creates a new project -->
-
-    <div class="col-md-4" *ngFor="let project of projects | async">
-      <div class="card">
-
-        <div class="card-block no-padding-bottom">
-          <h4 class="card-title">
-            <a [routerLink]="['/Create', 'Create', { projectId: project.$key }]">{{project.name}}</a>
-            <button type="button" class="pull-md-right btn btn-xs btn-primary-outline">s</button>
-
-            <!-- TODO dropdown for project settings and delete project -->
-
-          </h4>
-        </div>
+    <div class="col-md-4">
+      <div class="card project-card">
         <div class="card-text">
 
-          <!-- TODO show first 3 of each as a preview -->
+          <div class="row m-t-3">
+            <div class="col-md-10 col-md-offset-1">
+              <input type="text" class="form-control" [(ngModel)]="projectName" placeholder="Project Name" />
+            </div>
+          </div>
+
+          <div class="row m-t-3">
+            <div class="col-md-10 col-md-offset-1 text-md-center">
+              <button class="btn btn-primary-outline" [disabled]="!projectName" (click)="createProject(projectName)">Create Project</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4" *ngFor="let project of projects | async">
+      <div class="card project-card">
+
+        <div class="card-block no-padding-bottom">
+          <div class="col-md-9">
+            <h4 class="card-title truncate-text">
+              <a [routerLink]="['/Create', 'Create', { projectId: project.$key }]">{{project.name}}</a>
+            </h4>
+          </div>
+          <div class="col-md-3">
+            <button type="button"
+                    class="pull-md-right btn btn-xs btn-primary-outline"
+                    [routerLink]="['/Create', 'Settings', { projectId: project.$key }]">s</button>
+          </div>
+        </div>
+        <div class="card-text p-a-1">
 
           <div class="row">
             <div class="col-md-6">Scripts: {{project.scripts.length}}</div>
@@ -26,6 +45,7 @@
           <div class="row">
             <div class="col-md-12">Created {{project.createdAt | date:"MM/dd/yy"}}</div>
           </div>
+
         </div>
       </div>
     </div>

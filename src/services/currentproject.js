@@ -1,6 +1,6 @@
 
 import { AngularFire } from 'angularfire2';
-import { DefaultProject } from '../constants/defaultproject';
+import { DefaultProject, STRING_SIZES } from '../constants/defaultproject';
 import _ from 'lodash';
 
 import { hri } from 'human-readable-ids';
@@ -15,14 +15,14 @@ export class CurrentProjectService {
     this.angularFire.auth.subscribe(auth => this.authData = auth);
   }
 
-  createNewProject() {
+  createNewProject({ name } = {}) {
     const projects = this.angularFire.list('/projects');
     const newProjectData = _.cloneDeep(DefaultProject);
     if(this.authData) {
       newProjectData.owner = this.authData.uid;
     }
 
-    newProjectData.name = hri.random();
+    newProjectData.name = _.truncate(name, { length: STRING_SIZES.projectName }) || hri.random();
     newProjectData.createdAt = Date.now();
 
     const newProject = projects.push(newProjectData);

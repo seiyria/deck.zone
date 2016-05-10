@@ -4,6 +4,7 @@ import { ROUTER_DIRECTIVES, Router } from '@angular/router-deprecated';
 import { AngularFire } from 'angularfire2';
 import { Subject } from 'rxjs';
 import template from './projectlist.html';
+import './projectlist.less';
 
 import { CurrentProjectService } from '../../services/currentproject';
 
@@ -38,8 +39,8 @@ export class ProjectListComponent {
     });
   }
 
-  createProject() {
-    const id = this.currentProjectService.createNewProject();
+  createProject(name) {
+    const id = this.currentProjectService.createNewProject({ name });
     this.router.navigate(['/Create', 'Create', { projectId: id }]);
   }
 }

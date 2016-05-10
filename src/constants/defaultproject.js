@@ -1,4 +1,9 @@
 
+export const STRING_SIZES = {
+  scriptName: 20,
+  projectName: 30
+};
+
 export const DefaultProject = {
   activeScript: '0',
   resources: [

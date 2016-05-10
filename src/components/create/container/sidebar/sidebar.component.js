@@ -6,6 +6,7 @@ import { NgClass } from '@angular/common';
 import template from './sidebar.html';
 import './sidebar.less';
 
+import { STRING_SIZES } from '../../../../constants/defaultproject';
 import { CurrentProjectService } from '../../../../services/currentproject';
 import { ProjectComponent } from '../project.component';
 
@@ -48,9 +49,9 @@ export class SidebarComponent extends ProjectComponent {
   validateFilename(scriptList, value) {
     const duplicateName = () => _.some(scriptList, scriptObj => _.includes([value, `${value}${FILE_EXTENSION}`], scriptObj.script.name));
     return new Promise((resolve, reject) => {
-      if(!value)            return reject('You need to give the file a name.');
-      if(value.length > 20) return reject('File name limited to 20 characters.');
-      if(duplicateName())   return reject('You already have a file named that!');
+      if(!value)                                 return reject('You need to give the file a name.');
+      if(value.length > STRING_SIZES.scriptName) return reject('File name limited to 20 characters.');
+      if(duplicateName())                        return reject('You already have a file named that!');
 
       resolve();
     });
