@@ -33,7 +33,9 @@
           <div class="col-md-3">
             <button type="button"
                     class="pull-md-right btn btn-xs btn-primary-outline"
-                    [routerLink]="['/Create', 'Settings', { projectId: project.$key }]">s</button>
+                    [routerLink]="['/Create', 'Settings', { projectId: project.$key }]">
+              <i fa [icon]="'cog'" [fw]="true"></i>
+            </button>
           </div>
         </div>
         <div class="card-text p-a-1">

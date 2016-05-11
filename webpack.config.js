@@ -13,7 +13,7 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /ng2-(ace|sweetalert2)\/index\.js$/,
+        test: /ng2-(ace|sweetalert2|fontawesome)\/index\.js$/,
         loaders: ['babel-loader']
       },
       {
