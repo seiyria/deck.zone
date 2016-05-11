@@ -3,7 +3,10 @@
     <div class="card">
       <div class="card-block no-padding-bottom">
         <h4 class="card-title">
-          Scripts <button type="button" class="pull-md-right btn btn-xs btn-primary-outline" (click)="newFile()">New</button>
+          Scripts
+          <button type="button" class="pull-md-right btn btn-xs btn-primary-outline" (click)="newFile()">
+            <i fa [icon]="'plus'" [fw]="true"></i>
+          </button>
         </h4>
       </div>
 
@@ -24,11 +27,15 @@
 
                 <button class="btn btn-xs btn-info-outline"
                         *ngIf="isVisible[scriptObj.key]"
-                        (click)="editFile(scriptObj)">e</button>
+                        (click)="editFile(scriptObj)">
+                  <i fa [icon]="'edit'" [fw]="true"></i>
+                </button>
 
                 <button class="btn btn-xs btn-danger-outline"
                         *ngIf="isVisible[scriptObj.key]"
-                        (click)="deleteFile(scriptObj)">x</button>
+                        (click)="deleteFile(scriptObj)">
+                  <i fa [icon]="'trash'" [fw]="true"></i>
+                </button>
               </div>
             </a>
           </li>
@@ -46,7 +53,10 @@
     <div class="card">
       <div class="card-block no-padding-bottom">
         <h4 class="card-title">
-          Resources <button type="button" class="pull-md-right btn btn-xs btn-primary-outline">New</button>
+          Resources
+          <button type="button" class="pull-md-right btn btn-xs btn-primary-outline">
+            <i fa [icon]="'plus'" [fw]="true"></i>
+          </button>
         </h4>
       </div>
       <div class="card-text" *ngIf="internalProject.resources">
