@@ -1,6 +1,4 @@
 
-import { EventEmitter } from '@angular/core';
-
 export class ProjectComponent {
   constructor() {
     this.internalProject = {};

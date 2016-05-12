@@ -9,18 +9,19 @@ import { CreatorComponent } from './creator/creator.component';
 import { ClaimerComponent } from './claimer/claimer.component';
 
 import { CurrentProjectService } from '../../../services/currentproject';
+import { TitleChangerService } from '../../../services/titlechanger';
 
 @Component({
-  providers: [CurrentProjectService],
+  providers: [CurrentProjectService, TitleChangerService],
   directives: [SidebarComponent, ToolbarComponent, CreatorComponent, ClaimerComponent],
   template
 })
 export class CreateContainerComponent {
   static get parameters() {
-    return [[RouteParams], [Router], [CurrentProjectService]];
+    return [[RouteParams], [Router], [CurrentProjectService], [TitleChangerService]];
   }
 
-  constructor(routeParams, router, currentProjectService) {
+  constructor(routeParams, router, currentProjectService, titleChangerService) {
     this.projectId = routeParams.params.projectId;
 
     if(!this.projectId) {
@@ -30,7 +31,10 @@ export class CreateContainerComponent {
     this.projectData = currentProjectService.getContent(this.projectId);
     this.projectData._ref.on('value', snap => {
       const value = snap.val();
-      if(value) return;
+      if(value) {
+        titleChangerService.changeTitle(value.name);
+        return;
+      }
       router.navigate(['../Invalid', { projectId: this.projectId }]);
     });
 

@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { ROUTER_PROVIDERS } from '@angular/router-deprecated';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { provide, PLATFORM_DIRECTIVES } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 import { FontAwesomeDirective } from 'ng2-fontawesome';
 
@@ -15,6 +16,9 @@ import { bootstrap } from '@angular/platform-browser-dynamic';
 import { App } from './components/app.component';
 
 bootstrap(App, [
+
+  // TODO find a way to bootstrap this in the service instead of here
+  Title,
   ROUTER_PROVIDERS,
   FIREBASE_PROVIDERS,
   provide(PLATFORM_DIRECTIVES, { useValue: FontAwesomeDirective, multi: true }),
