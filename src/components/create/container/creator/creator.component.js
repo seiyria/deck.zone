@@ -7,6 +7,8 @@ import { ProjectComponent } from '../project.component';
 
 import { AceEditorDirective } from 'ng2-ace';
 
+import _ from 'lodash';
+
 @Component({
   selector: 'creator',
   inputs: ['projectId', 'project', 'api'],
@@ -14,6 +16,18 @@ import { AceEditorDirective } from 'ng2-ace';
   template
 })
 export class CreatorComponent extends ProjectComponent {
+
+  constructor() {
+    super();
+
+    const writeFile = _.debounce((data, index) => {
+      this.api.writeFile(data, index);
+    }, 5000);
+
+    this.onChange = (data, index) => {
+      writeFile(data, index);
+    }
+  }
 
   ngOnChanges(data) {
     const projectData = data.project.currentValue;
@@ -28,11 +42,6 @@ export class CreatorComponent extends ProjectComponent {
 
     super.ngOnChanges(data);
     this._scriptList = _(this.internalProject.scripts).keys().map(key => ({key, script: this.internalProject.scripts[key] })).value();
-  }
-
-  onChange(data, index) {
-    // TODO debounce this
-    this.api.writeFile(data, index);
   }
 
 }
