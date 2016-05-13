@@ -12,7 +12,7 @@ import { CurrentProjectService } from '../../../services/currentproject';
 import { TitleChangerService } from '../../../services/titlechanger';
 
 @Component({
-  providers: [CurrentProjectService, TitleChangerService],
+  providers: [CurrentProjectService],
   directives: [SidebarComponent, ToolbarComponent, CreatorComponent, ClaimerComponent],
   template
 })

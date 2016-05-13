@@ -6,6 +6,9 @@ import template from './titlebar.html';
 import { DROPDOWN_DIRECTIVES } from 'ng2-bootstrap/components/dropdown';
 
 import { CurrentProjectService } from '../../services/currentproject';
+import { TitleChangerService } from '../../services/titlechanger';
+
+import _ from 'lodash';
 
 @Component({
   selector: 'titlebar',
@@ -15,13 +18,14 @@ import { CurrentProjectService } from '../../services/currentproject';
 })
 export class TitleBarComponent {
   static get parameters() {
-    return [[Router], [AngularFire], [CurrentProjectService]];
+    return [[Router], [AngularFire], [CurrentProjectService], [TitleChangerService]];
   }
 
-  constructor(router, angularFire, currentProjectService) {
+  constructor(router, angularFire, currentProjectService, titleChangerService) {
     this.router = router;
     this.angularFire = angularFire;
     this.currentProjectService = currentProjectService;
+    titleChangerService.currentSubTitle.subscribe(val => this.currentSubTitle = val);
   }
 
   logout() {

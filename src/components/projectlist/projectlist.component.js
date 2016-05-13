@@ -7,6 +7,7 @@ import template from './projectlist.html';
 import './projectlist.less';
 
 import { CurrentProjectService } from '../../services/currentproject';
+import { TitleChangerService } from '../../services/titlechanger';
 
 @Component({
   providers: [AngularFire, CurrentProjectService],
@@ -15,10 +16,11 @@ import { CurrentProjectService } from '../../services/currentproject';
 })
 export class ProjectListComponent {
   static get parameters() {
-    return [[Router], [AngularFire], [CurrentProjectService]];
+    return [[Router], [AngularFire], [CurrentProjectService], [TitleChangerService]];
   }
 
-  constructor(router, angularFire, currentProjectService) {
+  constructor(router, angularFire, currentProjectService, titleChangerService) {
+    titleChangerService.changeTitle('Project List');
     this.router = router;
     this.angularFire = angularFire;
     this.currentProjectService = currentProjectService;

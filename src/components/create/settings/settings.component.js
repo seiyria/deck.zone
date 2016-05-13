@@ -7,6 +7,7 @@ import { RouteParams, Router, ROUTER_DIRECTIVES } from '@angular/router-deprecat
 
 import { SweetAlertService } from 'ng2-sweetalert2';
 import { CurrentProjectService } from '../../../services/currentproject';
+import { TitleChangerService } from '../../../services/titlechanger';
 import { STRING_SIZES } from '../../../constants/defaultproject';
 
 import _ from 'lodash';
@@ -19,10 +20,10 @@ import _ from 'lodash';
 export class SettingsComponent {
 
   static get parameters() {
-    return [[RouteParams], [Router], [FormBuilder], [CurrentProjectService], [SweetAlertService]];
+    return [[RouteParams], [Router], [FormBuilder], [TitleChangerService], [CurrentProjectService], [SweetAlertService]];
   }
 
-  constructor(routeParams, router, formBuilder, currentProjectService, swalService) {
+  constructor(routeParams, router, formBuilder, titleChangerService, currentProjectService, swalService) {
     this.projectId = routeParams.params.projectId;
     this.router = router;
     this.currentProjectService = currentProjectService;
@@ -33,6 +34,9 @@ export class SettingsComponent {
       if(!val) {
         return this.router.navigate(['../../Home']);
       }
+
+      titleChangerService.changeTitle(`${val.name} - Settings`);
+
       this.form = formBuilder.group({
         name: [val.name, Validators.required]
       });

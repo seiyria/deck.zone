@@ -4,6 +4,9 @@
   </button>
   <div class="collapse navbar-toggleable-xs" id="navbar-header">
     <a class="navbar-brand" [routerLink]="['/Home']">deck.zone</a>
+    <a class="navbar-brand" *ngIf="currentSubTitle">
+      <small>{{currentSubTitle}}</small>
+    </a>
     <ul class="nav navbar-nav" *ngIf="!router.isRouteActive(router.generate(['/Create', 'Root']))">
       <li class="nav-item">
         <a class="nav-link" (click)="createProject()">Create</a>

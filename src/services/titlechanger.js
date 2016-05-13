@@ -1,11 +1,8 @@
 
+import { EventEmitter } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 const BASE_TITLE = 'deck.zone';
-
-// TODO use this - components should all inject title by default
-// TODO the title bar of the page should read deck.zone - currentprojectname
-// todo subtitle should be an event emitter
 
 export class TitleChangerService {
   static get parameters() {
@@ -14,16 +11,13 @@ export class TitleChangerService {
 
   constructor(title) {
     this._title = title;
+    this.currentSubTitle = new EventEmitter();
   }
 
   changeTitle(newTitle) {
-    this.currentSubTitle = newTitle;
+    this.currentSubTitle.next(newTitle);
 
     if(!newTitle) return this._title.setTitle(BASE_TITLE);
     this._title.setTitle(`${BASE_TITLE} - ${newTitle}`);
-  }
-
-  get subtitle() {
-    return this.currentSubTitle;
   }
 }
