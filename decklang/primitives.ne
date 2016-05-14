@@ -5,7 +5,7 @@
 @{% function joiner(d) { return d.join(''); } %}
 
 _ ->
-[\s]:* {% nuller %}
+  [\s\n\t]:* {% nuller %}
 
 csscolor ->
   "#" hexdigit hexdigit hexdigit hexdigit hexdigit hexdigit {% joiner %}
