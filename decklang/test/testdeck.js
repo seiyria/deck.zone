@@ -10,14 +10,11 @@ font = "Arial", 16, BU, #0a0a0a
 
 // TODO figure out why using the same parser object causes an error
 
-_.each(testDeck, testString => {
+var parser = new nearley.Parser(grammar.ParserRules, grammar.ParserStart);
 
-  var parser = new nearley.Parser(grammar.ParserRules, grammar.ParserStart);
-
-  try {
-    console.log(`Parsing: ${testString}`);
-    console.log(parser.feed(testString).results[0][0]);
-  } catch(parseError) {
-    console.error(parseError);
-  }
-});
+try {
+  console.log(`Parsing: ${testDeck}`);
+  console.log(parser.feed(testDeck).results[0][0]);
+} catch(parseError) {
+  console.error(parseError);
+}
