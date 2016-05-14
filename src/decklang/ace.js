@@ -46,7 +46,7 @@ ace.define('ace/mode/decklang_highlight_rules', (require, exports) => {
         },
         {
           token: 'comment.line.number-sign',
-          regex: /^\s*#.+$/
+          regex: /\s*`.+$/
         },
         {
           token: 'support.function',

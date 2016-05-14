@@ -16,7 +16,7 @@ export class DecklangParser {
   }
 
   removeComments(script) {
-    const commentRegex = /^\s*#.+$/gm;
+    const commentRegex = /\s*`.+$/gm;
     return script.replace(commentRegex, '');
   }
 
