@@ -1,18 +1,19 @@
 
-var grammar = require('../../src/decklang/decklang');
-var nearley = require('nearley');
-var _ = require('lodash');
+require('babel-register');
+const DecklangParser = require('../../src/decklang/decklangparser').DecklangParser;
 
-var testDeck = `
+const testDeck = `
+# This is a comment.
 text = 1, "String", 0, 0, 10, 2
 font = "Arial", 16, BU, #0a0a0a
 `;
 
-var parser = new nearley.Parser(grammar.ParserRules, grammar.ParserStart);
+const newParser = new DecklangParser({ script: testDeck });
 
 try {
-  console.log(`Parsing: ${testDeck}`);
-  console.log(parser.feed(testDeck).results[0]);
+  console.log(testDeck);
+  console.log(newParser.parse());
+  // console.log(parser.feed(testDeck).results[0]);
 } catch(parseError) {
   console.error(parseError);
 }

@@ -45,6 +45,10 @@ ace.define('ace/mode/decklang_highlight_rules', (require, exports) => {
           regex: /"[a-zA-Z0-9]+"/
         },
         {
+          token: 'comment.line.number-sign',
+          regex: /^\s*#.+$/
+        },
+        {
           token: 'support.function',
           regex: new RegExp(`^\s*(${pluginNames.join('|')})`),
           caseInsensitive: true
