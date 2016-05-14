@@ -14,8 +14,9 @@
     ]
   },
   "scripts": {
-    "build": "webpack -p --progress && cp src/index.html dist/index.html && echo 'deck.zone' >> dist/CNAME",
-    "start": "webpack-dev-server --open --content-base src/ --inline --hot",
+    "build:app": "webpack -p --progress && cp src/index.html dist/index.html && echo 'deck.zone' >> dist/CNAME",
+    "build:lang": "mkdir -p src/decklang && nearleyc decklang/decklang.ne -o src/decklang/decklang.js",
+    "start": "npm build:lang && webpack-dev-server --open --content-base src/ --inline --hot",
     "deploy": "npm run build && gulp deploy"
   },
   "dependencies": {
@@ -58,6 +59,7 @@
     "json-loader": "^0.5.3",
     "less": "^2.6.1",
     "less-loader": "^2.2.3",
+    "nearley": "^2.4.1",
     "open-browser-webpack-plugin": "0.0.2",
     "style-loader": "^0.13.0",
     "webpack": "^1.12.13",

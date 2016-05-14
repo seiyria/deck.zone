@@ -7,3 +7,5 @@ loki.json
 .idea
 dist
 .publish
+
+src/decklang
