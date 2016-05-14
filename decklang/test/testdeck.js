@@ -13,7 +13,7 @@ var testDeck = [
 _.each(testDeck, testString => {
 
   var parser = new nearley.Parser(grammar.ParserRules, grammar.ParserStart);
-  
+
   try {
     console.log(`Parsing: ${testString}`);
     console.log(parser.feed(testString).results[0][0]);

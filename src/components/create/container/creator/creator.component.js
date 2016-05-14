@@ -7,6 +7,9 @@ import { ProjectComponent } from '../project.component';
 
 import { AceEditorDirective } from 'ng2-ace';
 
+import 'brace/theme/clouds';
+import '../../../../decklang/ace';
+
 import _ from 'lodash';
 
 @Component({

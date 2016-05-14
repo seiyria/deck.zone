@@ -8,4 +8,5 @@ loki.json
 dist
 .publish
 
-src/decklang
+src/decklang/decklang.js
+src/decklang/plugins.json

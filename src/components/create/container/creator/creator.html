@@ -4,5 +4,7 @@
        *ngFor="let scriptObj of _scriptList"
        [ngClass]="{'hidden-editor': scriptObj.key !== activeScriptId}"
        [text]="scriptObj.script.contents"
+       [mode]="'decklang'"
+       [theme]="'clouds'"
        (textChanged)="onChange($event, scriptObj.key)"></div>
 </div>
