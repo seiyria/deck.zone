@@ -13,9 +13,9 @@ font = [BigFont]
 font = [FontName], 16pt, BU, #f0f0f0 \` test comment
 
 text = 1, "String", 0, 0, 10, 2
-text = 1, "String", 0, 0, 10, 2, center
-text = 1, "String", 0, 0, 10, 2, center, top
-text = 1, "String", 0, 0, 10, 2, , top
+text = 2, "String", 0, 0, 10, 2, center
+text = 3, "String", 0, 0, 10, 2, center, top
+text = 4, "String", 0, 0, 10, 2, , top
 font = "Arial", 16mm, BU, #0a0a0a
 `;
 
