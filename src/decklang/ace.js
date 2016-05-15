@@ -41,6 +41,10 @@ ace.define('ace/mode/decklang_highlight_rules', (require, exports) => {
           regex: /\d/
         },
         {
+          token: 'storage.type',
+          regex: /(\[\w+])/
+        },
+        {
           token: 'string.quoted.double',
           regex: /"[a-zA-Z0-9]+"/
         },

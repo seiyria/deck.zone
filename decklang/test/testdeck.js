@@ -4,6 +4,14 @@ const DecklangParser = require('../../src/decklang/decklangparser').DecklangPars
 
 const testDeck = `
 \` This is a comment.
+
+[NoAssign]="Test"
+[FontName] = "Arial"
+ [BigFont]  = "Arial", 16, BU, #f0f0f0
+
+font = [BigFont]
+font = [FontName], 16, BU, #f0f0f0 \` test comment
+
 text = 1, "String", 0, 0, 10, 2 \` This does text things
 font = "Arial", 16, BU, #0a0a0a
 `;
