@@ -1,27 +1,43 @@
 @builtin "number.ne"
 @builtin "string.ne"
 
-@{% function nuller() { return null } %}
+# commonly used helper functions
+@{% function nuller() { return null; } %}
+@{% function emptystring() { return ''; } %}
 @{% function joiner(d) { return d.join(''); } %}
 
+# whitespace
 _ ->
   [\s\n\t]:* {% nuller %}
 
-csscolor ->
-  "#" hexdigit hexdigit hexdigit hexdigit hexdigit hexdigit {% joiner %}
-| "#" hexdigit hexdigit hexdigit {% joiner %}
-
+# used by css
 hexdigit ->
   [a-fA-F0-9]
 
-textdecoration ->
+# used by many text directives
+TextDecoration ->
   null
 | [BUI]:* {% joiner %}
 
-decimalornull ->
-  null
-| decimal
+# primitive types
+String          -> dqstring {% id %}
+PositiveInteger -> posint   {% id %}
+Integer         -> int      {% id %}
+Decimal         -> decimal  {% id %}
 
-stringornull ->
+# primitive types that support a variable being in them, or being null
+StringVariable ->
   null
-| dqstring
+| String
+
+PositiveIntegerVariable ->
+  null
+| PositiveInteger
+
+IntegerVariable ->
+  null
+| Integer
+
+DecimalVariable ->
+  null
+| Decimal

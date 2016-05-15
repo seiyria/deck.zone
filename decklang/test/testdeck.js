@@ -12,7 +12,10 @@ const testDeck = `
 font = [BigFont]
 font = [FontName], 16, BU, #f0f0f0 \` test comment
 
-text = 1, "String", 0, 0, 10, 2 \` This does text things
+text = 1, "String", 0, 0, 10, 2
+text = 1, "String", 0, 0, 10, 2, center
+text = 1, "String", 0, 0, 10, 2, center, top
+text = 1, "String", 0, 0, 10, 2, , top
 font = "Arial", 16, BU, #0a0a0a
 `;
 

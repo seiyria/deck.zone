@@ -1,5 +1,10 @@
 
-font -> "font" _ "=" _ dqstring _ "," _ posint _ "," _ textdecoration _ "," _ csscolor {%
+font -> "font" _ "="
+        _ String                  # font name
+        _ "," _ PositiveInteger   # font size
+        _ "," _ TextDecoration    # font decoration
+        _ "," _ CssColor          # font color
+{%
   function(d) {
     return {
       call: d[0],
