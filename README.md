@@ -16,7 +16,7 @@
 
 ### Working on Decklang
 
-* the Decklang grammar is in `decklang/` (it is parsed with `[nearley](https://github.com/Hardmath123/nearley)`), and can be rebuilt by running `npm run build:lang`
+* the Decklang grammar is in `decklang/` (it is parsed with [`nearley`](https://github.com/Hardmath123/nearley)), and can be rebuilt by running `npm run build:lang`
   * `decklang.ne` is the main file, including all of the plugins and primitives
   * `primitives.ne` contains all of the language primitives
   * `plugins/` contains all of the directives used by Decklang
