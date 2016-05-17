@@ -1,7 +1,7 @@
 
 <div class="row" *ngIf="projectId">
 
-  <div class="col-md-3">
+  <div class="col-md-4 col-xl-3" [class.hidden]="storage.hideSidebar">
 
     <div class="row">
       <div class="col-md-12">
@@ -17,7 +17,10 @@
 
   </div>
 
-  <div class="col-md-9">
+  <div class="col-md-4 col-xl-6" [ngClass]="{
+    'col-md-8 col-xl-9':    storage.hideSidebar || storage.hideResult,
+    'col-md-12 col-xl-12':  storage.hideSidebar && storage.hideResult
+  }">
 
     <div class="row">
       <toolbar class="col-md-12" [projectId]="projectId" [project]="projectData | async" [api]="api"></toolbar>
@@ -29,6 +32,12 @@
       </div>
     </div>
 
+  </div>
+
+  <div class="col-md-4 col-xl-3" [class.hidden]="storage.hideResult">
+    <div class="row">
+      results
+    </div>
   </div>
 
 </div>

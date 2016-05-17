@@ -25,7 +25,7 @@ export class SidebarComponent extends ProjectComponent {
     return [[SweetAlertService], [CurrentProjectService]];
   }
 
-  constructor(swal, currentProjectService) {
+  constructor(swal, currentProjectService, storage) {
     super();
     this.isVisible = {};
     this.swalService = swal;

@@ -18,7 +18,7 @@
     "build:lang": "mkdir -p src/decklang && npm run build:lang:map && nearleyc decklang/decklang.ne -o src/decklang/decklang.js",
     "build:lang:map": "node -e \"console.log(JSON.stringify(require('glob').sync('decklang/plugins/*.ne')))\" > src/decklang/plugins.json",
     "test:lang": "node decklang/test/testdeck",
-    "start": "npm build:lang && webpack-dev-server --open --content-base src/ --inline --hot",
+    "start": "npm run build:lang && webpack-dev-server --open --content-base src/ --inline --hot",
     "deploy": "npm run build && gulp deploy"
   },
   "dependencies": {
@@ -40,6 +40,7 @@
     "ng2-ace": "0.0.6",
     "ng2-bootstrap": "^1.0.16",
     "ng2-fontawesome": "0.0.1",
+    "ng2-storage": "0.0.1",
     "ng2-sweetalert2": "0.0.2",
     "reflect-metadata": "0.1.2",
     "rxjs": "5.0.0-beta.6",

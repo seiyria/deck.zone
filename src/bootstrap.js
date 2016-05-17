@@ -14,10 +14,12 @@ import { FIREBASE_PROVIDERS, defaultFirebase, AngularFire, firebaseAuthConfig } 
 
 import { App } from './components/app.component';
 import { TitleChangerService } from './services/titlechanger';
+import { StorageSettings } from 'ng2-storage';
 
 bootstrap(App, [
   Title,
   TitleChangerService,
+  provide(StorageSettings, { useValue: { prefix: 'dz' } }),
   ROUTER_PROVIDERS,
   FIREBASE_PROVIDERS,
   provide(PLATFORM_DIRECTIVES, { useValue: FontAwesomeDirective, multi: true }),

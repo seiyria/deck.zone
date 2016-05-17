@@ -8,21 +8,23 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { CreatorComponent } from './creator/creator.component';
 import { ClaimerComponent } from './claimer/claimer.component';
 
+import { StorageService } from 'ng2-storage';
 import { CurrentProjectService } from '../../../services/currentproject';
 import { TitleChangerService } from '../../../services/titlechanger';
 
 @Component({
-  providers: [CurrentProjectService],
+  providers: [CurrentProjectService, StorageService],
   directives: [SidebarComponent, ToolbarComponent, CreatorComponent, ClaimerComponent],
   template
 })
 export class CreateContainerComponent {
   static get parameters() {
-    return [[RouteParams], [Router], [CurrentProjectService], [TitleChangerService]];
+    return [[RouteParams], [Router], [CurrentProjectService], [TitleChangerService], [StorageService]];
   }
 
-  constructor(routeParams, router, currentProjectService, titleChangerService) {
+  constructor(routeParams, router, currentProjectService, titleChangerService, storage) {
     this.projectId = routeParams.params.projectId;
+    this.storage = storage.local;
 
     if(!this.projectId) {
       return router.navigate(['../../Home']);

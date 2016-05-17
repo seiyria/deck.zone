@@ -21,22 +21,21 @@
             <a class="nav-link"
                (click)="setActiveScript(scriptObj.key)"
                [ngClass]="{active: scriptObj.key === internalProject.activeScript}">
-              <span>{{scriptObj.script.name}}</span>
 
-              <div class="btn-group pull-md-right">
+              <div class="btn-group sidebar-buttons-on-top" *ngIf="isVisible[scriptObj.key]">
 
-                <button class="btn btn-xs btn-info-outline"
-                        *ngIf="isVisible[scriptObj.key]"
+                <button class="btn btn-xs btn-info"
                         (click)="editFile(scriptObj)">
                   <i fa [icon]="'edit'" [fw]="true"></i>
                 </button>
 
-                <button class="btn btn-xs btn-danger-outline"
-                        *ngIf="isVisible[scriptObj.key]"
+                <button class="btn btn-xs btn-danger"
                         (click)="deleteFile(scriptObj)">
                   <i fa [icon]="'trash'" [fw]="true"></i>
                 </button>
               </div>
+
+              <span>{{scriptObj.script.name}}</span>
             </a>
           </li>
         </ul>

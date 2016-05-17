@@ -1,6 +1,19 @@
-<button type="button" class="btn btn-info-outline" (click)="download()">Download ZIP</button>
-<button type="button" class="btn btn-info-outline" disabled>View Result</button>
+<button type="button" class="btn btn-primary-outline" (click)="storage.hideSidebar = !storage.hideSidebar">
+  <i fa [icon]="'arrow-left'"></i>
+</button>
 
-<button type="button" class="btn btn-info-outline pull-md-right" [routerLink]="['../Settings', { projectId: projectId }]">
-  <i fa [icon]="'cog'" [fw]="true"></i>
+<button type="button" class="btn btn-info-outline" (click)="download()">
+  <i fa [icon]="'download'"></i> Download ZIP
+</button>
+
+<button type="button" class="btn btn-info-outline" [routerLink]="['../Settings', { projectId: projectId }]">
+  <i fa [icon]="'cog'" [fw]="true"></i> Settings
+</button>
+
+<button type="button" class="btn btn-info-outline" disabled>
+  <i fa [icon]="'external-link'"></i> View Result
+</button>
+
+<button type="button" class="btn btn-primary-outline pull-md-right" (click)="storage.hideResult = !storage.hideResult">
+  <i fa [icon]="'arrow-right'"></i>
 </button>

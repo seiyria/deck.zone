@@ -29,7 +29,9 @@ export class CreatorComponent extends ProjectComponent {
 
     this.onChange = (data, index) => {
       writeFile(data, index);
-    }
+    };
+
+    this.editorOptions = { printMargin: false };
   }
 
   ngOnChanges(data) {
