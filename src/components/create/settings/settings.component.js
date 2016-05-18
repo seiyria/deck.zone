@@ -55,7 +55,7 @@ export class SettingsComponent {
       if(!val) return;
 
       this.projectRef._ref.remove();
-      this.router.navigate(['../../Home']);
+      this.router.navigate(['../../Projects']);
     });
   }
 }
