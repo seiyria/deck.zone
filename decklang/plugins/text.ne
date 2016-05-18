@@ -10,7 +10,6 @@ text -> "text" _ "="
       ( _ "," _ VerticalAlignment):?    # vertical alignment (optional)
 {%
   function(d) {
-  console.log(d)
     return {
       call: d[0],
       index: d[4],
