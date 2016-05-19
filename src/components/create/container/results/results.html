@@ -1,0 +1,15 @@
+<div class="results-pane m-t-3 card"
+     *vsFor="state.internalState.cards; let _cards = vsCollection">
+
+  <div class="game-card"
+       *ngFor="let card of _cards"
+       [ngStyle]="state.internalState.options.card">
+
+    <span game-text
+          *ngFor="let text of card.texts"
+          [ngStyle]="text.styleObject"
+          [args]="text">{{text.string}}</span>
+
+  </div>
+
+</div>

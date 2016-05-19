@@ -7,6 +7,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { CreatorComponent } from './creator/creator.component';
 import { ClaimerComponent } from './claimer/claimer.component';
+import { ResultsComponent } from './results/results.component';
 
 import { StorageService } from 'ng2-storage';
 import { CurrentProjectService } from '../../../services/currentproject';
@@ -14,7 +15,7 @@ import { TitleChangerService } from '../../../services/titlechanger';
 
 @Component({
   providers: [CurrentProjectService, StorageService],
-  directives: [SidebarComponent, ToolbarComponent, CreatorComponent, ClaimerComponent],
+  directives: [SidebarComponent, ToolbarComponent, CreatorComponent, ClaimerComponent, ResultsComponent],
   template
 })
 export class CreateContainerComponent {

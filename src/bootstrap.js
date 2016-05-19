@@ -4,7 +4,7 @@ import 'zone.js/dist/zone';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import { ROUTER_PROVIDERS } from '@angular/router-deprecated';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { LocationStrategy, HashLocationStrategy, NgStyle } from '@angular/common';
 import { provide, PLATFORM_DIRECTIVES } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { bootstrap } from '@angular/platform-browser-dynamic';
@@ -19,6 +19,7 @@ import { StorageSettings } from 'ng2-storage';
 bootstrap(App, [
   Title,
   TitleChangerService,
+  NgStyle,
   provide(StorageSettings, { useValue: { prefix: 'dz' } }),
   ROUTER_PROVIDERS,
   FIREBASE_PROVIDERS,
