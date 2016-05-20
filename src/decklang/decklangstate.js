@@ -16,7 +16,10 @@ const defaultState = {
   unit: 'cm',
   card: {
     width: '6cm',
-    height: '9cm'
+    height: '9cm',
+    'border-style': 'none',
+    'border-width': '1px',
+    'border-color': '#000'
   }
 };
 

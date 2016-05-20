@@ -14,6 +14,8 @@ export class TextComponent extends PluginComponent {
 
     const baseObject = {
       position:         'absolute',
+      overflow:         'hidden',
+      'word-wrap':      'break-word',
       left:             `${args.x}${unit}`,
       top:              `${args.y}${unit}`,
       width:            `${args.w}${unit}`,

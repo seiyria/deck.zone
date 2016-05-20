@@ -3,8 +3,8 @@ CssColor ->
   "#" hexdigit hexdigit hexdigit hexdigit hexdigit hexdigit {% joiner %}
 | "#" hexdigit hexdigit hexdigit {% joiner %}
 
-FontSize ->
-  PositiveInteger CssUnit
+CssValue ->
+  PositiveDecimal CssUnit
 
 CssUnit ->
   null    {% function() { return 'pt'; } %}
@@ -22,6 +22,16 @@ CssUnit ->
 | "in"    {% id %}
 | "pt"    {% id %}
 | "pc"    {% id %}
+
+BorderStyle ->
+  "dotted"  {% id %}
+| "dashed"  {% id %}
+| "solid"   {% id %}
+| "double"  {% id %}
+| "groove"  {% id %}
+| "ridge"   {% id %}
+| "inset"   {% id %}
+| "outset"  {% id %}
 
 HorizontalAlignment ->
   null     {% emptystring %}
