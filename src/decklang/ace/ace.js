@@ -1,4 +1,5 @@
-import plugins from './plugins.json';
+import plugins from '../plugins.json';
+import decklangLight from './ace-decklang-light.less';
 
 // generate a list of valid plugin names for the syntax highlighter
 const pluginNames = plugins.map(str => {
@@ -17,10 +18,19 @@ ace.define('ace/mode/decklang', (require, exports) => {
   };
   oop.inherits(Mode, TextMode);
 
-  (() => {
-  }).call(Mode.prototype);
+  (() => {}).call(Mode.prototype);
 
   exports.Mode = Mode;
+});
+
+ace.define('ace/theme/decklang-light', ['require','exports','module','ace/lib/dom'], function(require, exports) {
+
+  exports.isDark = false;
+  exports.cssClass = 'ace-decklang-light';
+  exports.cssText = decklangLight;
+
+  var dom = require('../lib/dom');
+  dom.importCssString(exports.cssText, exports.cssClass);
 });
 
 ace.define('ace/mode/decklang_highlight_rules', (require, exports) => {
@@ -31,6 +41,7 @@ ace.define('ace/mode/decklang_highlight_rules', (require, exports) => {
   const DecklangHighlightRules = function() {
 
     this.$rules = {
+
       start: [
         {
           token: 'constant.language',
@@ -46,18 +57,27 @@ ace.define('ace/mode/decklang_highlight_rules', (require, exports) => {
         },
         {
           token: 'string.quoted.double',
-          regex: /"[a-zA-Z0-9]+"/
+          regex: /"[^\n]+"/
+        },
+        {
+          token: 'variable.other',
+          regex: /<[\w\s=+\/*-]+>/
         },
         {
           token: 'comment.line.number-sign',
           regex: /\s*`.+$/
         },
         {
+          token: 'keyword.control',
+          regex: /loop|endloop|to/
+        },
+        {
           token: 'support.function',
-          regex: new RegExp(`^\s*(${pluginNames.join('|')})`),
+          regex: new RegExp(`\s*(${pluginNames.join('|')})`),
           caseInsensitive: true
         }
       ]
+
     };
 
   };
