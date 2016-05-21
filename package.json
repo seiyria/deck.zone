@@ -15,7 +15,7 @@
   },
   "scripts": {
     "build:app": "webpack -p --progress && cp src/index.html dist/index.html && echo 'deck.zone' >> dist/CNAME",
-    "build:lang": "mkdir -p src/decklang && npm run build:lang:map && nearleyc decklang/decklang.ne -o src/decklang/decklang.js",
+    "build:lang": "npm run build:lang:map && nearleyc decklang/decklang.ne -o src/decklang/decklang.js",
     "build:lang:map": "node -e \"console.log(JSON.stringify(require('glob').sync('decklang/plugins/*.ne')))\" > src/decklang/plugins.json",
     "test:lang": "node decklang/test/testdeck",
     "start": "npm run build:lang && webpack-dev-server --open --content-base src/ --inline --hot",
