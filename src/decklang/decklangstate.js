@@ -44,8 +44,8 @@ export class DecklangState {
     return new InternalState();
   }
 
-  runPlugin(state, plugin, opts) {
-    if(!PLUGINS[plugin]) throw new Error(`Plugin '${plugin}' does not exist.`);
-    PLUGINS[plugin].operate(opts, state);
+  runPlugin(state, plugin, scope = {}) {
+    if(!PLUGINS[plugin.call]) throw new Error(`Plugin '${plugin.call}' does not exist.`);
+    PLUGINS[plugin.call].operate(plugin, state, scope);
   }
 }

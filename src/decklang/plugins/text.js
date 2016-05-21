@@ -37,8 +37,8 @@ export class TextComponent extends PluginComponent {
 
 export class Text extends Plugin {
 
-  static operate(args, state) {
-    super.operate(args, state);
+  static operate(args, state, scope) {
+    super.operate(args, state, scope);
 
     if(!state.cards[args.index-1]) state.cards[args.index-1] = state.newCard();
     state.cards[args.index-1].texts.push(args);
