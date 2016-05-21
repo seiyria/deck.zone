@@ -4,12 +4,20 @@
 @include "plugins/text.ne"
 @include "plugins/unit.ne"
 
+@include "loops.ne"
+
 @include "primitives_advanced.ne"
 @include "primitives.ne"
 
-main -> _ (line_of_code _):*
+main -> Program
 
-line_of_code ->
+Program -> _ (LineOfCode _):*
+
+LineOfCode ->
+  Loop
+| Directive
+
+Directive ->
   border
 | font
 | text

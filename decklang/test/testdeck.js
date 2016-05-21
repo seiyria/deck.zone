@@ -3,33 +3,28 @@ require('babel-register');
 const DecklangParser = require('../../src/decklang/decklangparser').DecklangParser;
 
 const testDeck = `
-\` This is a comment.
+text = 1, "Main Card", 2, 2, 1, 1
 
-[NoAssign]="Test"
-[FontName] = "Arial"
- [BigFont]  = "Arial", 16px, BU, #f0f0f0
+loop = <x = 1> to 5
+  text = <x>, "Title <x>", 0, 0, 3, 1
+  text = <x>, "Subtitle <x>", 0, 1, 3, 1
+  text = <x>, "Subtitle2 <x>", 0, 2, 3, 1
 
-unit = px
-font = [BigFont]
-font = [FontName], 16pt, BU, #f0f0f0 \` test comment
+  loop = <y = 0> to 2
+    text = <x>, "Test <x> <y> (<x+y>)", 0, <3 + x + y>, 1, 3
+  endloop
 
-border = dotted, #c0c0c0
-border = dotted, #c0c0c0, 1.5
-border = dotted, , 1.5
+  text = <x>, "Megasubtitle <x>", 0, 7, 5, 1
 
-font = "Arial", 16mm, BU, #0a0a0a
-
-text = 1, "String", 1.5, 1.5, 10, 2
-text = 2, "String", 0, 0, 10, 2, center
-text = 3, "String", 0, 0, 10, 2, center, top
-text = 4, "String", 0, 0, 10, 2, , top
+endloop
 `;
 
 const newParser = new DecklangParser({ script: testDeck });
 
 try {
   console.log(testDeck);
-  console.log(newParser.parse());
+  console.dir(newParser.parse(), { depth: null });
 } catch(parseError) {
   console.error(parseError);
+  console.error('Error near', testDeck.substring(parseError.offset - 5, parseError.offset + 5));
 }

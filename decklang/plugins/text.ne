@@ -1,11 +1,11 @@
 
 text -> "text" _ "="
-        _ PositiveInteger               # index
+        _ PositiveIntegerVariable       # index
         _ "," _ String                  # display text
-        _ "," _ PositiveDecimal         # x position
-        _ "," _ PositiveDecimal         # y position
-        _ "," _ PositiveDecimal         # width
-        _ "," _ PositiveDecimal         # height
+        _ "," _ PositiveDecimalVariable # x position
+        _ "," _ PositiveDecimalVariable # y position
+        _ "," _ PositiveDecimalVariable # width
+        _ "," _ PositiveDecimalVariable # height
       ( _ "," _ HorizontalAlignment):?  # horizontal alignment (optional)
       ( _ "," _ VerticalAlignment):?    # vertical alignment (optional)
 {%

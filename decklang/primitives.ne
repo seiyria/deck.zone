@@ -6,9 +6,18 @@
 @{% function emptystring() { return ''; } %}
 @{% function joiner(d) { return d.join(''); } %}
 
+@{% function evalid(d) { return { eval: d[0] }; } %}
+@{% function evaljoiner(d) { return { eval: d.join('') }; } %}
+
+@{% var _ = require('lodash'); %}
+
 # whitespace
 _ ->
   [\s\n\t]:* {% nuller %}
+
+# required whitespace
+__ ->
+  [\s\n\t]:+ {% nuller %}
 
 # used by css
 hexdigit ->
@@ -37,22 +46,18 @@ PositiveDecimal -> posdecimal {% id %}
 Decimal         -> decimal    {% id %}
 
 # primitive types that support a variable being in them, or being null
-StringVariable ->
-  null
-| String
-
 PositiveIntegerVariable ->
-  null
-| PositiveInteger
+  PositiveInteger   {% id %}
+| LoopVariable      {% id %}
 
 IntegerVariable ->
-  null
-| Integer
+  Integer           {% id %}
+| LoopVariable      {% id %}
 
 PositiveDecimalVariable ->
-  null
-| PositiveDecimal
+  PositiveDecimal   {% id %}
+| LoopVariable      {% id %}
 
 DecimalVariable ->
-  null
-| Decimal
+  Decimal           {% id %}
+| LoopVariable      {% id %}
