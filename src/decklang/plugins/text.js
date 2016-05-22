@@ -23,8 +23,8 @@ export class TextComponent extends PluginComponent {
       'font-family':    font.family,
       'font-size':      `${font.size}${font.unit}`,
       color:            font.color,
-      'vertical-align': font.vertAlign,
-      'text-align':     font.horizAlign
+      'vertical-align': args.vertAlign,
+      'text-align':     args.horizAlign
     };
 
     if(_.includes(font.decoration, 'I')) baseObject['font-style'] = 'italic';
@@ -37,11 +37,11 @@ export class TextComponent extends PluginComponent {
 
 export class Text extends Plugin {
 
-  static operate(args, state) {
-    super.operate(args, state);
+  static operate(args, state, scope) {
+    super.operate(args, state, scope);
 
-    if(!state.cards[args.index-1]) state.cards[args.index-1] = state.newCard();
-    state.cards[args.index-1].texts.push(args);
+    if(!state.cards[args.index]) state.cards[args.index] = state.newCard();
+    state.cards[args.index].texts.push(args);
   }
 
 }

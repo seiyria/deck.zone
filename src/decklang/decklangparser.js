@@ -17,11 +17,15 @@ export class DecklangParser {
   }
 
   parse() {
+    return this.results(this.preParse());
+  }
+
+  preParse() {
     let script = this.script;
     script = this.removeComments(script);
     script = this.pullVariables(script);
     script = this.assignVariables(script);
-    return this.results(script);
+    return script;
   }
 
   assignVariables(script) {

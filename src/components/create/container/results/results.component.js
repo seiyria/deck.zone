@@ -47,19 +47,70 @@ export class ResultsComponent extends ProjectComponent {
 
     const newState = this.state.newState();
 
+    const runInstructions = (instructions, scope = {}) => {
+      _.each(instructions, instruction => {
+
+        // clone otherwise the objects in arrays are the same ref
+        const clonedInstruction = _.cloneDeep(instruction);
+
+        if(!clonedInstruction.ops) {
+          this.state.runPlugin(newState, clonedInstruction, scope);
+          return;
+        }
+
+        // early loop termination if there are no ops
+        if(clonedInstruction.ops.length === 0) {
+          return;
+        }
+
+        const { start, iterations, end } = clonedInstruction.loopStart;
+        const { varStart, varName } = start;
+
+        const newScope = _.cloneDeep(scope);
+
+        // for...to loop
+        if(_.isNumber(varStart) && _.isNumber(end)) {
+
+          if(varStart > end) throw new Error('Loop start must be lower than the end value');
+
+          for(let i = varStart; i <= end; i++) {
+            newScope[varName] = i;
+            runInstructions(clonedInstruction.ops, _.cloneDeep(newScope));
+          }
+
+        // for...in loop
+        } else if(iterations) {
+
+          _.each(iterations, (iteration, index) => {
+            newScope[varName] = iteration;
+            newScope[`${varName}_index`] = index;
+            runInstructions(clonedInstruction.ops, _.cloneDeep(newScope));
+          });
+
+        // not sure if this can even happen
+        } else {
+          throw new Error('Invalid loop settings.');
+        }
+
+      });
+    };
+
+    const newParser = new DecklangParser({ script: currentScript.contents });
+
     try {
-      const newParser = new DecklangParser({ script: currentScript.contents });
       const instructions = newParser.parse();
 
-      _.each(instructions, instruction => {
-        this.state.runPlugin(newState, instruction.call, instruction);
-      });
+      runInstructions(instructions);
 
+      // remove null entries when displaying cards
+      newState.cards = _.compact(newState.cards);
       this.state.internalState = newState;
 
     } catch(e) {
       console.error(e);
+      console.error('Error near', newParser.preParse().substring(e.offset - 5, e.offset + 5));
     }
+
   }
 
 }
