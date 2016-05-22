@@ -6,6 +6,7 @@ export const STRING_SIZES = {
 
 export const DefaultProject = {
   activeScript: '0',
+  visibility: 'Public',
   resources: [
     { name: 'rolling-dice.png', url: 'http://seiyria.com/gameicons-font/png/rolling-dice.png' }
   ],

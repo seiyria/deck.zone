@@ -38,14 +38,17 @@ export class SettingsComponent {
       titleChangerService.changeTitle(`${val.name} - Settings`);
 
       this.form = formBuilder.group({
-        name: [val.name, Validators.required]
+        name: [val.name, Validators.required],
+        visibility: [val.visibility, Validators.required]
       });
 
       this.name = this.form.controls.name;
+      this.visibility = this.form.controls.visibility;
     });
   }
 
   saveProject(formValue) {
+    this.projectRef._ref.child('visibility').set(formValue.visibility);
     this.projectRef._ref.child('name').set(_.truncate(formValue.name, { length: STRING_SIZES.projectName }));
     this.swalService.alert({ title: 'Saved!', text: 'Project successfully updated!' });
   }
