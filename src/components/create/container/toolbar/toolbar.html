@@ -1,19 +1,35 @@
-<button type="button" class="btn btn-primary-outline" (click)="storage.hideSidebar = !storage.hideSidebar">
-  <i fa [icon]="'arrow-left'"></i>
+<button type="button"
+        class="btn btn-primary-outline"
+        tooltipPlacement="bottom"
+        (click)="storage.hideSidebar = !storage.hideSidebar">
+  <i fa [icon]="'arrow-left'" fw="true"></i>
 </button>
 
-<button type="button" class="btn btn-info-outline" (click)="download()">
-  <i fa [icon]="'download'"></i> Download ZIP
+<button type="button"
+        class="btn btn-info-outline"
+        tooltipPlacement="bottom"
+        tooltip="Download a ZIP containing all of the resources and scripts for this project."
+        (click)="download()">
+  <i fa [icon]="'download'" fw="true"></i>
 </button>
 
-<button type="button" class="btn btn-info-outline" [routerLink]="['../Settings', { projectId: projectId }]">
-  <i fa [icon]="'cog'"></i> Settings
+<button type="button"
+        class="btn btn-info-outline"
+        tooltipPlacement="bottom"
+        tooltip="Change the settings for this project."
+        [routerLink]="['../Settings', { projectId: projectId }]">
+  <i fa [icon]="'cog'" fw="true"></i>
 </button>
 
-<button type="button" class="btn btn-info-outline" disabled>
-  <i fa [icon]="'external-link'"></i> View Result
+<button type="button"
+        class="btn btn-info-outline"
+        tooltipPlacement="bottom"
+        tooltip="View result in an external window.">
+  <i fa [icon]="'external-link'" fw="true"></i>
 </button>
 
-<button type="button" class="btn btn-primary-outline pull-md-right" (click)="storage.hideResult = !storage.hideResult">
-  <i fa [icon]="'arrow-right'"></i>
+<button type="button"
+        class="btn btn-primary-outline pull-md-right"
+        (click)="storage.hideResult = !storage.hideResult">
+  <i fa [icon]="'arrow-right'" fw="true"></i>
 </button>
