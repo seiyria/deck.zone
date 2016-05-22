@@ -37,7 +37,7 @@ class InternalState {
 export class DecklangState {
 
   constructor() {
-    this.internalState = {};
+    this.internalState = this.newState();
   }
 
   newState() {
