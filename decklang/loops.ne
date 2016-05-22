@@ -36,7 +36,7 @@ Assignment ->
   function(d) {
     return {
       varName: d[0],
-      value: d[4]
+      varStart: d[4]
     };
   }
   %}

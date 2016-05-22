@@ -37,8 +37,6 @@ export class ResultsComponent extends ProjectComponent {
   ngOnChanges(data) {
     super.ngOnChanges(data);
 
-    console.log('change')
-
     // don't render if the result window is hidden
     if(this.storage.hideResult) return;
 
@@ -52,23 +50,26 @@ export class ResultsComponent extends ProjectComponent {
     const runInstructions = (instructions, scope = {}) => {
       _.each(instructions, instruction => {
 
-        if(!instruction.ops) {
-          console.log('leaf: ', instruction.call, instruction, JSON.stringify(scope))
-          this.state.runPlugin(newState, instruction, scope);
+        // clone otherwise the objects in arrays are the same ref
+        const clonedInstruction = _.cloneDeep(instruction);
+
+        if(!clonedInstruction.ops) {
+          this.state.runPlugin(newState, clonedInstruction, scope);
           return;
         }
 
-        const vars = instruction.loopStart;
+        const { start, end } = clonedInstruction.loopStart;
+        const { varStart, varName } = start;
+
         const newScope = _.cloneDeep(scope);
 
-        if(vars.start.value > vars.end) throw new Error('Loop start must be lower than the end value');
+        if(varStart > end) throw new Error('Loop start must be lower than the end value');
 
-        for(let i = vars.start.value; i <= vars.end; i++) {
-          newScope[vars.start.varName] = i;
-
-          runInstructions(instruction.ops, newScope);
-          console.log('done with', instruction)
+        for(let i = varStart; i <= end; i++) {
+          newScope[varName] = i;
+          runInstructions(clonedInstruction.ops, _.cloneDeep(newScope));
         }
+
       });
     };
 
@@ -76,9 +77,7 @@ export class ResultsComponent extends ProjectComponent {
       const newParser = new DecklangParser({ script: currentScript.contents });
       const instructions = newParser.parse();
 
-      console.log(instructions);
       runInstructions(instructions);
-      console.log('done')
 
       this.state.internalState = newState;
 
@@ -86,7 +85,6 @@ export class ResultsComponent extends ProjectComponent {
       console.error(e);
     }
 
-    console.log(this.state.internalState);
   }
 
 }

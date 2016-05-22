@@ -3,6 +3,9 @@ require('babel-register');
 const DecklangParser = require('../../src/decklang/decklangparser').DecklangParser;
 
 const testDeck = `
+font = "Arial", 16, B
+font = "Arial", 16, B, #f00
+
 text = 1, "Main Card", 2, 2, 1, 1
 
 loop = <x = 1> to 5

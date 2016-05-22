@@ -23,8 +23,8 @@ export class TextComponent extends PluginComponent {
       'font-family':    font.family,
       'font-size':      `${font.size}${font.unit}`,
       color:            font.color,
-      'vertical-align': font.vertAlign,
-      'text-align':     font.horizAlign
+      'vertical-align': args.vertAlign,
+      'text-align':     args.horizAlign
     };
 
     if(_.includes(font.decoration, 'I')) baseObject['font-style'] = 'italic';
