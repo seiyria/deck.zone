@@ -13,7 +13,7 @@
       </li>
     </ul>
 
-    <ul class="nav navbar-nav pull-xs-right" *ngIf="!(angularFire.auth | async)">
+    <ul class="nav navbar-nav pull-xs-right" *ngIf="!(auth.angularFire.auth | async)">
       <li class="nav-item" dropdown>
         <a class="nav-link" dropdownToggle>
           Login
@@ -26,9 +26,9 @@
       </li>
     </ul>
 
-    <ul class="nav navbar-nav pull-xs-right" *ngIf="angularFire.auth | async">
+    <ul class="nav navbar-nav pull-xs-right" *ngIf="auth.angularFire.auth | async">
       <li class="nav-item" dropdown>
-        <a class="nav-link active" dropdownToggle>{{ (angularFire.auth | async)[(angularFire.auth | async).auth.provider].displayName }} <b class="caret"></b></a>
+        <a class="nav-link active" dropdownToggle>{{ (auth.angularFire.auth | async)[(auth.angularFire.auth | async).auth.provider].displayName }} <b class="caret"></b></a>
         <ul class="dropdown-menu dropdown-menu-right">
           <li>
             <a class="dropdown-item" [routerLink]="['/Projects']">My Projects</a>

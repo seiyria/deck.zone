@@ -7,6 +7,7 @@ import template from './sidebar.html';
 import './sidebar.less';
 
 import { STRING_SIZES } from '../../../../constants/defaultproject';
+import { Auth } from '../../../../services/auth';
 import { CurrentProjectService } from '../../../../services/currentproject';
 import { ProjectComponent } from '../project.component';
 
@@ -22,12 +23,13 @@ const FILE_EXTENSION = '.deck';
 export class SidebarComponent extends ProjectComponent {
 
   static get parameters() {
-    return [[SweetAlertService], [CurrentProjectService]];
+    return [[SweetAlertService], [CurrentProjectService], [Auth]];
   }
 
-  constructor(swal, currentProjectService, storage) {
+  constructor(swal, currentProjectService, auth) {
     super();
     this.isVisible = {};
+    this.auth = auth;
     this.swalService = swal;
     this.currentProjectService = currentProjectService;
   }

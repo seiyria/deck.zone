@@ -14,6 +14,7 @@ import { FIREBASE_PROVIDERS, defaultFirebase, AngularFire, firebaseAuthConfig } 
 
 import { App } from './components/app.component';
 import { TitleChangerService } from './services/titlechanger';
+import { Auth } from './services/auth';
 import { StorageSettings } from 'ng2-storage';
 import { TOOLTIP_DIRECTIVES } from 'ng2-bootstrap/components/tooltip';
 
@@ -21,6 +22,7 @@ bootstrap(App, [
   Title,
   TitleChangerService,
   NgStyle,
+  Auth,
   provide(PLATFORM_DIRECTIVES, { useValue: TOOLTIP_DIRECTIVES, multi: true }),
   provide(StorageSettings, { useValue: { prefix: 'dz' } }),
   ROUTER_PROVIDERS,

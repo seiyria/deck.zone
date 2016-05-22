@@ -15,6 +15,7 @@
 
 <button type="button"
         class="btn btn-info-outline"
+        *ngIf="auth.owns(project)"
         tooltipPlacement="bottom"
         tooltip="Change the settings for this project."
         [routerLink]="['../Settings', { projectId: projectId }]">

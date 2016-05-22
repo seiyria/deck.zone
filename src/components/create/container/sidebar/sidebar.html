@@ -4,7 +4,10 @@
       <div class="card-block no-padding-bottom">
         <h4 class="card-title">
           Scripts
-          <button type="button" class="pull-md-right btn btn-xs btn-primary-outline" (click)="newFile()">
+          <button type="button"
+                  class="pull-md-right btn btn-xs btn-primary-outline"
+                  *ngIf="auth.owns(project)"
+                  (click)="newFile()">
             <i fa [icon]="'plus'" [fw]="true"></i>
           </button>
         </h4>
@@ -53,7 +56,9 @@
       <div class="card-block no-padding-bottom">
         <h4 class="card-title">
           Resources
-          <button type="button" class="pull-md-right btn btn-xs btn-primary-outline">
+          <button type="button"
+                  class="pull-md-right btn btn-xs btn-primary-outline"
+                  *ngIf="auth.owns(project)">
             <i fa [icon]="'plus'" [fw]="true"></i>
           </button>
         </h4>

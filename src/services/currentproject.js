@@ -1,18 +1,19 @@
 
 import { AngularFire } from 'angularfire2';
 import { DefaultProject, STRING_SIZES } from '../constants/defaultproject';
+import { Auth } from '../services/auth';
 import _ from 'lodash';
 
 import { hri } from 'human-readable-ids';
 
 export class CurrentProjectService {
   static get parameters() {
-    return [[AngularFire]];
+    return [[AngularFire], [Auth]];
   }
 
-  constructor(angularFire) {
+  constructor(angularFire, auth) {
     this.angularFire = angularFire;
-    this.angularFire.auth.subscribe(auth => this.authData = auth);
+    this.authData = auth.authData;
   }
 
   createNewProject({ name } = {}) {

@@ -7,6 +7,8 @@ import { DROPDOWN_DIRECTIVES } from 'ng2-bootstrap/components/dropdown';
 
 import { StorageService } from 'ng2-storage';
 
+import { Auth } from '../../../../services/auth';
+
 import _ from 'lodash';
 import JSZip from 'jszip';
 import { saveAs } from 'filesaverjs';
@@ -21,11 +23,12 @@ import { saveAs } from 'filesaverjs';
 export class ToolbarComponent extends ProjectComponent {
 
   static get parameters() {
-    return [[StorageService]];
+    return [[StorageService], [Auth]];
   }
 
-  constructor(storage) {
+  constructor(storage, auth) {
     super();
+    this.auth = auth;
     this.storage = storage.local;
   }
 

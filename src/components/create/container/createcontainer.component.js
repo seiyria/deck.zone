@@ -10,6 +10,7 @@ import { ClaimerComponent } from './claimer/claimer.component';
 import { ResultsComponent } from './results/results.component';
 
 import { StorageService } from 'ng2-storage';
+import { Auth } from '../../../services/auth';
 import { CurrentProjectService } from '../../../services/currentproject';
 import { TitleChangerService } from '../../../services/titlechanger';
 
@@ -20,12 +21,13 @@ import { TitleChangerService } from '../../../services/titlechanger';
 })
 export class CreateContainerComponent {
   static get parameters() {
-    return [[RouteParams], [Router], [CurrentProjectService], [TitleChangerService], [StorageService]];
+    return [[RouteParams], [Router], [CurrentProjectService], [TitleChangerService], [StorageService], [Auth]];
   }
 
-  constructor(routeParams, router, currentProjectService, titleChangerService, storage) {
+  constructor(routeParams, router, currentProjectService, titleChangerService, storage, auth) {
     this.projectId = routeParams.params.projectId;
     this.storage = storage.local;
+    this.authData = auth.authData;
 
     if(!this.projectId) {
       return router.navigate(['../../Home']);
@@ -34,11 +36,16 @@ export class CreateContainerComponent {
     this.projectData = currentProjectService.getContent(this.projectId);
     this.projectData._ref.on('value', snap => {
       const value = snap.val();
-      if(value) {
-        titleChangerService.changeTitle(value.name);
+
+      this.projectData.ownsProject = auth.owns(value);
+      const isPrivate = value.visibility === 'Private';
+
+      if(!value || (!this.projectData.ownsProject && isPrivate)) {
+        router.navigate(['../Invalid', { projectId: this.projectId }]);
         return;
       }
-      router.navigate(['../Invalid', { projectId: this.projectId }]);
+
+      titleChangerService.changeTitle(value.name);
     });
 
     this.scriptList = currentProjectService.getScriptList(this.projectId);

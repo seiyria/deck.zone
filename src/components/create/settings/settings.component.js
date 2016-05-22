@@ -6,6 +6,8 @@ import './settings.less';
 import { RouteParams, Router, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 
 import { SweetAlertService } from 'ng2-sweetalert2';
+
+import { Auth } from '../../../services/auth';
 import { CurrentProjectService } from '../../../services/currentproject';
 import { TitleChangerService } from '../../../services/titlechanger';
 import { STRING_SIZES } from '../../../constants/defaultproject';
@@ -20,10 +22,10 @@ import _ from 'lodash';
 export class SettingsComponent {
 
   static get parameters() {
-    return [[RouteParams], [Router], [FormBuilder], [TitleChangerService], [CurrentProjectService], [SweetAlertService]];
+    return [[RouteParams], [Router], [FormBuilder], [TitleChangerService], [CurrentProjectService], [SweetAlertService], [Auth]];
   }
 
-  constructor(routeParams, router, formBuilder, titleChangerService, currentProjectService, swalService) {
+  constructor(routeParams, router, formBuilder, titleChangerService, currentProjectService, swalService, auth) {
     this.projectId = routeParams.params.projectId;
     this.router = router;
     this.currentProjectService = currentProjectService;
@@ -31,6 +33,11 @@ export class SettingsComponent {
 
     this.projectRef = currentProjectService.getContent(this.projectId);
     this.projectRef.subscribe(val => {
+
+      if(!auth.owns(val)) {
+        return this.router.navigate(['../Invalid', { projectId: this.projectId }]);
+      }
+
       if(!val) {
         return this.router.navigate(['../../Home']);
       }
