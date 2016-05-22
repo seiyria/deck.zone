@@ -61,7 +61,7 @@ ace.define('ace/mode/decklang_highlight_rules', (require, exports) => {
         },
         {
           token: 'variable.other',
-          regex: /<[\w\s=\+\/\*-]+>/
+          regex: /<[\w\s=\+\/\*-\[\]\(\)]+>/
         },
         {
           token: 'comment.line.number-sign',
@@ -69,7 +69,7 @@ ace.define('ace/mode/decklang_highlight_rules', (require, exports) => {
         },
         {
           token: 'keyword.control',
-          regex: /loop|endloop|to/
+          regex: /loop|endloop|to|in/
         },
         {
           token: 'support.function',
