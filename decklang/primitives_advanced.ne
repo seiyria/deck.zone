@@ -4,7 +4,7 @@ CssColor ->
 | "#" hexdigit hexdigit hexdigit {% joiner %}
 
 CssValue ->
-  PositiveDecimal CssUnit
+  PositiveDecimal CssUnit {% joiner %}
 
 CssUnit ->
   null    {% function() { return 'pt'; } %}

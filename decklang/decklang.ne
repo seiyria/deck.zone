@@ -1,5 +1,6 @@
 
 @include "plugins/border.ne"
+@include "plugins/cardsize.ne"
 @include "plugins/font.ne"
 @include "plugins/text.ne"
 @include "plugins/unit.ne"
@@ -19,6 +20,7 @@ LineOfCode ->
 
 Directive ->
   border
+| cardsize
 | font
 | text
 | unit
