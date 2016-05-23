@@ -1,9 +1,12 @@
 
 import { Component } from '@angular/core';
 import { NgClass } from '@angular/common';
+import { window } from '@angular/platform-browser/src/facade/browser';
+
 import template from './creator.html';
 import './creator.less';
 import { ProjectComponent } from '../project.component';
+
 
 import { AceEditorDirective } from 'ng2-ace';
 
@@ -24,10 +27,12 @@ export class CreatorComponent extends ProjectComponent {
 
     const writeFile = _.debounce((data, index) => {
       this.api.writeFile(data, index);
+      window.onbeforeunload = () => null;
     }, 5000);
 
     this.onChange = (data, index) => {
       writeFile(data, index);
+      window.onbeforeunload = () => 'Your work is not done syncing yet. Are you sure you want to close the page?';
     };
 
     this.editorOptions = { printMargin: false };
