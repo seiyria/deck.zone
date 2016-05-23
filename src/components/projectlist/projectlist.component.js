@@ -6,6 +6,8 @@ import { Subject } from 'rxjs';
 import template from './projectlist.html';
 import './projectlist.less';
 
+import _ from 'lodash';
+
 import { CurrentProjectService } from '../../services/currentproject';
 import { TitleChangerService } from '../../services/titlechanger';
 
@@ -17,6 +19,10 @@ import { TitleChangerService } from '../../services/titlechanger';
 export class ProjectListComponent {
   static get parameters() {
     return [[Router], [AngularFire], [CurrentProjectService], [TitleChangerService]];
+  }
+
+  size(ref) {
+    return _.size(ref);
   }
 
   constructor(router, angularFire, currentProjectService, titleChangerService) {
