@@ -7,10 +7,11 @@ import template from './creator.html';
 import './creator.less';
 import { ProjectComponent } from '../project.component';
 
-
 import { AceEditorDirective } from 'ng2-ace';
 
 import '../../../../decklang/ace/ace';
+
+import { Auth } from '../../../../services/auth';
 
 import _ from 'lodash';
 
@@ -22,8 +23,14 @@ import _ from 'lodash';
 })
 export class CreatorComponent extends ProjectComponent {
 
-  constructor() {
+  static get parameters() {
+    return [[Auth]];
+  }
+
+  constructor(auth) {
     super();
+
+    this.auth = auth;
 
     const writeFile = _.debounce((data, index) => {
       this.api.writeFile(data, index);

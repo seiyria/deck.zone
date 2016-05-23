@@ -7,5 +7,6 @@
        [mode]="'decklang'"
        [theme]="'decklang-light'"
        [options]="editorOptions"
+       [readOnly]="!auth.owns(project)"
        (textChanged)="onChange($event, scriptObj.key)"></div>
 </div>
