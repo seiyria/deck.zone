@@ -13,18 +13,30 @@ export class CurrentProjectService {
 
   constructor(angularFire, auth) {
     this.angularFire = angularFire;
-    this.authData = auth.authData;
+    this.auth = auth;
   }
 
-  createNewProject({ name } = {}) {
+  createNewProject(project = {}) {
     const projects = this.angularFire.list('/projects');
     const newProjectData = _.cloneDeep(DefaultProject);
-    if(this.authData) {
-      newProjectData.owner = this.authData.uid;
+
+    if(this.auth.authData) {
+      newProjectData.owner = this.auth.authData.uid;
+    } else {
+      newProjectData.owner = '';
     }
 
-    newProjectData.name = _.truncate(name, { length: STRING_SIZES.projectName }) || hri.random();
+    if(project.projectId) {
+      newProjectData.forkedFrom = project.projectId;
+      project.name = `fork-${project.name}`;
+    }
+
+    newProjectData.name = _.truncate(project.name, { length: STRING_SIZES.projectName }) || hri.random();
     newProjectData.createdAt = Date.now();
+
+    if(project.scripts && _.size(project.scripts) > 0) newProjectData.scripts = _.cloneDeep(project.scripts);
+    if(project.resources && _.size(project.resources) > 0) newProjectData.resources = _.cloneDeep(project.resources);
+    if(project.activeScript) newProjectData.activeScript = project.activeScript;
 
     const newProject = projects.push(newProjectData);
 

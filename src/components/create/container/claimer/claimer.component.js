@@ -24,7 +24,7 @@ export class ClaimerComponent extends ProjectComponent {
   }
 
   claim() {
-    this.api.ownProject(this.currentProjectService.authData.uid);
+    this.api.ownProject(this.currentProjectService.auth.authData.uid);
   }
 
 }

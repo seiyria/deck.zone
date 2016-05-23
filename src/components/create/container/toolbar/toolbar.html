@@ -15,6 +15,16 @@
 
 <button type="button"
         class="btn btn-info-outline"
+        *ngIf="project?.visibility !== 'Private'"
+        tooltipPlacement="bottom"
+        tooltip="Create a fork of this project."
+        (click)="fork()">
+  <i fa [icon]="'code-fork'" fw="true"></i>
+</button>
+
+
+<button type="button"
+        class="btn btn-info-outline"
         *ngIf="auth.owns(project)"
         tooltipPlacement="bottom"
         tooltip="Change the settings for this project."
