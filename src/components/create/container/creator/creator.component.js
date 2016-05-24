@@ -38,7 +38,7 @@ export class CreatorComponent extends ProjectComponent {
     }, 5000);
 
     this.onChange = (data, index) => {
-      writeFile(data, index);
+      writeFile(_.trimEnd(data), index);
       window.onbeforeunload = () => 'Your work is not done syncing yet. Are you sure you want to close the page?';
     };
 

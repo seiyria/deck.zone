@@ -32,12 +32,35 @@
   <i fa [icon]="'cog'" fw="true"></i>
 </button>
 
-<button type="button"
-        class="btn btn-info-outline"
-        tooltipPlacement="bottom"
-        tooltip="View result in an external window.">
-  <i fa [icon]="'external-link'" fw="true"></i>
-</button>
+<div class="btn-group" dropdown>
+  <a
+          class="btn btn-info-outline"
+          target="_blank"
+          [routerLink]="['/Embed', 'Embed', { projectId: projectId, scriptId: project?.activeScript, tabs: 'result,code' }]"
+          tooltipPlacement="bottom"
+          tooltip="View result in an external window.">
+    <i fa [icon]="'external-link'" fw="true"></i>
+  </a>
+  <button type="button" class="btn btn-info-outline dropdown-toggle" dropdownToggle>
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li>
+      <a class="dropdown-item"
+         target="_blank"
+         [routerLink]="['/Embed', 'Embed', { projectId: projectId, scriptId: project?.activeScript, tabs: 'code' }]">
+        <i fa [icon]="'code'" fw="true"></i> Code Only
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item"
+         target="_blank"
+         [routerLink]="['/Embed', 'Embed', { projectId: projectId, scriptId: project?.activeScript, tabs: 'result' }]">
+        <i fa [icon]="'photo'" fw="true"></i> Result Only
+      </a>
+    </li>
+  </ul>
+</div>
 
 <button type="button"
         class="btn btn-primary-outline pull-md-right"

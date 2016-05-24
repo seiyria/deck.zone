@@ -1,0 +1,38 @@
+
+<nav class="navbar navbar-static-top navbar-light bg-faded no-print" *ngIf="projectData | async">
+  <div class="collapse navbar-toggleable-xs">
+
+    <a class="navbar-brand" target="_blank" [routerLink]="['/Create', 'Create', { projectId: projectId }]">deck.zone</a>
+    <a class="navbar-brand">
+      <small>{{scriptName}}</small>
+    </a>
+
+    <ul class="nav navbar-nav pull-xs-right">
+      <li class="nav-item" [class.active]="activeTab === 'code'" *ngIf="tabs.length > 1">
+        <a class="nav-link" (click)="activeTab = 'code'">Code</a>
+      </li>
+      <li class="nav-item" [class.active]="activeTab === 'result'" *ngIf="tabs.length > 1">
+        <a class="nav-link" (click)="activeTab = 'result'">Result</a>
+      </li>
+    </ul>
+
+  </div>
+</nav>
+
+<div class="container-fluid no-padding" *ngIf="projectData | async">
+
+  <div ace-editor
+       class="big-editor"
+       [class.hidden]="activeTab !== 'code'"
+       [text]="(projectData | async).scripts[scriptId].contents"
+       [mode]="'decklang'"
+       [theme]="'decklang-light'"
+       [options]="editorOptions"
+       [readOnly]="true"></div>
+
+  <results [class.hidden]="activeTab !== 'result'"
+           [displayScript]="scriptId"
+           [project]="projectData | async"
+           [projectId]="projectId"></results>
+
+</div>

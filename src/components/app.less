@@ -6,6 +6,10 @@
   border-radius: .2rem;
 }
 
+.no-padding {
+  padding: 0;
+}
+
 .no-padding-bottom {
   padding-bottom: 0;
 }
@@ -22,4 +26,10 @@
 
 .hidden {
   display: none;
+}
+
+@media print {
+  .no-print, .no-print * {
+    display: none !important;
+  }
 }

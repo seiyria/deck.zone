@@ -30,7 +30,7 @@ export class CreateContainerComponent {
     this.authData = auth.authData;
 
     if(!this.projectId) {
-      return router.navigate(['../../Home']);
+      return router.navigate(['/Home']);
     }
 
     this.projectData = currentProjectService.getContent(this.projectId);

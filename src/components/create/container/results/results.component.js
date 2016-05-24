@@ -19,7 +19,7 @@ import { DecklangState } from '../../../../decklang/decklangstate';
   selector: 'results',
   providers: [StorageService],
   directives: [..._.values(Components), VsFor],
-  inputs: ['project', 'projectId', 'api'],
+  inputs: ['project', 'projectId', 'displayScript'],
   template
 })
 export class ResultsComponent extends ProjectComponent {
@@ -104,15 +104,13 @@ export class ResultsComponent extends ProjectComponent {
   }
 
   ngOnChanges(data) {
-    super.ngOnChanges(data);
+    const changed = super.ngOnChanges(data);
+    if(!changed) return;
 
     // don't render if the result window is hidden
-    if(this.storage.hideResult) return;
+    if(this.storage.hideResult && !this.displayScript) return;
 
-    const project = data.project.currentValue;
-    if(!project) return;
-
-    const currentScript = project.scripts[project.activeScript];
+    const currentScript = this.internalProject.scripts[this.displayScript || this.internalProject.activeScript];
 
     this.renderScript(currentScript);
   }

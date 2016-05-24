@@ -5,6 +5,7 @@ import template from './app.html'
 
 import { HomeComponent } from './home/home.component';
 import { CreateComponent } from './create/create.component';
+import { EmbedViewContainerComponent } from './embed/embedviewcontainer.component';
 import { ProjectListComponent } from './projectlist/projectlist.component';
 
 import { RouteConfig, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
@@ -16,7 +17,8 @@ if(window.location.hostname !== 'localhost') enableProdMode();
 @RouteConfig([
   { path: '/',             name: 'Home',      component: HomeComponent, useAsDefault: true },
   { path: '/create/...',   name: 'Create',    component: CreateComponent },
-  { path: '/projects',     name: 'Projects',  component: ProjectListComponent }
+  { path: '/projects',     name: 'Projects',  component: ProjectListComponent },
+  { path: '/embed/...',    name: 'Embed',     component: EmbedViewContainerComponent }
 ])
 @Component({
   selector: 'app',
