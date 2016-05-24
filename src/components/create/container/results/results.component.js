@@ -34,16 +34,7 @@ export class ResultsComponent extends ProjectComponent {
     this.state = new DecklangState();
   }
 
-  ngOnChanges(data) {
-    super.ngOnChanges(data);
-
-    // don't render if the result window is hidden
-    if(this.storage.hideResult) return;
-
-    const project = data.project.currentValue;
-    if(!project) return;
-
-    const currentScript = project.scripts[project.activeScript];
+  renderScript(currentScript) {
 
     const newState = this.state.newState();
 
@@ -78,7 +69,7 @@ export class ResultsComponent extends ProjectComponent {
             runInstructions(clonedInstruction.ops, _.cloneDeep(newScope));
           }
 
-        // for...in loop
+          // for...in loop
         } else if(iterations) {
 
           _.each(iterations, (iteration, index) => {
@@ -87,7 +78,7 @@ export class ResultsComponent extends ProjectComponent {
             runInstructions(clonedInstruction.ops, _.cloneDeep(newScope));
           });
 
-        // not sure if this can even happen
+          // not sure if this can even happen
         } else {
           throw new Error('Invalid loop settings.');
         }
@@ -110,7 +101,20 @@ export class ResultsComponent extends ProjectComponent {
       console.error(e);
       console.error('Error near', newParser.preParse().substring(e.offset - 5, e.offset + 5));
     }
+  }
 
+  ngOnChanges(data) {
+    super.ngOnChanges(data);
+
+    // don't render if the result window is hidden
+    if(this.storage.hideResult) return;
+
+    const project = data.project.currentValue;
+    if(!project) return;
+
+    const currentScript = project.scripts[project.activeScript];
+
+    this.renderScript(currentScript);
   }
 
 }
