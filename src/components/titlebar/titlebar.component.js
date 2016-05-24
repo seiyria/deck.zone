@@ -27,6 +27,12 @@ export class TitleBarComponent {
     this.auth = auth;
     this.currentProjectService = currentProjectService;
     titleChangerService.currentSubTitle.subscribe(val => this.currentSubTitle = val);
+    this.showSelf = false;
+
+    this.router.subscribe(
+      currentUrl => this.showSelf = !_.includes(currentUrl, 'embed'),
+      error => console.log(error)
+    );
   }
 
   logout() {
