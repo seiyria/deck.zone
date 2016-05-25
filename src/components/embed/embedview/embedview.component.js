@@ -18,29 +18,38 @@ import template from './embedview.html';
 export class EmbedViewComponent {
 
   static get parameters() {
-    return [[RouteParams], [Router], [CurrentProjectService]]
+    return [[RouteParams], [CurrentProjectService]]
   }
 
-  constructor(routeParams, router, currentProjectService) {
+  markBad(reason) {
+    this.isBad = true;
+    this[reason] = true;
+  }
+
+  constructor(routeParams, currentProjectService) {
     const { projectId, scriptId, tabs } = routeParams.params;
+
+    if (!projectId || !scriptId || !tabs) {
+      this.markBad('isMisconfigured');
+      return;
+    }
+
     this.projectId = projectId;
     this.scriptId = scriptId;
     this.tabs = tabs.split(',');
 
-    if (!this.projectId || !this.scriptId || !tabs) {
-
-      // TODO show 404 info (include information about possible misconfiguration)
-      return router.navigate(['/Home']);
-    }
-
     this.projectData = currentProjectService.getContent(this.projectId);
     this.projectData._ref.on('value', snap => {
       const value = snap.val();
-      if(value) return;
 
-      // TODO check for private project
+      if(!value) {
+        this.markBad('is404');
+        return;
+      }
 
-      // TODO show 404 info
+      if(value.visibility === 'Private') {
+        this.markBad('isPrivate');
+      }
     });
 
     this.activeTab = this.tabs[0];

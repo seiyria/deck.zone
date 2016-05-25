@@ -1,5 +1,5 @@
 
-<nav class="navbar navbar-static-top navbar-light bg-faded no-print" *ngIf="projectData | async">
+<nav class="navbar navbar-static-top navbar-light bg-faded no-print" *ngIf="isBad || (projectData | async)">
   <div class="collapse navbar-toggleable-xs">
 
     <a class="navbar-brand" target="_blank" [routerLink]="['/Create', 'Create', { projectId: projectId }]">deck.zone</a>
@@ -7,7 +7,7 @@
       <small>{{scriptName}}</small>
     </a>
 
-    <ul class="nav navbar-nav pull-xs-right">
+    <ul class="nav navbar-nav pull-xs-right" *ngIf="!isBad">
       <li class="nav-item" [class.active]="activeTab === 'code'" *ngIf="tabs.length > 1">
         <a class="nav-link" (click)="activeTab = 'code'">Code</a>
       </li>
@@ -19,7 +19,34 @@
   </div>
 </nav>
 
-<div class="container-fluid no-padding" *ngIf="projectData | async">
+<div class="container-fluid" *ngIf="isBad">
+  <div class="col-md-4 col-md-offset-4 text-xs-center m-t-2">
+
+    <div *ngIf="isMisconfigured">
+      <i fa [icon]="'gears'" [size]="'5x'"></i>
+      <div class="m-t-1">
+        This embed appears to be misconfigured. Double check the URL to make sure it contains a valid project, scriptId, and tabs.
+      </div>
+    </div>
+
+    <div *ngIf="isPrivate">
+      <i fa [icon]="'user-secret'" [size]="'5x'"></i>
+      <div class="m-t-1">
+        This project is marked private.
+      </div>
+    </div>
+
+    <div *ngIf="is404">
+      <i fa [icon]="'frown-o'" [size]="'5x'"></i>
+      <div class="m-t-1">
+        This project doesn't exist.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="container-fluid no-padding" *ngIf="!isBad && (projectData | async)">
 
   <div ace-editor
        class="big-editor"
