@@ -50,6 +50,8 @@ export class EmbedViewComponent {
       if(value.visibility === 'Private') {
         this.markBad('isPrivate');
       }
+
+      this.scriptName = value.scripts[this.scriptId].name;
     });
 
     this.activeTab = this.tabs[0];
