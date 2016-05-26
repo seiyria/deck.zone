@@ -14,6 +14,7 @@ import { StorageService } from 'ng2-storage';
 
 import { DecklangParser } from '../../../../decklang/decklangparser';
 import { DecklangState } from '../../../../decklang/decklangstate';
+import { Plugin } from '../../../../decklang/plugins/_plugin';
 
 @Component({
   selector: 'results',
@@ -58,13 +59,14 @@ export class ResultsComponent extends ProjectComponent {
         const { varStart, varName } = start;
 
         const newScope = _.cloneDeep(scope);
+        const endEval = end && end.eval ? Plugin.scopeEval(end.eval, scope) : end;
 
         // for...to loop
-        if(_.isNumber(varStart) && _.isNumber(end)) {
+        if(_.isNumber(varStart) && _.isNumber(endEval)) {
 
-          if(varStart > end) throw new Error('Loop start must be lower than the end value');
+          if(varStart > endEval) throw new Error('Loop start must be lower than the end value');
 
-          for(let i = varStart; i <= end; i++) {
+          for(let i = varStart; i <= endEval; i++) {
             newScope[varName] = i;
             runInstructions(clonedInstruction.ops, _.cloneDeep(newScope));
           }
@@ -73,7 +75,8 @@ export class ResultsComponent extends ProjectComponent {
         } else if(iterations) {
 
           _.each(iterations, (iteration, index) => {
-            newScope[varName] = iteration;
+            newScope[varName] = iteration.key;
+            newScope[`${varName}_value`] = iteration.val;
             newScope[`${varName}_index`] = index;
             newScope[`${varName}_length`] = iterations.length;
             runInstructions(clonedInstruction.ops, _.cloneDeep(newScope));
@@ -97,7 +100,6 @@ export class ResultsComponent extends ProjectComponent {
       // remove null entries when displaying cards
       newState.cards = _.compact(newState.cards);
       this.state.internalState = newState;
-      console.log(newState)
 
     } catch(e) {
       console.error(e);

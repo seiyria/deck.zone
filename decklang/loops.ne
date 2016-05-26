@@ -38,16 +38,20 @@ LoopInGoalVariableSet ->
   LoopInGoalVariable                                {% id %}
 | LoopInGoalVariableSet _ "," _ LoopInGoalVariable  {% function(d) { return _.compact(_.flatten([d[0], d[4]])); } %}
 
+LoopInGoalVariableHash ->
+  Integer {% id %}
+| String  {% id %}
+
 LoopInGoalVariable ->
-  Integer    {% id %}
-| String     {% id %}
+  Integer ( _ ":" _ LoopInGoalVariableHash ):? {% function(d) { return { key: d[0], val: d[1] ? d[1][3] : null }; } %}
+| String  ( _ ":" _ LoopInGoalVariableHash ):? {% function(d) { return { key: d[0], val: d[1] ? d[1][3] : null }; } %}
 
 LoopInGoal ->
   "{" _ LoopInGoalVariableSet _ "}" {% function(d) { return d[2]; } %}
 
 LoopToGoal ->
   PositiveInteger
-# | LoopVariable
+| LoopVariable
 
 Operand ->
   "*"

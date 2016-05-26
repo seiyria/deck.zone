@@ -20,8 +20,8 @@ text = 1, "Main Card", 2, 2, 1, 1
 
 \`endloop
 
-loop = <x> in { "Mage", "Cleric", "Warrior", "Thief" }
-  loop = <y = 1> to 3
+loop = <x> in { "Mage": 1, "Cleric": 2, "Warrior": 2, "Thief": 1 }
+  loop = <y = 1> to <x_value>
 
     text = <y + (3 * x_index)>, "<x> (<x_index>)", 0, <x_index>, 3, 3
 
