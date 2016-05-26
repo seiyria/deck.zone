@@ -96,6 +96,7 @@ export class ResultsComponent extends ProjectComponent {
       // remove null entries when displaying cards
       newState.cards = _.compact(newState.cards);
       this.state.internalState = newState;
+      console.log(newState)
 
     } catch(e) {
       console.error(e);

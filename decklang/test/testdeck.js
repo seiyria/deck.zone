@@ -4,7 +4,6 @@ const DecklangParser = require('../../src/decklang/decklangparser').DecklangPars
 
 const testDeck = `
 font = "Arial", 16, B
-font = "Arial", 16, B, #f00
 
 text = 1, "Main Card", 2, 2, 1, 1
 
@@ -28,6 +27,8 @@ loop = <x> in { "Mage", "Cleric", "Warrior", "Thief" }
 
   endloop
 endloop
+
+font = "Arial", 16, BU, #000
 
 `;
 

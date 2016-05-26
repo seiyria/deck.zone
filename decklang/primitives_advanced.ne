@@ -4,7 +4,7 @@ CssColor ->
 | "#" hexdigit hexdigit hexdigit {% joiner %}
 
 CssValue ->
-  PositiveDecimal CssUnit {% joiner %}
+  PositiveDecimal CssUnit
 
 CssUnit ->
   null    {% function() { return 'pt'; } %}
@@ -44,3 +44,7 @@ VerticalAlignment ->
 | "top"    {% id %}
 | "bottom" {% id %}
 | "middle" {% id %}
+
+# used by many text directives
+TextDecoration ->
+  [BUI]:* {% joiner %}

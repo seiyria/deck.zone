@@ -23,11 +23,6 @@ __ ->
 hexdigit ->
   [a-fA-F0-9]
 
-# used by many text directives
-TextDecoration ->
-  null
-| [BUI]:* {% joiner %}
-
 # primitive types
 String          -> dqstring         {% id %}
 PositiveInteger -> unsigned_int     {% id %}
