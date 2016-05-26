@@ -19,6 +19,7 @@
   </div>
 </nav>
 
+
 <div class="container-fluid" *ngIf="isBad">
   <div class="col-md-4 col-md-offset-4 text-xs-center m-t-2">
 
@@ -46,7 +47,7 @@
   </div>
 </div>
 
-<div class="container-fluid no-padding" *ngIf="!isBad && (projectData | async)">
+<div class="container-fluid embed-view no-padding" *ngIf="!isBad && (projectData | async)">
 
   <div ace-editor
        class="big-editor"
