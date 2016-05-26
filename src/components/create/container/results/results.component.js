@@ -75,6 +75,7 @@ export class ResultsComponent extends ProjectComponent {
           _.each(iterations, (iteration, index) => {
             newScope[varName] = iteration;
             newScope[`${varName}_index`] = index;
+            newScope[`${varName}_length`] = iterations.length;
             runInstructions(clonedInstruction.ops, _.cloneDeep(newScope));
           });
 
