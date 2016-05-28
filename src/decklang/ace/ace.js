@@ -2,10 +2,6 @@ import plugins from '../plugins.json';
 import decklangLight from './ace-decklang-light.less';
 
 // generate a list of valid plugin names for the syntax highlighter
-const pluginNames = plugins.map(str => {
-  const split = str.split('/');
-  return split[split.length-1].split('.')[0];
-});
 
 ace.define('ace/mode/decklang', (require, exports) => {
 
@@ -73,7 +69,7 @@ ace.define('ace/mode/decklang_highlight_rules', (require, exports) => {
         },
         {
           token: 'support.function',
-          regex: new RegExp(`\s*(${pluginNames.join('|')})`),
+          regex: new RegExp(`\s*(${plugins.join('|')})`),
           caseInsensitive: true
         }
       ]
