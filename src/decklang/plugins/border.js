@@ -7,7 +7,7 @@ export class Border extends Plugin {
 
     state.options.card['border-style'] = style;
     state.options.card['border-color'] = color;
-    state.options.card['border-width'] = width;
+    state.options.card['border-width'] = `${width.val}${this.resolveUnit(width.unit, state)}`;
   }
 
 }

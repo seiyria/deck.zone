@@ -4,10 +4,17 @@ CssColor ->
 | "#" hexdigit hexdigit hexdigit {% joiner %}
 
 CssValue ->
-  PositiveDecimal CssUnit
+  Decimal CssUnit
+
+PositiveCssValue ->
+  PositiveDecimal CssUnit {% function(d) { return { val: d[0], unit: d[1] }; } %}
+
+PositiveCssVariable ->
+  PositiveDecimal CssUnit {% function(d) { return { val: d[0], unit: d[1] }; } %}
+| LoopVariable CssUnit    {% function(d) { return { val: d[0], unit: d[1] }; } %}
 
 CssUnit ->
-  null    {% function() { return 'pt'; } %}
+  null    {% id %}
 | "em"    {% id %}
 | "ex"    {% id %}
 | "ch"    {% id %}

@@ -1,7 +1,7 @@
 
 cardsize -> "cardsize" _ "="
-          _ CssValue                 # width of cards
-          _ "," _ CssValue           # height of cards
+          _ PositiveCssValue                 # width of cards
+          _ "," _ PositiveCssValue           # height of cards
 {%
   function(d) {
     return {
