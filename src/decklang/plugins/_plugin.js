@@ -4,6 +4,11 @@ import math from 'mathjs';
 
 export class Plugin {
   static get helptext() { return 'help text'; }
+
+  static resolveUnit(test, state) {
+    return test || state.options.font;
+  }
+
   static operate(args, state, scope) {
 
     const keys = _.reject(_.keys(args), key => _.includes(['state', 'call'], key));
