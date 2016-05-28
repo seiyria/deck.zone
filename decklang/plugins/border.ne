@@ -2,7 +2,7 @@
 border -> "border" _ "="
         _ BorderStyle                 # the border style
       ( _ "," _ CssColor):?           # border color (optional, defaults to #000)
-      ( _ "," _ PositiveDecimal):?    # the width of the border (optional, defaults to 1)
+      ( _ "," _ PositiveCssValue):?   # the width of the border (optional, defaults to 1)
 {%
   function(d) {
     return {

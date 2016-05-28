@@ -1,7 +1,7 @@
 
 font -> "font" _ "="
         _ String                  # font name
-        _ "," _ CssValue          # font size
+        _ "," _ PositiveCssValue  # font size
       ( _ "," _ TextDecoration):? # font decoration
       ( _ "," _ CssColor):?       # font color
 {%

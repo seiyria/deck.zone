@@ -23,7 +23,7 @@ export class TextComponent extends PluginComponent {
       width:            `${args.w}${unit}`,
       height:           `${args.h}${unit}`,
       'font-family':    font.family,
-      'font-size':      `${font.size}${font.unit}`,
+      'font-size':      `${font.size}${font.unit || unit}`,
       color:            font.color,
       'vertical-align': args.vertAlign,
       'text-align':     args.horizAlign

@@ -2,10 +2,10 @@
 text -> "text" _ "="
         _ PositiveIntegerVariable       # index
         _ "," _ String                  # display text
-        _ "," _ PositiveDecimalVariable # x position
-        _ "," _ PositiveDecimalVariable # y position
-        _ "," _ PositiveDecimalVariable # width
-        _ "," _ PositiveDecimalVariable # height
+        _ "," _ PositiveCssVariable     # x position
+        _ "," _ PositiveCssVariable     # y position
+        _ "," _ PositiveCssVariable     # width
+        _ "," _ PositiveCssVariable     # height
       ( _ "," _ HorizontalAlignment):?  # horizontal alignment (optional)
       ( _ "," _ VerticalAlignment):?    # vertical alignment (optional)
 {%
