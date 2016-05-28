@@ -3,6 +3,9 @@ import _ from 'lodash';
 
 import { DecklangParser } from '../src/decklang/decklangparser';
 
+export const parse = (script) => new DecklangParser({ script }).parse();
+export const parseAndFirst = (script) =>  parse(script)[0];
+
 export const testPassFailCases = (t, passCases = [], failCases = []) => {
 
   _.each(passCases, test => {
