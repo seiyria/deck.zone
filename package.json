@@ -11,7 +11,7 @@
     "test:lang": "node decklang/test/testdeck",
     "test:lint": "eslint \"src/**/*.js\"",
     "test:ava": "ava --require babel-register",
-    "test": "npm run test:lint && npm run test:ava && npm run test:lang",
+    "test": "npm run build:lang && npm run test:lint && npm run test:ava && npm run test:lang",
     "start": "npm run build:lang && webpack-dev-server --open --content-base src/ --inline --hot",
     "deploy": "npm run build:app && gulp deploy"
   },
