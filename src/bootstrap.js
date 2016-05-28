@@ -10,7 +10,7 @@ import { Title } from '@angular/platform-browser';
 import { bootstrap } from '@angular/platform-browser-dynamic';
 
 import { FontAwesomeDirective } from 'ng2-fontawesome';
-import { FIREBASE_PROVIDERS, defaultFirebase, AngularFire, firebaseAuthConfig } from 'angularfire2';
+import { FIREBASE_PROVIDERS, defaultFirebase } from 'angularfire2';
 
 import { App } from './components/app.component';
 import { TitleChangerService } from './services/titlechanger';

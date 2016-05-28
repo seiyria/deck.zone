@@ -29,7 +29,7 @@ ace.define('ace/theme/decklang-light', ['require','exports','module','ace/lib/do
   exports.cssClass = 'ace-decklang-light';
   exports.cssText = decklangLight;
 
-  var dom = require('../lib/dom');
+  const dom = require('../lib/dom');
   dom.importCssString(exports.cssText, exports.cssClass);
 });
 

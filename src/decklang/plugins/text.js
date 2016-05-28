@@ -1,4 +1,6 @@
 
+import _ from 'lodash';
+
 import { Plugin, PluginComponent } from './_plugin';
 import { Directive } from '@angular/core';
 

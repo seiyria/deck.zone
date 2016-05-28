@@ -2,7 +2,6 @@
 import { Component } from '@angular/core';
 import { ROUTER_DIRECTIVES, Router } from '@angular/router-deprecated';
 import { AngularFire } from 'angularfire2';
-import { Subject } from 'rxjs';
 import template from './projectlist.html';
 import './projectlist.less';
 

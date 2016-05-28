@@ -1,5 +1,5 @@
 
-import { Component, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 import { FORM_DIRECTIVES, FormBuilder, Validators } from '@angular/common';
 import template from './settings.html';
 import './settings.less';

@@ -1,6 +1,6 @@
 
 import { Component } from '@angular/core';
-import { RouteConfig, ROUTER_DIRECTIVES, RouteParams } from '@angular/router-deprecated';
+import { RouteConfig, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 
 import { EmbedViewComponent } from './embedview/embedview.component';
 

@@ -23,7 +23,7 @@ export class Plugin {
     const varReplaceRegex = /<[\w\s=\+\/\*-]+>/g;
     let res;
     const allReplaces = [];
-    while(res = varReplaceRegex.exec(string)) {
+    while((res = varReplaceRegex.exec(string))) {
       const expr = res[0];
       const val = expr.substring(1, expr.length - 1);
       allReplaces.push([expr, val]);

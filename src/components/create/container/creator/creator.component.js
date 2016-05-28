@@ -57,7 +57,7 @@ export class CreatorComponent extends ProjectComponent {
     this.oldFileCount = numFiles;
 
     super.ngOnChanges(data);
-    this._scriptList = _(this.internalProject.scripts).keys().map(key => ({key, script: this.internalProject.scripts[key] })).value();
+    this._scriptList = _(this.internalProject.scripts).keys().map(key => ({ key, script: this.internalProject.scripts[key] })).value();
   }
 
 }

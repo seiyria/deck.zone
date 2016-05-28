@@ -1,6 +1,6 @@
 
 import { Component } from '@angular/core';
-import { RouteParams, Router, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
+import { RouteParams, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 import { ResultsComponent } from '../../create/container/results/results.component';
 
 import { AceEditorDirective } from 'ng2-ace';
@@ -18,7 +18,7 @@ import template from './embedview.html';
 export class EmbedViewComponent {
 
   static get parameters() {
-    return [[RouteParams], [CurrentProjectService]]
+    return [[RouteParams], [CurrentProjectService]];
   }
 
   markBad(reason) {

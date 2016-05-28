@@ -7,8 +7,11 @@
     "sourceType": "module"
   },
   "env": {
-    "node": true,
+    "browser": true,
     "es6": true
+  },
+  "globals": {
+    "ace": true
   },
   "rules": {
     "strict": 0,

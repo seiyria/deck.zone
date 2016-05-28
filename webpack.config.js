@@ -14,12 +14,8 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /ng2-(ace|sweetalert2|fontawesome|storage)\/index\.js$/,
-        loaders: ['babel-loader']
-      },
-      {
         test: /\.js$/,
-        loaders: ['babel-loader'],
+        loaders: ['babel-loader', 'eslint-loader'],
         exclude: /node_modules/
       },
       {

@@ -41,7 +41,7 @@ export class SidebarComponent extends ProjectComponent {
   }
 
   sortedScripts(scriptList) {
-    return _(scriptList).keys().map(key => ({ key: key, script: scriptList[key]})).sortBy(obj => obj.script.name).value();
+    return _(scriptList).keys().map(key => ({ key: key, script: scriptList[key] })).sortBy(obj => obj.script.name).value();
   }
 
   setActiveScript(index) {
@@ -71,9 +71,9 @@ export class SidebarComponent extends ProjectComponent {
       inputPlaceholder: 'filename.deck',
       inputValidator: this.validateFilename.bind(this, this.allScripts)
     }).then(val => {
-        if(!val) return;
-        val = this.cleanFilename(val);
-        this.api.newFile(val);
+      if(!val) return;
+      val = this.cleanFilename(val);
+      this.api.newFile(val);
     });
   }
 
@@ -86,9 +86,9 @@ export class SidebarComponent extends ProjectComponent {
       inputValue: scriptObj.script.name,
       inputValidator: this.validateFilename.bind(this, this.allScripts)
     }).then(val => {
-        if(!val) return;
-        val = this.cleanFilename(val);
-        this.api.editFile(index, val);
+      if(!val) return;
+      val = this.cleanFilename(val);
+      this.api.editFile(index, val);
     });
   }
 

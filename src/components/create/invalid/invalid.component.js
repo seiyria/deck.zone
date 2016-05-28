@@ -1,6 +1,6 @@
 
 import { TitleChangerService } from '../../../services/titlechanger';
-import { Component, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 import template from './invalid.html';
 
 @Component({
@@ -8,7 +8,7 @@ import template from './invalid.html';
 })
 export class InvalidProjectComponent {
   static get parameters() {
-    return [[TitleChangerService]]
+    return [[TitleChangerService]];
   }
   constructor(titleChangerService) {
     titleChangerService.changeTitle(null);

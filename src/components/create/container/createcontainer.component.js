@@ -1,5 +1,5 @@
 
-import { Component, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 import template from './createcontainer.html';
 import { RouteParams, Router } from '@angular/router-deprecated';
 
