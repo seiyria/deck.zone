@@ -4,20 +4,14 @@
   "description": "A game-creation helper for creating decks, tokens, chits, tiles, etc.",
   "repository": "https://github.com/seiyria/deck.zone",
   "license": "MIT",
-  "babel": {
-    "presets": [
-      "es2015"
-    ],
-    "plugins": [
-      "transform-decorators-legacy",
-      "transform-class-properties"
-    ]
-  },
   "scripts": {
     "build:app": "webpack -p --progress && cp src/index.html dist/index.html && echo 'deck.zone' >> dist/CNAME",
     "build:lang": "npm run build:lang:map && nearleyc decklang/decklang.ne -o src/decklang/decklang.js",
     "build:lang:map": "node -e \"console.log(JSON.stringify(require('glob').sync('decklang/plugins/*.ne')))\" > src/decklang/plugins.json",
     "test:lang": "node decklang/test/testdeck",
+    "test:lint": "eslint \"src/**/*.js\"",
+    "test:ava": "ava --require babel-register",
+    "test": "npm run test:lint && npm run test:ava && npm run test:lang",
     "start": "npm run build:lang && webpack-dev-server --open --content-base src/ --inline --hot",
     "deploy": "npm run build:app && gulp deploy"
   },
@@ -50,7 +44,9 @@
     "zone.js": "^0.6.12"
   },
   "devDependencies": {
+    "ava": "^0.15.1",
     "babel-core": "^6.4.5",
+    "babel-eslint": "^6.0.4",
     "babel-loader": "^6.2.4",
     "babel-plugin-transform-class-properties": "^6.6.0",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
@@ -58,6 +54,9 @@
     "babel-preset-es2015": "^6.3.13",
     "concurrently": "^2.0.0",
     "css-loader": "^0.23.1",
+    "eslint": "^2.11.0",
+    "eslint-config-kellyirc": "^3.1.0",
+    "eslint-loader": "^1.3.0",
     "file-loader": "^0.8.5",
     "glob": "^7.0.3",
     "gulp": "^3.9.1",
