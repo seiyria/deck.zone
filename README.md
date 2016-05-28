@@ -12,7 +12,7 @@
 
 ### Working on the Decklang Ace theme
 
-* see `src/decklang/ace.js`
+* see `src/decklang/ace`
 
 ### Working on Decklang
 
