@@ -37,7 +37,7 @@ export class DecklangParser {
 
   pullVariables(script) {
     let result;
-    while(result = REGEXES.variableDeclaration.exec(script)) {
+    while((result = REGEXES.variableDeclaration.exec(script))) {
       const [, varName, value] = result;
       this.variables[varName] = value;
     }

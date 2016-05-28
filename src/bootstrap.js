@@ -5,7 +5,7 @@ import 'zone.js/dist/zone';
 import 'bootstrap/dist/css/bootstrap.css';
 import { ROUTER_PROVIDERS } from '@angular/router-deprecated';
 import { LocationStrategy, HashLocationStrategy, NgStyle } from '@angular/common';
-import { provide, PLATFORM_DIRECTIVES } from '@angular/core';
+import { provide, PLATFORM_DIRECTIVES, enableProdMode } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { bootstrap } from '@angular/platform-browser-dynamic';
 
@@ -17,6 +17,8 @@ import { TitleChangerService } from './services/titlechanger';
 import { Auth } from './services/auth';
 import { StorageSettings } from 'ng2-storage';
 import { TOOLTIP_DIRECTIVES } from 'ng2-bootstrap/components/tooltip';
+
+if(window.location.hostname !== 'localhost') enableProdMode();
 
 bootstrap(App, [
   Title,
