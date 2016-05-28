@@ -18,7 +18,9 @@
 
 * the Decklang grammar is in `decklang/` (it is parsed with [`nearley`](https://github.com/Hardmath123/nearley)), and can be rebuilt by running `npm run build:lang`
   * `decklang.ne` is the main file, including all of the plugins and primitives
+  * `loops.ne` contains the loop implementation
   * `primitives.ne` contains all of the language primitives
+  * `primitives_advanced.ne` contains all of the language primitives that are built on other primitives, or are lists used directly by plugins
   * `plugins/` contains all of the directives used by Decklang
 * Decklang has a test program that showcases all of its current features in `decklang/test/testdeck.js` and can be tested by running `npm run test:lang`
 * `src/decklang/decklang.js` is the outputted grammar for the language and is rebuilt every time Decklang is rebuilt
