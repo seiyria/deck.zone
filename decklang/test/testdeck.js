@@ -30,13 +30,12 @@ const testDeck = `
 
 border = dotted, #000
 border = dotted, #000, 1
-border = dotted, #000, 1cm
+border = dotted,,1cm
 font = "Arial", 16, BU, #000
 font = "Arial", 16, BU, #000
 text = 1, "String", 0, 0, 2px, 2
 cardsize=5px, 10px
 cardsize=5, 10
-
 `;
 
 const newParser = new DecklangParser({ script: testDeck });

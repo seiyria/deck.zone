@@ -15,8 +15,8 @@ const failCases = [
   `font`,
   `font = `,
   `font = Arial`,
-  `font = Arial, -10`,
-  `font = Arial, -10px`
+  `font = "Arial", -10`,
+  `font = "Arial", -10px`
 ];
 
 test(`font directive is parsed correctly`, t => {
