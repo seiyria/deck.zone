@@ -7,7 +7,7 @@
   "scripts": {
     "build:app": "webpack -p --progress && cp src/index.html dist/index.html && echo 'deck.zone' >> dist/CNAME",
     "build:lang": "npm run build:lang:directives && npm run build:lang:map && nearleyc decklang/decklang.ne -o src/decklang/decklang.js",
-    "build:lang:directives": "node -e \"console.log('Directive -> ' + require('glob').sync('decklang/plugins/*.ne').map(x => x.split('/')[2].split('.')[0]).join('|'))\" > decklang/_directives.ne",
+    "build:lang:directives": "node -e \"var plugins = require('glob').sync('decklang/plugins/*.ne').map(x => x.split('/')[2].split('.')[0]); plugins.forEach(x => console.log('@include \\\"plugins/'+x+'.ne\\\"'));console.log('Directive -> ' + plugins.join('|'))\" > decklang/_directives.ne",
     "build:lang:map": "node -e \"console.log(JSON.stringify(require('glob').sync('decklang/plugins/*.ne').map(x => x.split('/')[2].split('.')[0])))\" > src/decklang/plugins.json",
     "test:lang": "node decklang/test/testdeck",
     "test:lint": "eslint \"src/**/*.js\"",
@@ -34,7 +34,7 @@
     "lodash": "^4.11.2",
     "mathjs": "^3.2.1",
     "nearley": "^2.5.0",
-    "ng2-ace": "0.0.10",
+    "ng2-ace": "0.0.11",
     "ng2-bootstrap": "^1.0.16",
     "ng2-fontawesome": "0.0.4",
     "ng2-storage": "0.0.2",
