@@ -1,5 +1,5 @@
 
-import { Plugin } from './_plugin';
+import { Plugin } from '../_base/_plugin';
 
 export class CardSize extends Plugin {
   static operate(args, state) {

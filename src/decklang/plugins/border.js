@@ -1,5 +1,5 @@
 
-import { Plugin } from './_plugin';
+import { Plugin } from '../_base/_plugin';
 
 export class Border extends Plugin {
   static operate(args, state) {

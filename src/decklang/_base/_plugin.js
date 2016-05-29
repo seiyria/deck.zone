@@ -17,8 +17,21 @@ export class Plugin {
       const val = args[key];
 
       if(!val) return;
-      if(_.isString(val)) args[key] = this.scopeString(val, scope);
-      if(val.eval)        args[key] = this.scopeEval(val.eval, scope);
+
+      if(_.isString(val)) {
+        args[key] = this.scopeString(val, scope);
+        return;
+      }
+
+      if(val.eval) {
+        args[key] = this.scopeEval(val.eval, scope);
+        return;
+      }
+
+      if(val.val.eval) {
+        args[key].val = this.scopeEval(val.val.eval, scope);
+        return;
+      }
     });
 
     args.state = _.cloneDeep(_.omit(state, 'cards'));

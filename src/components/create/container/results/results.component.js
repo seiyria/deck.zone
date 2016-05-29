@@ -6,7 +6,7 @@ import { ProjectComponent } from '../project.component';
 
 import { VsFor } from 'ng2-vs-for/src/ng2-vs-for';
 
-import * as Components from '../../../../decklang/plugins/_components';
+import * as Components from '../../../../decklang/components/_components';
 
 import _ from 'lodash';
 
@@ -42,10 +42,8 @@ export class ResultsComponent extends ProjectComponent {
     try {
       const instructions = newParser.parse();
 
-      newParser.runInstructions(newState, instructions);
+      newParser.runInstructions(this.state, newState, instructions);
 
-      // remove null entries when displaying cards
-      newState.cards = _.compact(newState.cards);
       this.state.internalState = newState;
 
     } catch(e) {

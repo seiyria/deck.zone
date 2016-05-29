@@ -1,5 +1,5 @@
 
-import { Plugin } from './plugins/_plugin';
+import { Plugin } from './_base/_plugin';
 
 import grammar from './decklang';
 import nearley from 'nearley';
@@ -54,14 +54,14 @@ export class DecklangParser {
     return _(this.parser.feed(script).results[0]).flattenDeep().compact().value();
   }
 
-  runInstructions(state, instructions, scope = {}) {
+  runInstructions(wrapState, state, instructions, scope = {}) {
     _.each(instructions, instruction => {
 
       // clone otherwise the objects in arrays are the same ref
       const clonedInstruction = _.cloneDeep(instruction);
 
       if(!clonedInstruction.ops) {
-        this.state.runPlugin(state, clonedInstruction, scope);
+        wrapState.runPlugin(state, clonedInstruction, scope);
         return;
       }
 
@@ -83,7 +83,7 @@ export class DecklangParser {
 
         for(let i = varStart; i <= endEval; i++) {
           newScope[varName] = i;
-          this.runInstructions(clonedInstruction.ops, _.cloneDeep(newScope));
+          this.runInstructions(wrapState, state, clonedInstruction.ops, _.cloneDeep(newScope));
         }
 
         // for...in loop
@@ -94,7 +94,7 @@ export class DecklangParser {
           newScope[`${varName}_value`] = iteration.val;
           newScope[`${varName}_index`] = index;
           newScope[`${varName}_length`] = iterations.length;
-          this.runInstructions(clonedInstruction.ops, _.cloneDeep(newScope));
+          this.runInstructions(wrapState, state, clonedInstruction.ops, _.cloneDeep(newScope));
         });
 
         // not sure if this can even happen
@@ -103,5 +103,8 @@ export class DecklangParser {
       }
 
     });
+
+    // remove null entries for displaying cards
+    state.cards = _.compact(state.cards);
   }
 }
