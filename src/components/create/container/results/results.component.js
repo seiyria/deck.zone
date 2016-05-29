@@ -14,7 +14,6 @@ import { StorageService } from 'ng2-storage';
 
 import { DecklangParser } from '../../../../decklang/decklangparser';
 import { DecklangState } from '../../../../decklang/decklangstate';
-import { Plugin } from '../../../../decklang/plugins/_plugin';
 
 @Component({
   selector: 'results',
@@ -38,64 +37,12 @@ export class ResultsComponent extends ProjectComponent {
   renderScript(currentScript) {
 
     const newState = this.state.newState();
-
-    const runInstructions = (instructions, scope = {}) => {
-      _.each(instructions, instruction => {
-
-        // clone otherwise the objects in arrays are the same ref
-        const clonedInstruction = _.cloneDeep(instruction);
-
-        if(!clonedInstruction.ops) {
-          this.state.runPlugin(newState, clonedInstruction, scope);
-          return;
-        }
-
-        // early loop termination if there are no ops
-        if(clonedInstruction.ops.length === 0) {
-          return;
-        }
-
-        const { start, iterations, end } = clonedInstruction.loopStart;
-        const { varStart, varName } = start;
-
-        const newScope = _.cloneDeep(scope);
-        const endEval = end && end.eval ? Plugin.scopeEval(end.eval, scope) : end;
-
-        // for...to loop
-        if(_.isNumber(varStart) && _.isNumber(endEval)) {
-
-          if(varStart > endEval) throw new Error('Loop start must be lower than the end value');
-
-          for(let i = varStart; i <= endEval; i++) {
-            newScope[varName] = i;
-            runInstructions(clonedInstruction.ops, _.cloneDeep(newScope));
-          }
-
-          // for...in loop
-        } else if(iterations) {
-
-          _.each(iterations, (iteration, index) => {
-            newScope[varName] = iteration.key;
-            newScope[`${varName}_value`] = iteration.val;
-            newScope[`${varName}_index`] = index;
-            newScope[`${varName}_length`] = iterations.length;
-            runInstructions(clonedInstruction.ops, _.cloneDeep(newScope));
-          });
-
-          // not sure if this can even happen
-        } else {
-          throw new Error('Invalid loop settings.');
-        }
-
-      });
-    };
-
     const newParser = new DecklangParser({ script: currentScript.contents });
 
     try {
       const instructions = newParser.parse();
 
-      runInstructions(instructions);
+      newParser.runInstructions(newState, instructions);
 
       // remove null entries when displaying cards
       newState.cards = _.compact(newState.cards);

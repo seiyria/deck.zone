@@ -1,4 +1,6 @@
 
+import { Plugin } from './plugins/_plugin';
+
 import grammar from './decklang';
 import nearley from 'nearley';
 import _ from 'lodash';
@@ -50,5 +52,56 @@ export class DecklangParser {
 
   results(script) {
     return _(this.parser.feed(script).results[0]).flattenDeep().compact().value();
+  }
+
+  runInstructions(state, instructions, scope = {}) {
+    _.each(instructions, instruction => {
+
+      // clone otherwise the objects in arrays are the same ref
+      const clonedInstruction = _.cloneDeep(instruction);
+
+      if(!clonedInstruction.ops) {
+        this.state.runPlugin(state, clonedInstruction, scope);
+        return;
+      }
+
+      // early loop termination if there are no ops
+      if(clonedInstruction.ops.length === 0) {
+        return;
+      }
+
+      const { start, iterations, end } = clonedInstruction.loopStart;
+      const { varStart, varName } = start;
+
+      const newScope = _.cloneDeep(scope);
+      const endEval = end && end.eval ? Plugin.scopeEval(end.eval, scope) : end;
+
+      // for...to loop
+      if(_.isNumber(varStart) && _.isNumber(endEval)) {
+
+        if(varStart > endEval) throw new Error('Loop start must be lower than the end value');
+
+        for(let i = varStart; i <= endEval; i++) {
+          newScope[varName] = i;
+          this.runInstructions(clonedInstruction.ops, _.cloneDeep(newScope));
+        }
+
+        // for...in loop
+      } else if(iterations) {
+
+        _.each(iterations, (iteration, index) => {
+          newScope[varName] = iteration.key;
+          newScope[`${varName}_value`] = iteration.val;
+          newScope[`${varName}_index`] = index;
+          newScope[`${varName}_length`] = iterations.length;
+          this.runInstructions(clonedInstruction.ops, _.cloneDeep(newScope));
+        });
+
+        // not sure if this can even happen
+      } else {
+        throw new Error('Invalid loop settings.');
+      }
+
+    });
   }
 }
