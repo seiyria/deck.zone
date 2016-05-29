@@ -36,6 +36,9 @@ font = "Arial", 16, BU, #000
 text = 1, "String", 0, 0, 2px, 2
 cardsize=5px, 10px
 cardsize=5, 10
+pagesize = 5, 10
+pagemargins=5px
+pagemargins=5px,6px,7px,8px
 `;
 
 const newParser = new DecklangParser({ script: testDeck });

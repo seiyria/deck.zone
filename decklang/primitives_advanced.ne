@@ -10,6 +10,12 @@ PositiveCssVariable ->
   PositiveDecimal (CssUnit):? {% function(d) { return { val: d[0], unit: d[1] ? d[1][0] : undefined }; } %}
 | LoopVariable (CssUnit):?    {% function(d) { return { val: d[0], unit: d[1] ? d[1][0] : undefined }; } %}
 
+CssMargin ->
+  PositiveCssValue
+  {% function(d) { return { left: d[0], right: d[0], top: d[0], bottom: d[0] }; } %}
+| PositiveCssValue _ "," _ PositiveCssValue _ "," _ PositiveCssValue _ "," _ PositiveCssValue
+  {% function(d) { return { left: d[0], right: d[4], top: d[8], bottom: d[12] }; } %}
+
 CssUnit ->
   "em"    {% id %}
 | "ex"    {% id %}
