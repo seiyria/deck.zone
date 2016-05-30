@@ -58,19 +58,3 @@ export class Plugin {
     return math.eval(string, scope);
   }
 }
-
-export class PluginComponent {
-
-  constructor() {}
-
-  setStyle() { this.style(); }
-
-  style() {
-    return {};
-  }
-
-  ngOnChanges() {
-    this.setStyle();
-  }
-
-}

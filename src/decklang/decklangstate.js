@@ -14,9 +14,21 @@ const defaultState = {
     decoration: ''
   },
   unit: 'cm',
+  page: {
+    width: '8.5in',
+    height: '11in',
+    'padding-top': 0,
+    'padding-left': 0,
+    'padding-right': 0,
+    'padding-bottom': 0
+  },
   card: {
     width: '6cm',
     height: '9cm',
+    'margin-top': 0,
+    'margin-left': 0,
+    'margin-right': 0,
+    'margin-bottom': 0,
     'border-style': 'none',
     'border-width': '1px',
     'border-color': '#000'

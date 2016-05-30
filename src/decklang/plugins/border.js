@@ -2,7 +2,10 @@
 import { Plugin } from '../_base/_plugin';
 
 export class Border extends Plugin {
-  static operate(args, state) {
+
+  static operate(args, state, scope) {
+    super.operate(args, state, scope);
+
     const { style, color, width } = args;
 
     state.options.card['border-style'] = style;

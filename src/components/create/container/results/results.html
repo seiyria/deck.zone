@@ -1,4 +1,7 @@
-<div class="results-pane card m-b-0"> <!-- *vsFor="state.internalState.cards; let _cards = vsCollection" -->
+<div game-page
+     [state]="state.internalState"
+     [isProd]="!!displayScript"
+     class="results-pane card m-b-0"> <!-- *vsFor="state.internalState.cards; let _cards = vsCollection" -->
 
   <div class="game-card"
        *ngFor="let card of state.internalState.cards"
@@ -6,7 +9,6 @@
 
     <span game-text
           *ngFor="let text of card.texts"
-          [ngStyle]="text.styleObject"
           [args]="text">{{text.string}}</span>
 
   </div>

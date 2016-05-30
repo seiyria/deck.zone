@@ -1,7 +1,7 @@
 
 import _ from 'lodash';
 
-import { PluginComponent } from '../_base/_plugin';
+import { PluginComponent } from '../_base/_component';
 import { Directive } from '@angular/core';
 
 @Directive({
@@ -29,9 +29,15 @@ export class TextComponent extends PluginComponent {
     };
 
     if(_.includes(font.decoration, 'I')) baseObject['font-style'] = 'italic';
-    if(_.includes(font.decoration, 'B')) baseObject['font-weight'] = 'bold';
-    if(_.includes(font.decoration, 'U')) baseObject['text-decoration'] = 'underline';
+    else                                 baseObject['font-style'] = 'none';
 
-    setTimeout(() => args.styleObject = baseObject);
+    if(_.includes(font.decoration, 'B')) baseObject['font-weight'] = 'bold';
+    else                                 baseObject['font-weight'] = 'none';
+
+    if(_.includes(font.decoration, 'U')) baseObject['text-decoration'] = 'underline';
+    else                                 baseObject['text-decoration'] = 'none';
+
+    this.assignStyle(baseObject);
+
   }
 }

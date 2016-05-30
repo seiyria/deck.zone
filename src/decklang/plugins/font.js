@@ -2,7 +2,10 @@
 import { Plugin } from '../_base/_plugin';
 
 export class Font extends Plugin {
-  static operate(args, state) {
+
+  static operate(args, state, scope) {
+    super.operate(args, state, scope);
+
     const { family, color, decoration, css } = args;
 
     state.options.font.family = family;

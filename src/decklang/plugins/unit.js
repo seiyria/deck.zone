@@ -2,7 +2,9 @@
 import { Plugin } from '../_base/_plugin';
 
 export class Unit extends Plugin {
-  static operate(args, state) {
+
+  static operate(args, state, scope) {
+    super.operate(args, state, scope);
     const { unit } = args;
 
     state.options.unit = unit;
