@@ -5,23 +5,30 @@ const passCases = [
   `
   loop = <x = 0> to 10
     text = <x>, "T <x>", 0, <x+1>, 1, 1
+  endloop`,
+  `
+  loop = <x = 0> to 10
+    loop = <y = 0> to <x>
+      text = <x>, "T <x>", 0, <x+1>, 1, 1
+    endloop
   endloop`
 ];
 
 const failCases = [
   `loop`,
   `loop = `,
+  `loop = <x>`,
   `loop = <x> to 10`,
   `loop = <x = 0> to 10`
 ];
 
 const loopTest = ['loop = <x = 0> to 2', 'text = <x>, "T <x>", 0, <x+1>, 1, 1', 'endloop'].join('\n');
 
-test(`loop construct is parsed correctly`, t => {
+test(`loopTo construct is parsed correctly`, t => {
   testPassFailCases(t, passCases, failCases);
 });
 
-test(`loop construct data is pulled correctly`, t => {
+test(`loopTo construct data is pulled correctly`, t => {
   const ran = parseAndFirst(loopTest);
 
   t.true(ran.loopStart.start.varName === 'x');
@@ -30,7 +37,7 @@ test(`loop construct data is pulled correctly`, t => {
   t.true(ran.ops.length === 1);
 });
 
-test(`loop construct data is parsed correctly`, t => {
+test(`loopTo construct data is parsed correctly`, t => {
   const ran = run(loopTest);
 
   const { texts } = ran.cards[0];
