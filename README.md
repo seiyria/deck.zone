@@ -1,4 +1,4 @@
-# deck.zone
+# deck.zone [![Build Status](https://travis-ci.org/seiyria/deck.zone.svg?branch=master)](https://travis-ci.org/seiyria/deck.zone)
 
 ## Running deck.zone
 
