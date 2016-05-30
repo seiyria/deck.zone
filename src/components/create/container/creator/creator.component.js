@@ -42,7 +42,10 @@ export class CreatorComponent extends ProjectComponent {
       window.onbeforeunload = () => 'Your work is not done syncing yet. Are you sure you want to close the page?';
     };
 
-    this.editorOptions = { printMargin: false };
+    this.editorOptions = { printMargin: false,
+   	enableBasicAutocompletion:true,
+	enableSnippets:true,
+	enableLiveAutocompletion:false	};
   }
 
   ngOnChanges(data) {
