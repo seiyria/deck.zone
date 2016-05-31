@@ -3,6 +3,13 @@ import { Plugin } from '../_base/_plugin';
 
 export class CardSize extends Plugin {
 
+  static get snippets() {
+    return [`
+snippet cardsize
+\tcardsize = \${1:width}, \${2:height}
+    `];
+  }
+
   static operate(args, state, scope) {
     super.operate(args, state, scope);
 

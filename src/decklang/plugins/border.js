@@ -3,6 +3,13 @@ import { Plugin } from '../_base/_plugin';
 
 export class Border extends Plugin {
 
+  static get snippets() {
+    return [`
+snippet border
+\tborder = \${1:style}, \${2:#000}, \${3:width}
+    `];
+  }
+
   static operate(args, state, scope) {
     super.operate(args, state, scope);
 

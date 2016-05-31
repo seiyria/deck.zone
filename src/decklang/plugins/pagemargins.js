@@ -3,6 +3,13 @@ import { Plugin } from '../_base/_plugin';
 
 export class PageMargins extends Plugin {
 
+  static get snippets() {
+    return [`
+snippet pagemargins
+\tpagemargins = \${1:left}, \${2:right}, \${3:top}, \${4:bottom}
+    `];
+  }
+
   static operate(args, state, scope) {
     super.operate(args, state, scope);
 

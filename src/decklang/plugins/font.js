@@ -3,6 +3,13 @@ import { Plugin } from '../_base/_plugin';
 
 export class Font extends Plugin {
 
+  static get snippets() {
+    return [`
+snippet cardsize
+\tcardsize = "\${1:font}", \${2:fontsize}, \${3:BUI}, \${4:#000}
+    `];
+  }
+
   static operate(args, state, scope) {
     super.operate(args, state, scope);
 

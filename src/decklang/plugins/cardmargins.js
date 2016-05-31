@@ -3,6 +3,13 @@ import { Plugin } from '../_base/_plugin';
 
 export class CardMargins extends Plugin {
 
+  static get snippets() {
+    return [`
+snippet cardmargins
+\tcardmargins = \${1:left}, \${2:right}, \${3:top}, \${4:bottom}
+    `];
+  }
+
   static operate(args, state, scope) {
     super.operate(args, state, scope);
 
