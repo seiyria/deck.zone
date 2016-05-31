@@ -33,12 +33,12 @@
 </button>
 
 <div class="btn-group" dropdown>
-  <a
-          class="btn btn-info-outline"
-          target="_blank"
-          [routerLink]="['/Embed', 'Embed', { projectId: projectId, scriptId: project?.activeScript, tabs: 'result,code' }]"
-          tooltipPlacement="bottom"
-          tooltip="View result in an external window.">
+  <a class="btn btn-info-outline"
+     target="_blank"
+     [routerLink]="['/Embed', 'Embed', { projectId: projectId, scriptId: project?.activeScript, tabs: 'result,code' }]"
+     tooltipPlacement="bottom"
+     tooltipAppendToBody="true"
+     tooltip="View result in an external window.">
     <i fa [icon]="'external-link'" fw="true"></i>
   </a>
   <button type="button" class="btn btn-info-outline dropdown-toggle" dropdownToggle>
