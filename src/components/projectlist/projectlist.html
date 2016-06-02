@@ -21,6 +21,20 @@
       </div>
     </div>
 
+    <div class="col-md-4" *ngIf="!(projects | async)">
+      <div class="card project-card">
+        <div class="card-text">
+
+          <div class="row m-t-3">
+            <div class="col-md-10 col-md-offset-1 text-xs-center">
+              <h4>Loading Projects...</h4>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
     <div class="col-md-4" *ngFor="let project of projects | async">
       <div class="card project-card">
 
