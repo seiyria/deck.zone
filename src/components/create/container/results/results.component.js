@@ -19,7 +19,7 @@ import { DecklangState } from '../../../../decklang/decklangstate';
   selector: 'results',
   providers: [StorageService],
   directives: [..._.values(Components), VsFor],
-  inputs: ['project', 'projectId', 'displayScript'],
+  inputs: ['project', 'projectId', 'displayScript', 'usePageStyle'],
   template
 })
 export class ResultsComponent extends ProjectComponent {

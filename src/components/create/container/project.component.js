@@ -5,6 +5,7 @@ export class ProjectComponent {
   }
 
   ngOnChanges(data) {
+    if(!data.project) return;
     const changedProject = data.project.currentValue;
     if(!changedProject) return false;
     this.internalProject = changedProject;

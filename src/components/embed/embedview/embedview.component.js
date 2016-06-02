@@ -1,4 +1,6 @@
 
+import _ from 'lodash';
+
 import { Component } from '@angular/core';
 import { RouteParams, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 import { ResultsComponent } from '../../create/container/results/results.component';
@@ -55,6 +57,7 @@ export class EmbedViewComponent {
     });
 
     this.activeTab = this.tabs[0];
+    this.showPrint = _.includes(this.tabs, 'result');
   }
 
 }

@@ -1,6 +1,6 @@
 <div game-page
      [state]="state.internalState"
-     [isProd]="!!displayScript"
+     [isProd]="usePageStyle && !!displayScript"
      class="results-pane card m-b-0"> <!-- *vsFor="state.internalState.cards; let _cards = vsCollection" -->
 
   <div class="game-card"

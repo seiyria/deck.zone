@@ -10,10 +10,14 @@ import { Directive } from '@angular/core';
 })
 export class PageComponent extends PluginComponent {
   style() {
-    if(!this.isProd) return;
-
     const args = this.state.options.page;
     const baseObject = _.cloneDeep(args);
+
+    if(!this.isProd) {
+      _(baseObject).keys().each(key => {
+        baseObject[key] = 'initial';
+      });
+    }
 
     this.assignStyle(baseObject);
   }
