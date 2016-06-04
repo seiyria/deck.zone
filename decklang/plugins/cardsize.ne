@@ -11,3 +11,13 @@ cardsize -> "cardsize" _ "="
     }
   }
 %}
+  |         "cardsize" _ "=" _ CardSize
+{%
+  function(d) {
+    return {
+      call: d[0],
+      width: d[4].width,
+      height: d[4].height
+    }
+  }
+%}

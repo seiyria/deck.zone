@@ -15,12 +15,13 @@ const defaultState = {
   },
   unit: 'cm',
   page: {
+    cardsPerPage: 9,
     width: '8.5in',
     height: '11in',
-    'padding-top': 0,
-    'padding-left': 0,
-    'padding-right': 0,
-    'padding-bottom': 0
+    'margin-top': 0,
+    'margin-left': 0,
+    'margin-right': 0,
+    'margin-bottom': 0
   },
   card: {
     width: '6cm',

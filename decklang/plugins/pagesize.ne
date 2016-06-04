@@ -11,3 +11,13 @@ pagesize -> "pagesize" _ "="
     }
   }
 %}
+  |         "pagesize" _ "=" _ PaperSize
+{%
+  function(d) {
+    return {
+      call: d[0],
+      width: d[4].width,
+      height: d[4].height
+    }
+  }
+%}

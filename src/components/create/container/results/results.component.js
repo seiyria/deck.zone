@@ -34,6 +34,37 @@ export class ResultsComponent extends ProjectComponent {
     this.state = new DecklangState();
   }
 
+  addPagePrintRules(state) {
+    const PAGE_ID = '__page_rules';
+
+    const oldPageStyle = document.getElementById(PAGE_ID);
+    if(oldPageStyle) oldPageStyle.remove();
+
+    const style = document.createElement('style');
+    style.id = PAGE_ID;
+    style.appendChild(document.createTextNode(''));
+    document.head.appendChild(style);
+
+    const { page } = state.options;
+
+    style.innerHTML = `
+      @media print {
+        html, body, .printable, .results-pane, .embed-view {
+          width: ${page.width} !important;
+          height: ${page.height} !important;
+        }
+
+        @page {
+          size: ${page.width} ${page.height};
+          margin-top: ${page['margin-top']};
+          margin-left: ${page['margin-left']};
+          margin-right: ${page['margin-right']};
+          margin-bottom: ${page['margin-bottom']};
+        }
+      }
+    `;
+  }
+
   renderScript(currentScript) {
 
     const newState = this.state.newState();
@@ -45,6 +76,7 @@ export class ResultsComponent extends ProjectComponent {
       newParser.runInstructions(this.state, newState, instructions);
 
       this.state.internalState = newState;
+      this.addPagePrintRules(newState);
 
     } catch(e) {
       console.error(e);

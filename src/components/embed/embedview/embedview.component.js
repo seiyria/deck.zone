@@ -23,11 +23,6 @@ export class EmbedViewComponent {
     return [[RouteParams], [CurrentProjectService]];
   }
 
-  markBad(reason) {
-    this.isBad = true;
-    this[reason] = true;
-  }
-
   constructor(routeParams, currentProjectService) {
     const { projectId, scriptId, tabs } = routeParams.params;
 
@@ -60,4 +55,8 @@ export class EmbedViewComponent {
     this.showPrint = _.includes(this.tabs, 'result');
   }
 
+  markBad(reason) {
+    this.isBad = true;
+    this[reason] = true;
+  }
 }

@@ -9,3 +9,17 @@
     min-height: calc(~"100vh - 54px");
   }
 }
+
+results.printable {
+  .results-pane {
+    min-height: inherit;
+    max-height: inherit;
+    overflow: inherit;
+    border: none;
+
+    .game-card.page-break {
+      page-break-after: always;
+      float: none !important;
+    }
+  }
+}

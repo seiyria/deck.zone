@@ -16,7 +16,7 @@ export class Plugin {
     _.each(keys, key => {
       const val = args[key];
 
-      if(!val) return;
+      if(!val || _.isNumber(val)) return;
 
       if(_.isString(val)) {
         args[key] = this.scopeString(val, scope);

@@ -39,6 +39,8 @@ cardsize=5, 10
 pagesize = 5, 10
 pagemargins=5px
 pagemargins=5px,6px,7px,8px
+cardsperpage=9
+pagesize = letter
 `;
 
 const newParser = new DecklangParser({ script: testDeck });

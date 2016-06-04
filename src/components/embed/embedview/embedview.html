@@ -24,7 +24,6 @@
   </div>
 </nav>
 
-
 <div class="container-fluid" *ngIf="isBad">
   <div class="col-md-4 col-md-offset-4 text-xs-center m-t-2">
 
@@ -64,6 +63,7 @@
        [readOnly]="true"></div>
 
   <results [class.hidden]="activeTab !== 'result'"
+           [class.printable]="printStyles"
            [displayScript]="scriptId"
            [usePageStyle]="printStyles"
            [project]="projectData | async"
