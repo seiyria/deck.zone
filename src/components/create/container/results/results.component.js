@@ -65,6 +65,29 @@ export class ResultsComponent extends ProjectComponent {
     `;
   }
 
+  setCardDisplay() {
+    let { front, back } = this.state.internalState.cards;
+    front = _.cloneDeep(front);
+    back = _.cloneDeep(back);
+
+    // can't do this
+    if(front.length !== back.length) {
+      this.cardDisplayList = front;
+      return;
+    }
+
+    _.each(back, card => card._reverse = true);
+
+    const cardsPerPage = this.usePageStyle ? this.state.internalState.options.page.cardsPerPage : 1;
+    const chunkedFront = _.chunk(front, cardsPerPage);
+    const chunkedBack = _.chunk(back, cardsPerPage);
+
+    _.each(chunkedFront, chunk => chunk[chunk.length-1]._pagebreak = true);
+    _.each(chunkedBack, chunk => chunk[chunk.length-1]._pagebreak = true);
+
+    this.cardDisplayList = _.flattenDeep(_.zip(chunkedFront, chunkedBack));
+  }
+
   renderScript(currentScript) {
 
     const newState = this.state.newState();
@@ -77,6 +100,7 @@ export class ResultsComponent extends ProjectComponent {
 
       this.state.internalState = newState;
       this.addPagePrintRules(newState);
+      this.setCardDisplay();
 
     } catch(e) {
       console.error(e);
@@ -85,6 +109,10 @@ export class ResultsComponent extends ProjectComponent {
   }
 
   ngOnChanges(data) {
+    if(data.usePageStyle) {
+      this.setCardDisplay();
+    }
+
     const changed = super.ngOnChanges(data);
     if(!changed) return;
 

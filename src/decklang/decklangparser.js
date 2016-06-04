@@ -105,6 +105,7 @@ export class DecklangParser {
     });
 
     // remove null entries for displaying cards
-    state.cards = _.compact(state.cards);
+    state.cards.front = _.compact(state.cards.front);
+    state.cards.back = _.compact(state.cards.back);
   }
 }

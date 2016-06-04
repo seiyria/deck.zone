@@ -13,8 +13,8 @@ snippet text
   static operate(args, state, scope) {
     super.operate(args, state, scope);
 
-    if(!state.cards[args.index]) state.cards[args.index] = state.newCard();
-    state.cards[args.index].texts.push(args);
+    const card = state.getCard(args.index);
+    card.texts.push(args);
   }
 
 }

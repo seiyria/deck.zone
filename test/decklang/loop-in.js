@@ -35,7 +35,7 @@ test(`loopIn construct data is pulled correctly`, t => {
 test(`loopIn construct data is parsed correctly`, t => {
   const ran = run(loopTest);
 
-  const { texts } = ran.cards[0];
+  const { texts } = ran.cards.front[0];
   const { index, string, x, y, w, h } = texts[0];
 
   t.true(index === 0);

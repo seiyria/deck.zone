@@ -1,6 +1,7 @@
 
 export { Border } from './border';
 export { CardMargins } from './cardmargins';
+export { CardSide } from './cardside';
 export { CardSize } from './cardsize';
 export { CardsPerPage } from './cardsperpage';
 export { Font } from './font';

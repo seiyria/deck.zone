@@ -6,6 +6,8 @@ import _ from 'lodash';
 const PLUGINS = _.mapKeys(Plugins, (value, key) => key.toLowerCase());
 
 const defaultState = {
+  unit: 'cm',
+  cardside: 'front',
   font: {
     family: 'Arial',
     size: 10,
@@ -13,7 +15,6 @@ const defaultState = {
     color: '#000',
     decoration: ''
   },
-  unit: 'cm',
   page: {
     cardsPerPage: 9,
     width: '8.5in',
@@ -38,8 +39,20 @@ const defaultState = {
 
 class InternalState {
   constructor() {
-    this.cards = [];
+    this.cards = {
+      front: [],
+      back: []
+    };
     this.options = _.cloneDeep(defaultState);
+  }
+
+  getCard(index) {
+    let card = this.cards[this.options.cardside][index];
+    if(!card) {
+      card = this.cards[this.options.cardside][index] = this.newCard();
+    }
+
+    return card;
   }
 
   newCard() {

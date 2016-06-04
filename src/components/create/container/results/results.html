@@ -2,8 +2,9 @@
 <div class="results-pane card m-b-0"> <!-- *vsFor="state.internalState.cards; let _cards = vsCollection" -->
 
   <div class="game-card"
-       *ngFor="let card of state.internalState.cards; #i = index"
-       [class.page-break]="((i+1) % state.internalState.options.page.cardsPerPage) === 0"
+       *ngFor="let card of cardDisplayList; #i = index"
+       [class.page-break]="card._pagebreak"
+       [class.game-card-reverse]="usePageStyle && card._reverse"
        [ngStyle]="state.internalState.options.card">
 
     <span game-text
