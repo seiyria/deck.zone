@@ -41,6 +41,10 @@ pagemargins=5px
 pagemargins=5px,6px,7px,8px
 cardsperpage=9
 pagesize = letter
+
+loop = <x = 1> to 5
+  text=<x+1+(1+1)+1>, "test", 0, 0, 0, 0
+endloop
 `;
 
 const newParser = new DecklangParser({ script: testDeck });

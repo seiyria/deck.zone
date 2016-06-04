@@ -4,7 +4,7 @@ import { testPassFailCases, parseAndFirst, run } from '../_helpers';
 const passCases = [
   `
   loop = <x = 0> to 10
-    text = <x>, "T <x>", 0, <x+1>, 1, 1
+    text = <x + (1 + 1) + 1>, "T <x>", 0, <x+1>, 1, 1
   endloop`,
   `
   loop = <x = 0> to 10

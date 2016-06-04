@@ -73,10 +73,10 @@ VariableAssignment ->
   %}
 
 RecursiveLoopVariableExpression ->
-  Operand _ Integer _ (")"):? _                                             {% joiner %}
-| Operand _ VariableIdentifier _ (")"):? _                                  {% joiner %}
-| Operand _ ("("):? _ Integer _ RecursiveLoopVariableExpression             {% joiner %}
-| Operand _ ("("):? _ VariableIdentifier _ RecursiveLoopVariableExpression  {% joiner %}
+  Operand _ Integer _ (")"):? _ (RecursiveLoopVariableExpression):? _             {% joiner %}
+| Operand _ VariableIdentifier _ (")"):? _ (RecursiveLoopVariableExpression):? _  {% joiner %}
+| Operand _ ("("):? _ Integer _ RecursiveLoopVariableExpression                   {% joiner %}
+| Operand _ ("("):? _ VariableIdentifier _ RecursiveLoopVariableExpression        {% joiner %}
 
 LoopVariableExpression ->
   VariableIdentifier                                    {% evalid %}
