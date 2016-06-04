@@ -65,6 +65,35 @@ export class ResultsComponent extends ProjectComponent {
     `;
   }
 
+  parseCarddown() {
+    const cards = this.state.internalState.getAllCards();
+
+    _.each(cards, card => {
+      _.each(card.texts, text => {
+        text.string = this.translateText(text.string);
+      });
+    });
+  }
+
+  translateText(string) {
+
+    const replacers = [
+      { regex: /((__|\*\*)([^_\*]+)(__|\*\*))/g,  tag: 'em' },
+      { regex: /((_)([^_]+)(_))/g,                tag: 'u' },
+      { regex: /((~)([^~]+)(~))/g,                tag: 'del' },
+      { regex: /((\*)([^\*]+)(\*))/g,             tag: 'strong' }
+    ];
+
+    _.each(replacers, replace => {
+      let regexResult = null;
+      while ((regexResult = replace.regex.exec(string)) !== null) {
+        string = string.split(regexResult[1]).join(`<${replace.tag}>${regexResult[3]}</${replace.tag}>`);
+      }
+    });
+
+    return string;
+  }
+
   setCardDisplay() {
     let { front, back } = this.state.internalState.cards;
     front = _.cloneDeep(front);
@@ -100,6 +129,7 @@ export class ResultsComponent extends ProjectComponent {
 
       this.state.internalState = newState;
       this.addPagePrintRules(newState);
+      this.parseCarddown();
       this.setCardDisplay();
 
     } catch(e) {

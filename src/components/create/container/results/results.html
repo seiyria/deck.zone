@@ -9,7 +9,8 @@
 
     <span game-text
           *ngFor="let text of card.texts"
-          [args]="text">{{text.string}}</span>
+          [args]="text"
+          [innerHTML]="text.string"></span>
 
   </div>
 

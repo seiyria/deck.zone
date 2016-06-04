@@ -55,6 +55,10 @@ class InternalState {
     return card;
   }
 
+  getAllCards() {
+    return this.cards.front.concat(this.cards.back);
+  }
+
   newCard() {
     return { texts: [] };
   }
