@@ -142,6 +142,10 @@ export class ResultsComponent extends ProjectComponent {
   }
 
   renderScript(currentScript) {
+    if(!currentScript) return;
+
+    const defaultScope = {};
+    _(this.internalProject.resources).values().each(res => defaultScope[`resource:${res.name}`] = res.url);
 
     const newState = this.state.newState();
     const newParser = new DecklangParser({ script: currentScript.contents });
@@ -149,7 +153,7 @@ export class ResultsComponent extends ProjectComponent {
     try {
       const instructions = newParser.parse();
 
-      newParser.runInstructions(this.state, newState, instructions);
+      newParser.runInstructions(this.state, newState, instructions, defaultScope);
 
       this.state.internalState = newState;
       this.addPagePrintRules(newState);

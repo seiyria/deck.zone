@@ -39,13 +39,15 @@ cardsize=5, 10
 pagesize = 5, 10
 pagemargins=5px
 pagemargins=5px,6px,7px,8px
-cardsperpage=9
+cardsperpage=9, 9
 pagesize = letter
 
 loop = <x = 1> to 5
   text=<x+1+(1+1)+1>, "test", 0, 0, 0, 0
 endloop
 cardside=back
+
+image = 1, "<<spade-skull>>", 0, 0, 0, 0
 `;
 
 const newParser = new DecklangParser({ script: testDeck });

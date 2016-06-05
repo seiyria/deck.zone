@@ -52,6 +52,14 @@ export class CurrentProjectService {
     return this.angularFire.list(`/projects/${id}/scripts`);
   }
 
+  getResourceList(id) {
+    if(!id) {
+      throw new Error('No id specified for project!');
+    }
+
+    return this.angularFire.list(`/projects/${id}/resources`);
+  }
+
   getContent(id) {
     if(!id) {
       throw new Error('No id specified for project!');

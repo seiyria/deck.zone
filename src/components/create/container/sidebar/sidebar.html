@@ -58,21 +58,41 @@
           Resources
           <button type="button"
                   class="pull-md-right btn btn-xs btn-primary-outline"
+                  (click)="newResource()"
                   *ngIf="auth.owns(project)">
             <i fa [icon]="'plus'" [fw]="true"></i>
           </button>
         </h4>
       </div>
-      <div class="card-text" *ngIf="internalProject.resources">
-        <p *ngIf="!(internalProject.resources.length)">No resources in current project.</p>
+      <div class="card-text" *ngIf="internalProject && (resourceList | async)">
+        <p *ngIf="!(resourceList | async).length">No resources in current project.</p>
 
         <ul>
-          <li *ngFor="let resource of internalProject.resources">
-            <span>{{resource.name}}</span>
+          <li class="nav-item"
+              *ngFor="let resourceObj of allResources"
+              (mouseenter)="isVisible[resourceObj.key] = true"
+              (mouseleave)="isVisible[resourceObj.key] = false">
+
+            <a class="nav-link">
+
+              <div class="btn-group sidebar-buttons-on-top" *ngIf="isVisible[resourceObj.key]">
+
+                <a class="btn btn-xs btn-info" href="{{resourceObj.resource.url}}" target="_blank">
+                  <i fa [icon]="'external-link'" [fw]="true"></i>
+                </a>
+
+                <button class="btn btn-xs btn-danger"
+                        (click)="deleteResource(resourceObj)">
+                  <i fa [icon]="'trash'" [fw]="true"></i>
+                </button>
+              </div>
+
+              <span>{{resourceObj.resource.name}}</span>
+            </a>
           </li>
         </ul>
       </div>
-      <div class="card-text" *ngIf="!internalProject.resources">
+      <div class="card-text" *ngIf="!(resourceList | async)">
         <p>Loading...</p>
       </div>
     </div>

@@ -8,7 +8,7 @@ export const DefaultProject = {
   activeScript: '0',
   visibility: 'Public',
   resources: [
-    { name: 'rolling-dice.png', url: 'http://seiyria.com/gameicons-font/png/rolling-dice.png' }
+    { name: 'rolling-dices', url: 'http://seiyria.com/gameicons-font/svg/rolling-dices.svg' }
   ],
   scripts: [
     { name: 'main.deck', contents: 'text = 1, "Hello World", 0, 0, 1, 1' }

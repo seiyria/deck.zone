@@ -49,6 +49,7 @@ export class CreateContainerComponent {
     });
 
     this.scriptList = currentProjectService.getScriptList(this.projectId);
+    this.resourceList = currentProjectService.getResourceList(this.projectId);
 
     this.api = {
       changeActiveScript: (index)           => this.projectData._ref.child('activeScript').set(index),
@@ -56,7 +57,9 @@ export class CreateContainerComponent {
       newFile:            (name)            => this.scriptList.push({ name, contents: '' }),
       deleteFile:         (index)           => this.projectData._ref.child('scripts').child(index).remove(),
       editFile:           (index, newName)  => this.projectData._ref.child('scripts').child(index).child('name').set(newName),
-      ownProject:         (newOwner)        => this.projectData._ref.child('owner').set(newOwner)
+      ownProject:         (newOwner)        => this.projectData._ref.child('owner').set(newOwner),
+      newResource:        (resource)        => this.resourceList.push(resource),
+      deleteResource:     (index)           => this.projectData._ref.child('resources').child(index).remove()
     };
 
   }
