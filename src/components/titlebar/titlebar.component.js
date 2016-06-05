@@ -42,7 +42,8 @@ export class TitleBarComponent {
   login(method) {
     this.auth.angularFire.auth.login({
       provider: AuthProviders[method],
-      method: AuthMethods.Popup
+      method: AuthMethods.Popup,
+      scope: ['email']
     });
   }
 
