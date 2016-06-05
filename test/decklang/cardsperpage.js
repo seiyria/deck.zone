@@ -2,14 +2,15 @@ import test from 'ava';
 import { testPassFailCases, parseAndFirst } from '../_helpers';
 
 const passCases = [
-  `cardsperpage = 1`
+  `cardsperpage = 1, 2`
 ];
 
 const failCases = [
   `cardsperpage`,
   `cardsperpage = `,
   `cardsperpage = -1`,
-  `cardsperpage = a`
+  `cardsperpage = a`,
+  `cardsperpage = 1, `
 ];
 
 test(`cardsperpage directive is parsed correctly`, t => {
@@ -17,8 +18,9 @@ test(`cardsperpage directive is parsed correctly`, t => {
 });
 
 test(`cardsperpage directive data is pulled correctly`, t => {
-  const { call, cardCount } = parseAndFirst(`cardsperpage = 2`);
+  const { call, cardsPerRow, rowsPerPage } = parseAndFirst(`cardsperpage = 1, 2`);
 
   t.true(call === 'cardsperpage');
-  t.true(cardCount === 2)
+  t.true(cardsPerRow === 1);
+  t.true(rowsPerPage === 2);
 });

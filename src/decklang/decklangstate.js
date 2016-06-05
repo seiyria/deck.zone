@@ -16,7 +16,7 @@ const defaultState = {
     decoration: ''
   },
   page: {
-    cardsPerPage: 9,
+    cardsPerPage: { cardsPerRow: 3, rowsPerPage: 3 },
     width: '8.5in',
     height: '11in',
     'margin-top': 0,

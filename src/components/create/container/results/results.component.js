@@ -105,14 +105,38 @@ export class ResultsComponent extends ProjectComponent {
       return;
     }
 
-    _.each(back, card => card._reverse = true);
+    const { cardsPerRow, rowsPerPage } = this.state.internalState.options.page.cardsPerPage;
 
-    const cardsPerPage = this.usePageStyle ? this.state.internalState.options.page.cardsPerPage : 1;
-    const chunkedFront = _.chunk(front, cardsPerPage);
-    const chunkedBack = _.chunk(back, cardsPerPage);
+    const cardsPerPage = this.usePageStyle ? cardsPerRow*rowsPerPage : 1;
 
-    _.each(chunkedFront, chunk => chunk[chunk.length-1]._pagebreak = true);
-    _.each(chunkedBack, chunk => chunk[chunk.length-1]._pagebreak = true);
+    const chunkSizePredicate = chunk => {
+      if(cardsPerPage === 1) return chunk;
+      const miniChunks = _.chunk(chunk, cardsPerRow);
+
+      while(miniChunks.length < rowsPerPage) {
+        const arr = [];
+        for(let i = 0; i < cardsPerRow; i++) arr.push(this.state.internalState.newCard());
+        miniChunks.push(arr);
+      }
+      _.each(miniChunks, miniChunk => {
+        while(miniChunk.length < cardsPerRow) miniChunk.push(this.state.internalState.newCard());
+      });
+
+      return _.flatten(miniChunks);
+    };
+
+    const setPagebreak = chunk => chunk[chunk.length - 1]._pagebreak = true;
+
+    const chunkedFront = _(front)
+      .chunk(cardsPerPage)
+      .map(chunkSizePredicate)
+      .each(setPagebreak);
+
+    const chunkedBack = _(back)
+      .chunk(cardsPerPage)
+      .map(chunkSizePredicate)
+      .map(chunk => _.flatten(_.map(_.chunk(chunk, cardsPerRow), _.reverse)))
+      .each(setPagebreak);
 
     this.cardDisplayList = _.flattenDeep(_.zip(chunkedFront, chunkedBack));
   }
