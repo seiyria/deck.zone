@@ -3,8 +3,8 @@
 ## Running deck.zone
 
 * clone the repo
-* npm install
-* npm start
+* `npm install`
+* `npm start`
 
 ### Working on deck.zone
 
