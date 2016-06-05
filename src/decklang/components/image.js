@@ -11,7 +11,6 @@ import { Directive } from '@angular/core';
 export class ImageComponent extends PluginComponent {
   style() {
     const args = this.args;
-    console.log(args);
 
     const baseObject = {
       position:         'absolute',
