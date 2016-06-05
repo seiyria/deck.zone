@@ -12,6 +12,11 @@
           [args]="text"
           [innerHTML]="text.string"></span>
 
+    <img game-image
+         src="{{image.url}}"
+         *ngFor="let image of card.images"
+         [args]="image" />
+
   </div>
 
 </div>

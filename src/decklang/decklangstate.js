@@ -60,7 +60,7 @@ class InternalState {
   }
 
   newCard() {
-    return { texts: [] };
+    return { texts: [], images: [] };
   }
 }
 
