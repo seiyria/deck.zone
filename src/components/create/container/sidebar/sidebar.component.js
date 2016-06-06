@@ -92,8 +92,8 @@ export class SidebarComponent extends ProjectComponent {
       }
     }).then(val => {
       if(!val) return;
-      const [url, name] = val;
-      this.api.newResource({ url, name });
+      val[1] = val[1].replace(/[^\w:]/gm, '');
+      this.api.newResource({ url: val[0], name: val[1] });
     });
   }
 

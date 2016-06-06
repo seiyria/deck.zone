@@ -42,8 +42,8 @@ pagemargins=5px,6px,7px,8px
 cardsperpage=9, 9
 pagesize = letter
 
-loop = <x = 1> to 5
-  text=<x+1+(1+1)+1>, "test", 0, 0, 0, 0
+loop = <x:t = 1> to 5
+  text=<x:t+1+(1+1)+1>, "test", 0, 0, 0, 0
 endloop
 cardside=back
 

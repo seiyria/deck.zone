@@ -19,7 +19,7 @@ import { DecklangState } from '../../../../decklang/decklangstate';
   selector: 'results',
   providers: [StorageService],
   directives: [..._.values(Components), VsFor],
-  inputs: ['project', 'projectId', 'displayScript', 'usePageStyle'],
+  inputs: ['project', 'projectId', 'displayScript', 'usePageStyle', 'showLoading'],
   template
 })
 export class ResultsComponent extends ProjectComponent {
@@ -144,26 +144,35 @@ export class ResultsComponent extends ProjectComponent {
   renderScript(currentScript) {
     if(!currentScript) return;
 
-    const defaultScope = {};
-    _(this.internalProject.resources).values().each(res => defaultScope[`resource:${res.name}`] = res.url);
+    this.loading = true;
+    Promise.all(this.resourcePromises).then(values => {
+      this.loading = false;
 
-    const newState = this.state.newState();
-    const newParser = new DecklangParser({ script: currentScript.contents });
+      const defaultScope = {};
+      _.each(values, res => {
+        defaultScope[`resource:${res.name}`] = res.data || res.url;
+      });
 
-    try {
-      const instructions = newParser.parse();
+      console.log(defaultScope);
 
-      newParser.runInstructions(this.state, newState, instructions, defaultScope);
+      const newState = this.state.newState();
+      const newParser = new DecklangParser({ script: currentScript.contents });
 
-      this.state.internalState = newState;
-      this.addPagePrintRules(newState);
-      this.parseCarddown();
-      this.setCardDisplay();
+      try {
+        const instructions = newParser.parse();
 
-    } catch(e) {
-      console.error(e);
-      console.error('Error near', newParser.preParse().substring(e.offset - 5, e.offset + 5));
-    }
+        newParser.runInstructions(this.state, newState, instructions, defaultScope);
+
+        this.state.internalState = newState;
+        this.addPagePrintRules(newState);
+        this.parseCarddown();
+        this.setCardDisplay();
+
+      } catch(e) {
+        console.error(e);
+        console.error('Error near', newParser.preParse().substring(e.offset - 5, e.offset + 5));
+      }
+    });
   }
 
   ngOnChanges(data) {
@@ -171,7 +180,7 @@ export class ResultsComponent extends ProjectComponent {
       this.setCardDisplay();
     }
 
-    const changed = super.ngOnChanges(data);
+    const changed = super.ngOnChanges(data, true);
     if(!changed) return;
 
     // don't render if the result window is hidden

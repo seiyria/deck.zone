@@ -1,5 +1,5 @@
 
-VariableIdentifier -> [a-zA-Z] [\w]:*
+VariableIdentifier -> [a-zA-Z] [\w:]:*
   {%
   function(d) {
     return d[0] + (d[1].length ? d[1].join('') : '');
