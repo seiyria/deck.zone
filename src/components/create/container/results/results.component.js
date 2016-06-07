@@ -152,9 +152,7 @@ export class ResultsComponent extends ProjectComponent {
       _.each(values, res => {
         defaultScope[`resource:${res.name}`] = res.data || res.url;
       });
-
-      console.log(defaultScope);
-
+      
       const newState = this.state.newState();
       const newParser = new DecklangParser({ script: currentScript.contents });
 

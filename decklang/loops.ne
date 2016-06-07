@@ -27,6 +27,14 @@ LoopStart ->
     };
   }
   %}
+| "loop" _ "=" _ "<" _ VariableIdentifier _ ">" __ "in" __ NonExpressiveLoopResource _ ":" _ NonExpressiveLoopVariable _
+  {%
+  function(d) {
+    return {
+      start: { varName: d[6], resourceId: d[12], sheet: d[16] }
+    };
+  }
+  %}
 
 LoopEnd -> "endloop" {% nuller %}
 
@@ -84,3 +92,9 @@ LoopVariableExpression ->
 | Integer _ RecursiveLoopVariableExpression             {% evaljoiner %}
 
 LoopVariable -> "<" _ LoopVariableExpression _ ">" {% function(d) { return d[2]; } %}
+
+NonExpressiveLoopVariable ->
+  String {% id %}
+| "<" _ VariableIdentifier _ ">" {% function(d) { return { eval: d[2] }; } %}
+
+NonExpressiveLoopResource -> "<<" _ VariableIdentifier _ ">>" {% function(d) { return d[2]; } %}

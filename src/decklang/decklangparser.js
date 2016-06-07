@@ -71,22 +71,45 @@ export class DecklangParser {
       }
 
       const { start, iterations, end } = clonedInstruction.loopStart;
-      const { varStart, varName } = start;
+      const { varStart, varName, resourceId, sheet } = start;
 
       const newScope = _.cloneDeep(scope);
-      const endEval = end && end.eval ? Plugin.scopeEval(end.eval, scope) : end;
+      const endEval = end && end.eval ? Plugin.scopeEval(end.eval, scope) || 0 : end;
 
       // for...to loop
       if(_.isNumber(varStart) && _.isNumber(endEval)) {
 
-        if(varStart > endEval) throw new Error('Loop start must be lower than the end value');
+        if (varStart > endEval) throw new Error('Loop start must be lower than the end value');
 
-        for(let i = varStart; i <= endEval; i++) {
+        for (let i = varStart; i <= endEval; i++) {
           newScope[varName] = i;
           this.runInstructions(wrapState, state, clonedInstruction.ops, _.cloneDeep(newScope));
         }
 
-        // for...in loop
+      // for...in loop with resources
+      } else if(sheet && resourceId) {
+        const sheetEval = sheet && sheet.eval ? Plugin.scopeEval(sheet.eval, scope) : sheet;
+
+        const curResource = newScope[`resource:${resourceId}`];
+
+        if(!curResource) {
+          throw new Error(`Resource ${resourceId} does not exist.`);
+        }
+
+        const curSheetItems = curResource[sheetEval];
+
+        _.each(curSheetItems.elements, (element, index) => {
+          newScope[`${varName}_index`] = index;
+          newScope[`${varName}_length`] = curSheetItems.elements.length;
+
+          _.each(curSheetItems.original_columns, column => {
+            newScope[`${varName}_${column}`] = element[curSheetItems.pretty_columns[column]];
+          });
+
+          this.runInstructions(wrapState, state, clonedInstruction.ops, _.cloneDeep(newScope));
+        });
+
+      // for...in loop
       } else if(iterations) {
 
         _.each(iterations, (iteration, index) => {

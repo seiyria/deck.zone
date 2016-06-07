@@ -48,6 +48,15 @@ endloop
 cardside=back
 
 image = 1, "<<spade-skull>>", 0, 0, 0, 0
+
+loop = <row> in <<xslxvar>>:"Mage"
+endloop
+
+loop = <x> in { "Mage", "Cleric" }
+  loop = <row> in <<xslxvar2>>:<x>
+    text = <x_index + row_index>, "<row_Name>", 0, 0, 0, 0
+  endloop
+endloop
 `;
 
 const newParser = new DecklangParser({ script: testDeck });

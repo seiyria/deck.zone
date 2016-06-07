@@ -27,6 +27,7 @@ export class ProjectComponent {
         return new Promise(resolve => {
           Tabletop.init({
             key: rsc.url,
+            parseNumbers: true,
             callback: (data) => {
               rsc.data = data;
               resolve(rsc);
