@@ -79,7 +79,7 @@ export class DecklangParser {
       // for...to loop
       if(_.isNumber(varStart) && _.isNumber(endEval)) {
 
-        if (varStart > endEval) throw new Error('Loop start must be lower than the end value');
+        if (varStart > endEval) return; // throw new Error(`Loop start must be lower than the end value (given ${varStart}, ${endEval})`);
 
         for (let i = varStart; i <= endEval; i++) {
           newScope[varName] = i;
