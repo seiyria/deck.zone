@@ -57,6 +57,9 @@ loop = <x> in { "Mage", "Cleric" }
     text = <x_index + row_index>, "<row_Name>", 0, 0, 0, 0
   endloop
 endloop
+
+ellipse = 1, 0, 0px, 1, 1, 2px, #f00, #f00
+ellipse = 1, 0, 0, 0, 0
 `;
 
 const newParser = new DecklangParser({ script: testDeck });

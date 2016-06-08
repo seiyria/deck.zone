@@ -24,9 +24,10 @@ export const testPassFailCases = (t, passCases = [], failCases = []) => {
     try {
       const results = newParser.parse();
 
-      t.true(results.length > 0);
+      t.true(results.length > 0, test);
     } catch(e) {
       t.fail(test);
+      console.error(test, e);
     }
 
   });
@@ -38,7 +39,7 @@ export const testPassFailCases = (t, passCases = [], failCases = []) => {
     try {
       const results = newParser.parse();
 
-      t.true(results.length === 0);
+      t.true(results.length === 0, test);
     } catch(e) {
       t.pass(test);
     }
