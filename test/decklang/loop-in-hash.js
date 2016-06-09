@@ -38,12 +38,11 @@ test(`loopIn construct data is parsed correctly`, t => {
   const ran = run(loopTest);
 
   const { texts } = ran.cards.front[0];
-  const { index, string, x, y, w, h } = texts[0];
+  const { string, top, left, width, height } = texts[0];
 
-  t.true(index === 0);
   t.true(string === 'Test');
-  t.true(x.val === 0);
-  t.true(y.val === 1);
-  t.true(w.val === 1);
-  t.true(h.val === 1);
+  t.true(top === '1cm');
+  t.true(left === '0cm');
+  t.true(width === '1cm');
+  t.true(height === '1cm');
 });
