@@ -19,13 +19,13 @@
         <ul class="nav nav-pills nav-stacked">
           <li class="nav-item"
               *ngFor="let scriptObj of allScripts"
-              (mouseenter)="isVisible[scriptObj.key] = true"
-              (mouseleave)="isVisible[scriptObj.key] = false">
+              (mouseenter)="isVisible['s'+scriptObj.key] = true"
+              (mouseleave)="isVisible['s'+scriptObj.key] = false">
             <a class="nav-link"
                (click)="setActiveScript(scriptObj.key)"
                [ngClass]="{active: scriptObj.key === internalProject.activeScript}">
 
-              <div class="btn-group sidebar-buttons-on-top" *ngIf="isVisible[scriptObj.key]">
+              <div class="btn-group sidebar-buttons-on-top" *ngIf="isVisible['s'+scriptObj.key]">
 
                 <button class="btn btn-xs btn-info"
                         (click)="editFile(scriptObj)">
@@ -70,12 +70,12 @@
         <ul>
           <li class="nav-item"
               *ngFor="let resourceObj of allResources"
-              (mouseenter)="isVisible[resourceObj.key] = true"
-              (mouseleave)="isVisible[resourceObj.key] = false">
+              (mouseenter)="isVisible['r'+resourceObj.key] = true"
+              (mouseleave)="isVisible['r'+resourceObj.key] = false">
 
             <a class="nav-link">
 
-              <div class="btn-group sidebar-buttons-on-top" *ngIf="isVisible[resourceObj.key]">
+              <div class="btn-group sidebar-buttons-on-top" *ngIf="isVisible['r'+resourceObj.key]">
 
                 <a class="btn btn-xs btn-info" href="{{resourceObj.resource.url}}" target="_blank">
                   <i fa [icon]="'external-link'" [fw]="true"></i>
