@@ -14,10 +14,10 @@ export class ImageComponent extends PluginComponent {
 
     const baseObject = {
       position:         'absolute',
-      left:             `${args.x.val}${args.x.unit}`,
-      top:              `${args.y.val}${args.y.unit}`,
-      width:            `${args.w.val}${args.w.unit}`,
-      height:           `${args.h.val}${args.h.unit}`
+      top:              `${args.top}`,
+      left:             `${args.left}`,
+      width:            `${args.width}`,
+      height:           `${args.height}`
     };
 
     this.assignStyle(baseObject);

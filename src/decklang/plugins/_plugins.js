@@ -4,6 +4,7 @@ export { CardMargins } from './cardmargins';
 export { CardSide } from './cardside';
 export { CardSize } from './cardsize';
 export { CardsPerPage } from './cardsperpage';
+export { Ellipse } from './ellipse';
 export { Font } from './font';
 export { NewCard } from './newcard';
 export { Image } from './image';

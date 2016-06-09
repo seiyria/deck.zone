@@ -17,7 +17,7 @@ ellipse -> "ellipse" _ "="
       y: d[12],
       w: d[16],
       h: d[20],
-      thickness:  d[21] && d[21][3] ? d[21][3][0] : '1px',
+      thickness:  d[21] && d[21][3] ? d[21][3][0] : { val: 1, unit: 'px' },
       outerColor: d[22] && d[22][3] ? d[22][3][0] : '#000',
       innerColor: d[23] && d[23][3] ? d[23][3][0] : '#fff'
     }

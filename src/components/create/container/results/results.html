@@ -9,7 +9,7 @@
   </div>
 
   <div class="game-card"
-       *ngFor="let card of cardDisplayList; #i = index"
+       *ngFor="let card of cardDisplayList; let i = index"
        [class.page-break]="card._pagebreak"
        [class.game-card-reverse]="usePageStyle && card._reverse"
        [ngStyle]="state.internalState.options.card">
@@ -17,12 +17,16 @@
     <span game-text
           *ngFor="let text of card.texts"
           [args]="text"
-          [innerHTML]="text.string"></span>
+          [innerHTML]="text.string.split('\n').join('<br>')"></span>
 
     <img game-image
          src="{{image.url}}"
          *ngFor="let image of card.images"
          [args]="image" />
+
+    <span game-shape
+         *ngFor="let shape of card.shapes"
+         [args]="shape"></span>
 
   </div>
 

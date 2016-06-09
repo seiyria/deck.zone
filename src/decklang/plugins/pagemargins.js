@@ -15,10 +15,10 @@ snippet pagemargins
 
     const { top, left, right, bottom } = args;
 
-    state.options.page['margin-top'] = `${top.val}${this.resolveUnit(top.unit, state)}`;
-    state.options.page['margin-left'] = `${left.val}${this.resolveUnit(left.unit, state)}`;
-    state.options.page['margin-right'] = `${right.val}${this.resolveUnit(right.unit, state)}`;
-    state.options.page['margin-bottom'] = `${bottom.val}${this.resolveUnit(bottom.unit, state)}`;
+    state.options.page['margin-top'] = super.combineForUnit(top, state);
+    state.options.page['margin-left'] = super.combineForUnit(left, state);
+    state.options.page['margin-right'] = super.combineForUnit(right, state);
+    state.options.page['margin-bottom'] = super.combineForUnit(bottom, state);
   }
 
 }

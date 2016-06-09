@@ -6,7 +6,11 @@ export class Plugin {
   static get helptext() { return 'help text'; }
 
   static resolveUnit(test, state) {
-    return test || state.options.font;
+    return test || state.options.unit;
+  }
+
+  static combineForUnit({ val, unit }, state) {
+    return `${val}${this.resolveUnit(unit, state)}`;
   }
 
   static operate(args, state, scope) {

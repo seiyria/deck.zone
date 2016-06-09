@@ -13,8 +13,10 @@ snippet pagesize
   static operate(args, state, scope) {
     super.operate(args, state, scope);
 
-    state.options.page.height = `${args.height.val}${args.height.unit}`;
-    state.options.page.width = `${args.width.val}${args.width.unit}`;
+    const { height, width } = args;
+
+    state.options.page.width = super.combineForUnit(width, state);
+    state.options.page.height = super.combineForUnit(height, state);
   }
 
 }

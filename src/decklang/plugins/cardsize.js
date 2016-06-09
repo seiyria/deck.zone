@@ -15,8 +15,8 @@ snippet cardsize
 
     const { width, height } = args;
 
-    state.options.card.width = `${width.val}${this.resolveUnit(width.unit, state)}`;
-    state.options.card.height = `${height.val}${this.resolveUnit(height.unit, state)}`;
+    state.options.card.width = super.combineForUnit(width, state);
+    state.options.card.height = super.combineForUnit(height, state);
   }
 
 }

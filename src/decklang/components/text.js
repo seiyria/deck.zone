@@ -11,19 +11,34 @@ import { Directive } from '@angular/core';
 export class TextComponent extends PluginComponent {
   style() {
     const args = this.args;
-    const font = args.state.options.font;
+    const font = args.font;
+
+    /* const transforms = {
+      left: 'flex-start',
+      right: 'flex-end',
+      center: 'center',
+
+      top: 'flex-start',
+      bottom: 'flex-end',
+      middle: 'center'
+    }; */
 
     const baseObject = {
       position:         'absolute',
       overflow:         'hidden',
+      /* 'flex-direction': 'column',
+      display: 'flex',
+      'align-items': transforms[args.vertAlign],
+      'justify-content': transforms[args.horizAlign], */
       'word-wrap':      'break-word',
-      left:             `${args.x.val}${args.x.unit}`,
-      top:              `${args.y.val}${args.y.unit}`,
-      width:            `${args.w.val}${args.w.unit}`,
-      height:           `${args.h.val}${args.h.unit}`,
+      left:             `${args.left}`,
+      top:              `${args.top}`,
+      width:            `${args.width}`,
+      height:           `${args.height}`,
       'font-family':    font.family,
       'font-size':      `${font.size}${font.unit}`,
       color:            font.color,
+      display: 'table-cell',
       'vertical-align': args.vertAlign,
       'text-align':     args.horizAlign
     };

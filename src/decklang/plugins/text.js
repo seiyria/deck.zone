@@ -1,4 +1,6 @@
 
+import _ from 'lodash';
+
 import { Plugin } from '../_base/_plugin';
 
 export class Text extends Plugin {
@@ -13,8 +15,18 @@ snippet text
   static operate(args, state, scope) {
     super.operate(args, state, scope);
 
+    const { x, y, w, h, string, horizAlign, vertAlign } = args;
+
     const card = state.getCard(args.index);
-    card.texts.push(args);
+
+    card.texts.push({
+      top: super.combineForUnit(y, state),
+      left: super.combineForUnit(x, state),
+      width: super.combineForUnit(w, state),
+      height: super.combineForUnit(h, state),
+      font: _.cloneDeep(state.options.font),
+      horizAlign, vertAlign, state, string
+    });
   }
 
 }

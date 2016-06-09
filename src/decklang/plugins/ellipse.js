@@ -13,8 +13,19 @@ snippet ellipse
   static operate(args, state, scope) {
     super.operate(args, state, scope);
 
+    const { x, y, w, h, thickness, outerColor, innerColor } = args;
+
     const card = state.getCard(args.index);
-    card.shapes.push(args);
+    card.shapes.push({
+      shape: 'ellipse',
+      top: super.combineForUnit(y, state),
+      left: super.combineForUnit(x, state),
+      width: super.combineForUnit(w, state),
+      height: super.combineForUnit(h, state),
+      'border-width': super.combineForUnit(thickness, state),
+      'border-color': outerColor,
+      'background-color': innerColor
+    });
   }
 
 }

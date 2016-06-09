@@ -5,8 +5,8 @@ export class Font extends Plugin {
 
   static get snippets() {
     return [`
-snippet cardsize
-\tcardsize = "\${1:font}", \${2:fontsize}, \${3:BUI}, \${4:#000}
+snippet font
+\tfont = "\${1:font}", \${2:fontsize}, \${3:BUI}, \${4:#000}
     `];
   }
 

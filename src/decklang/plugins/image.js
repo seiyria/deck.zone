@@ -13,8 +13,16 @@ snippet image
   static operate(args, state, scope) {
     super.operate(args, state, scope);
 
+    const { x, y, w, h, url } = args;
+
     const card = state.getCard(args.index);
-    card.images.push(args);
+    card.images.push({
+      top: super.combineForUnit(y, state),
+      left: super.combineForUnit(x, state),
+      width: super.combineForUnit(w, state),
+      height: super.combineForUnit(h, state),
+      url
+    });
   }
 
 }
