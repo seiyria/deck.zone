@@ -16,6 +16,15 @@ export class CurrentProjectService {
     this.auth = auth;
   }
 
+  getAllProjects(ownerUid) {
+    return this.angularFire.list('/projects', {
+      query: {
+        orderByChild: 'owner',
+        equalTo: ownerUid
+      }
+    });
+  }
+
   createNewProject(project = {}) {
     const projects = this.angularFire.list('/projects');
     const newProjectData = _.cloneDeep(DefaultProject);

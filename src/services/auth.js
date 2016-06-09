@@ -10,9 +10,13 @@ export class Auth {
     return (project && !project.owner) || this.authData && project && this.authData.uid === project.owner;
   }
 
+  subscribe(callback) {
+    this.angularFire.auth.subscribe(callback);
+  }
+
   constructor(angularFire) {
     this.angularFire = angularFire;
-    this.angularFire.auth.subscribe(auth => this.authData = auth);
+    this.subscribe(auth => this.authData = auth);
   }
 
 }

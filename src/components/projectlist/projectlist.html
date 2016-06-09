@@ -1,3 +1,4 @@
+
 <div class="container">
   <div class="row">
 
@@ -21,7 +22,7 @@
       </div>
     </div>
 
-    <div class="col-md-4" *ngIf="!(projects | async)">
+    <div class="col-md-4" *ngIf="!loadedProjects">
       <div class="card project-card">
         <div class="card-text">
 
@@ -55,8 +56,8 @@
         <div class="card-text p-a-1">
 
           <div class="row">
-            <div class="col-md-6">Scripts: {{project.scripts.length}}</div>
-            <div class="col-md-6">Resources: {{project.resources.length}}</div>
+            <div class="col-md-6">Scripts: {{size(project.scripts)}}</div>
+            <div class="col-md-6">Resources: {{size(project.resources)}}</div>
           </div>
           <div class="row">
             <div class="col-md-12">Created {{project.createdAt | date:"MM/dd/yy"}}</div>

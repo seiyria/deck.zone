@@ -1,7 +1,6 @@
 
 import { Component } from '@angular/core';
 import { ROUTER_DIRECTIVES, Router } from '@angular/router-deprecated';
-import { AngularFire } from 'angularfire2';
 import template from './projectlist.html';
 import './projectlist.less';
 
@@ -11,38 +10,38 @@ import { CurrentProjectService } from '../../services/currentproject';
 import { TitleChangerService } from '../../services/titlechanger';
 
 @Component({
-  providers: [AngularFire, CurrentProjectService],
+  providers: [CurrentProjectService],
   directives: [ROUTER_DIRECTIVES],
   template
 })
 export class ProjectListComponent {
   static get parameters() {
-    return [[Router], [AngularFire], [CurrentProjectService], [TitleChangerService]];
+    return [[Router], [CurrentProjectService], [TitleChangerService]];
   }
 
   size(ref) {
     return _.size(ref);
   }
 
-  constructor(router, angularFire, currentProjectService, titleChangerService) {
+  constructor(router, currentProjectService, titleChangerService) {
     titleChangerService.changeTitle('Project List');
-    this.router = router;
-    this.angularFire = angularFire;
-    this.currentProjectService = currentProjectService;
 
-    this.angularFire.auth.subscribe(authData => {
+    this.router = router;
+    this.currentProjectService = currentProjectService;
+  }
+
+  ngOnInit() {
+    this.loadedProjects = false;
+
+    this.currentProjectService.auth.subscribe(authData => {
 
       // route home if not logged in
-      if(!authData) {
-        return router.navigate(['../Home']);
+      if (!authData) {
+        return this.router.navigate(['../Home']);
       }
 
-      this.projects = this.angularFire.list('/projects', {
-        query: {
-          orderByChild: 'owner',
-          equalTo: authData.auth.uid
-        }
-      });
+      this.projects = this.currentProjectService.getAllProjects(authData.auth.uid);
+      this.loadedProjects = true;
     });
   }
 
