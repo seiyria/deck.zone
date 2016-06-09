@@ -14,10 +14,16 @@
        [class.game-card-reverse]="usePageStyle && card._reverse"
        [ngStyle]="state.internalState.options.card">
 
-    <span game-text
-          *ngFor="let text of card.texts"
-          [args]="text"
-          [innerHTML]="text.string.split('\n').join('<br>')"></span>
+
+    <div game-text-container
+         [args]="text"
+         *ngFor="let text of card.texts">
+
+      <span game-text
+            [args]="text"
+            [innerHTML]="text.string.split('\n').join('<br>')"></span>
+    </div>
+
 
     <img game-image
          src="{{image.url}}"
