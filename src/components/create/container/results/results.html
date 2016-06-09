@@ -1,11 +1,12 @@
 
 <div class="results-pane card m-b-0"> <!-- *vsFor="state.internalState.cards; let _cards = vsCollection" -->
 
-  <div class="loading-overlay" *ngIf="showLoading && loading">
-    <div class="centered-text">
-      <i fa [icon]="'spinner'" [spin]="true"></i> Loading...
+  <div class="loading-overlay" *ngIf="loading">
+    <div class="centered-text-container">
+      <div class="centered-text">
+        <i fa [icon]="'spinner'" [spin]="true"></i> Loading...
+      </div>
     </div>
-    <div class="overlay"></div>
   </div>
 
   <div class="game-card"

@@ -13,16 +13,6 @@ export class TextComponent extends PluginComponent {
     const args = this.args;
     const font = args.font;
 
-    /* const transforms = {
-      left: 'flex-start',
-      right: 'flex-end',
-      center: 'center',
-
-      top: 'flex-start',
-      bottom: 'flex-end',
-      middle: 'center'
-    }; */
-
     const baseObject = {
       width:            '100%',
       height:           '100%',
