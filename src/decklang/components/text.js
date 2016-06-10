@@ -55,7 +55,8 @@ export class TextContainerComponent extends PluginComponent {
       'font-family':    font.family,
       'font-size':      `${font.size}${font.unit}`,
       color:            font.color,
-      'text-align':     args.horizAlign
+      'text-align':     args.horizAlign,
+      'z-index':        20
     };
 
     if(_.includes(font.decoration, 'I')) baseObject['font-style'] = 'italic';

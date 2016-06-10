@@ -33,16 +33,16 @@ Decimal         -> decimal          {% id %}
 # primitive types that support a variable being in them, or being null
 PositiveIntegerVariable ->
   PositiveInteger   {% id %}
-| LoopVariable      {% id %}
+| Variable          {% id %}
 
 IntegerVariable ->
-  Integer           {% id %}
-| LoopVariable      {% id %}
+  Integer       {% id %}
+| Variable      {% id %}
 
 PositiveDecimalVariable ->
   PositiveDecimal   {% id %}
-| LoopVariable      {% id %}
+| Variable          {% id %}
 
 DecimalVariable ->
-  Decimal           {% id %}
-| LoopVariable      {% id %}
+  Decimal       {% id %}
+| Variable      {% id %}

@@ -54,6 +54,22 @@ export class DecklangParser {
     return _(this.parser.feed(script).results[0]).flattenDeep().compact().value();
   }
 
+  getCheckResult({ left, operator, right }, scope) {
+
+    const leftEval = Plugin.eval(left, scope);
+    const rightEval = Plugin.eval(right, scope);
+
+    switch(operator) {
+    case '>':   return leftEval > rightEval;
+    case '>=':  return leftEval >= rightEval;
+    case '==':  return leftEval === rightEval;
+    case '!=':  return leftEval !== rightEval;
+    case '<=':  return leftEval <= rightEval;
+    case '<':   return leftEval < rightEval;
+    default:    return false;
+    }
+  }
+
   runInstructions(wrapState, state, instructions, scope = {}) {
     _.each(instructions, instruction => {
 
@@ -70,59 +86,72 @@ export class DecklangParser {
         return;
       }
 
-      const { start, iterations, end } = clonedInstruction.loopStart;
-      const { varStart, varName, resourceId, sheet } = start;
-
       const newScope = _.cloneDeep(scope);
-      const endEval = end && end.eval ? Plugin.scopeEval(end.eval, scope) || 0 : end;
 
-      // for...to loop
-      if(_.isNumber(varStart) && _.isNumber(endEval)) {
+      // loop statements
+      if(clonedInstruction.loopStart) {
 
-        if (varStart > endEval) return; // throw new Error(`Loop start must be lower than the end value (given ${varStart}, ${endEval})`);
+        const { start, iterations, end } = clonedInstruction.loopStart;
+        const { varStart, varName, resourceId, sheet } = start;
 
-        for (let i = varStart; i <= endEval; i++) {
-          newScope[varName] = i;
-          this.runInstructions(wrapState, state, clonedInstruction.ops, _.cloneDeep(newScope));
-        }
+        const endEval = Plugin.eval(end, scope) || 0;
 
-      // for...in loop with resources
-      } else if(sheet && resourceId) {
-        const sheetEval = sheet && sheet.eval ? Plugin.scopeEval(sheet.eval, scope) : sheet;
+        // for...to loop
+        if(_.isNumber(varStart) && _.isNumber(endEval)) {
 
-        const curResource = newScope[`resource:${resourceId}`];
+          if (varStart > endEval) return; // throw new Error(`Loop start must be lower than the end value (given ${varStart}, ${endEval})`);
 
-        if(!curResource) {
-          throw new Error(`Resource ${resourceId} does not exist.`);
-        }
+          for (let i = varStart; i <= endEval; i++) {
+            newScope[varName] = i;
+            this.runInstructions(wrapState, state, clonedInstruction.ops, _.cloneDeep(newScope));
+          }
 
-        const curSheetItems = curResource[sheetEval];
+          // for...in loop with resources
+        } else if(sheet && resourceId) {
+          const sheetEval = Plugin.eval(sheet, newScope);
 
-        _.each(curSheetItems.elements, (element, index) => {
-          newScope[`${varName}_index`] = index;
-          newScope[`${varName}_length`] = curSheetItems.elements.length;
+          const curResource = newScope[`resource:${resourceId}`];
 
-          _.each(curSheetItems.original_columns, column => {
-            newScope[`${varName}_${column}`] = element[curSheetItems.pretty_columns[column]];
+          if(!curResource) {
+            throw new Error(`Resource ${resourceId} does not exist.`);
+          }
+
+          const curSheetItems = curResource[sheetEval];
+
+          _.each(curSheetItems.elements, (element, index) => {
+            newScope[`${varName}_index`] = index;
+            newScope[`${varName}_length`] = curSheetItems.elements.length;
+
+            _.each(curSheetItems.original_columns, column => {
+              newScope[`${varName}_${column}`] = element[curSheetItems.pretty_columns[column]];
+            });
+
+            this.runInstructions(wrapState, state, clonedInstruction.ops, _.cloneDeep(newScope));
           });
 
-          this.runInstructions(wrapState, state, clonedInstruction.ops, _.cloneDeep(newScope));
-        });
+          // for...in loop
+        } else if(iterations) {
 
-      // for...in loop
-      } else if(iterations) {
-
-        _.each(iterations, (iteration, index) => {
-          newScope[varName] = iteration.key;
-          newScope[`${varName}_value`] = iteration.val;
-          newScope[`${varName}_index`] = index;
-          newScope[`${varName}_length`] = iterations.length;
-          this.runInstructions(wrapState, state, clonedInstruction.ops, _.cloneDeep(newScope));
-        });
+          _.each(iterations, (iteration, index) => {
+            newScope[varName] = iteration.key;
+            newScope[`${varName}_value`] = iteration.val;
+            newScope[`${varName}_index`] = index;
+            newScope[`${varName}_length`] = iterations.length;
+            this.runInstructions(wrapState, state, clonedInstruction.ops, _.cloneDeep(newScope));
+          });
 
         // not sure if this can even happen
-      } else {
-        throw new Error('Invalid loop settings.');
+        } else {
+          throw new Error('Invalid loop settings.');
+        }
+
+      // check statements
+      } else if(clonedInstruction.checkStart) {
+        const result = this.getCheckResult(clonedInstruction.checkStart, newScope);
+        if(!result) return;
+
+        this.runInstructions(wrapState, state, clonedInstruction.ops, _.cloneDeep(newScope));
+
       }
 
     });

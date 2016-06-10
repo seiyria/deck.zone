@@ -87,7 +87,7 @@ ace.define('ace/mode/decklang_highlight_rules', (require, exports) => {
         },
         {
           token: 'keyword.control',
-          regex: /loop|endloop|\sto|\sin/
+          regex: /loop|endloop|check|endcheck|\sto|\sin/
         },
         {
           token: 'support.function',

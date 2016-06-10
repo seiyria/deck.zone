@@ -76,6 +76,10 @@ export class Plugin {
     return string;
   }
 
+  static eval(obj, scope) {
+    return obj && obj.eval ? this.scopeEval(obj.eval, scope) : obj;
+  }
+
   static scopeEval(string, scope) {
     return math.eval(string, scope);
   }

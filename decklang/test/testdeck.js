@@ -42,8 +42,8 @@ pagemargins=5px,6px,7px,8px
 cardsperpage=9, 9
 pagesize = letter
 
-loop = <x:t = 1> to 5
-  text=<x:t+1+(1+1)+1>, "test", 0, 0, 0, 0
+loop = <xt = 1> to 5
+  text=<xt+1+(1+1)+1>, "test", 0, 0, 0, 0
 endloop
 cardside=back
 
@@ -60,6 +60,16 @@ endloop
 
 ellipse = 1, 0, 0px, 1, 1, 2px, #f00, #f00
 ellipse = 1, 0, 0, 0, 0
+
+check = 1 == 2
+  text = 1, "itrue", 0, 0, 0, 0
+endcheck
+
+loop = <x = 0> to 5
+  check = <x> == 2
+    text = 1, "itrue", 0, 0, 0, 0
+  endcheck
+endloop
 `;
 
 const newParser = new DecklangParser({ script: testDeck });

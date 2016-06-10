@@ -1,11 +1,4 @@
 
-VariableIdentifier -> [a-zA-Z] [\w:]:*
-  {%
-  function(d) {
-    return d[0] + (d[1].length ? d[1].join('') : '');
-  }
-  %}
-
 Loop -> LoopStart LoopBody {% function(d) { return { loopStart: d[0], ops: _.compact(_.flatten(d[1])) }; } %}
 
 LoopStart ->
@@ -27,7 +20,7 @@ LoopStart ->
     };
   }
   %}
-| "loop" _ "=" _ "<" _ VariableIdentifier _ ">" __ "in" __ NonExpressiveLoopResource _ ":" _ NonExpressiveLoopVariable _
+| "loop" _ "=" _ "<" _ VariableIdentifier _ ">" __ "in" __ NonExpressiveResource _ ":" _ NonExpressiveVariable _
   {%
   function(d) {
     return {
@@ -59,42 +52,4 @@ LoopInGoal ->
 
 LoopToGoal ->
   PositiveInteger
-| LoopVariable
-
-Operand ->
-  "*"
-| "+"
-| "-"
-| "/"
-
-PVar -> "(" _ LoopVariableExpression _ ")"
-
-VariableAssignment ->
-  VariableIdentifier _ "=" _ Integer
-  {%
-  function(d) {
-    return {
-      varName: d[0],
-      varStart: d[4]
-    };
-  }
-  %}
-
-RecursiveLoopVariableExpression ->
-  Operand _ Integer _ (")"):? _ (RecursiveLoopVariableExpression):? _             {% joiner %}
-| Operand _ VariableIdentifier _ (")"):? _ (RecursiveLoopVariableExpression):? _  {% joiner %}
-| Operand _ ("("):? _ Integer _ RecursiveLoopVariableExpression                   {% joiner %}
-| Operand _ ("("):? _ VariableIdentifier _ RecursiveLoopVariableExpression        {% joiner %}
-
-LoopVariableExpression ->
-  VariableIdentifier                                    {% evalid %}
-| VariableIdentifier _ RecursiveLoopVariableExpression  {% evaljoiner %}
-| Integer _ RecursiveLoopVariableExpression             {% evaljoiner %}
-
-LoopVariable -> "<" _ LoopVariableExpression _ ">" {% function(d) { return d[2]; } %}
-
-NonExpressiveLoopVariable ->
-  String {% id %}
-| "<" _ VariableIdentifier _ ">" {% function(d) { return { eval: d[2] }; } %}
-
-NonExpressiveLoopResource -> "<<" _ VariableIdentifier _ ">>" {% function(d) { return d[2]; } %}
+| Variable

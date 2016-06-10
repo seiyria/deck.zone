@@ -8,7 +8,7 @@ PositiveCssValue ->
 
 PositiveCssVariable ->
   PositiveDecimal (CssUnit):? {% function(d) { return { val: d[0], unit: d[1] ? d[1][0] : undefined }; } %}
-| LoopVariable (CssUnit):?    {% function(d) { return { val: d[0], unit: d[1] ? d[1][0] : undefined }; } %}
+| Variable (CssUnit):?        {% function(d) { return { val: d[0], unit: d[1] ? d[1][0] : undefined }; } %}
 
 CssMargin ->
   PositiveCssValue
