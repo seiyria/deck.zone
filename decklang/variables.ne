@@ -1,9 +1,9 @@
 
 Operand ->
-  "*"
-| "+"
-| "-"
-| "/"
+  "*" {% id %}
+| "+" {% id %}
+| "-" {% id %}
+| "/" {% id %}
 
 VariableIdentifier -> [a-zA-Z] [\w]:*
   {%
