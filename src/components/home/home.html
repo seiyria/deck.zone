@@ -1,8 +1,21 @@
 
 <div class="container">
-  <ul class="homeblocks">
-    <li *ngFor="let homeblock of homeblocks">
-      <span>{{homeblock}}</span>
-    </li>
-  </ul>
+
+  <div class="row">
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-4" *ngFor="let homeblock of homeblocks">
+      <div class="card no-border">
+        <h4 class="card-title">
+          {{homeblock.title}}
+        </h4>
+        <div class="card-text">
+          <span>{{homeblock.text}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
