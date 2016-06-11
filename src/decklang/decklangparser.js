@@ -74,7 +74,7 @@ export class DecklangParser {
     _.each(instructions, instruction => {
 
       // clone otherwise the objects in arrays are the same ref
-      const clonedInstruction = _.cloneDeep(instruction);
+      const clonedInstruction = _.clone(instruction);
 
       if(!clonedInstruction.ops) {
         wrapState.runPlugin(state, clonedInstruction, scope);
@@ -86,7 +86,7 @@ export class DecklangParser {
         return;
       }
 
-      const newScope = _.cloneDeep(scope);
+      const newScope = _.clone(scope);
 
       // loop statements
       if(clonedInstruction.loopStart) {
@@ -103,7 +103,7 @@ export class DecklangParser {
 
           for (let i = varStart; i <= endEval; i++) {
             newScope[varName] = i;
-            this.runInstructions(wrapState, state, clonedInstruction.ops, _.cloneDeep(newScope));
+            this.runInstructions(wrapState, state, clonedInstruction.ops, _.clone(newScope));
           }
 
           // for...in loop with resources
@@ -126,7 +126,7 @@ export class DecklangParser {
               newScope[`${varName}_${column}`] = element[curSheetItems.pretty_columns[column]];
             });
 
-            this.runInstructions(wrapState, state, clonedInstruction.ops, _.cloneDeep(newScope));
+            this.runInstructions(wrapState, state, clonedInstruction.ops, _.clone(newScope));
           });
 
           // for...in loop
@@ -137,7 +137,7 @@ export class DecklangParser {
             newScope[`${varName}_value`] = iteration.val;
             newScope[`${varName}_index`] = index;
             newScope[`${varName}_length`] = iterations.length;
-            this.runInstructions(wrapState, state, clonedInstruction.ops, _.cloneDeep(newScope));
+            this.runInstructions(wrapState, state, clonedInstruction.ops, _.clone(newScope));
           });
 
         // not sure if this can even happen
@@ -150,7 +150,7 @@ export class DecklangParser {
         const result = this.getCheckResult(clonedInstruction.checkStart, newScope);
         if(!result) return;
 
-        this.runInstructions(wrapState, state, clonedInstruction.ops, _.cloneDeep(newScope));
+        this.runInstructions(wrapState, state, clonedInstruction.ops, _.clone(newScope));
 
       }
 

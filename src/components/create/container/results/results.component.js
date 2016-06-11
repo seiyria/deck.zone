@@ -144,9 +144,8 @@ export class ResultsComponent extends ProjectComponent {
   renderScript(currentScript) {
     if(!currentScript) return;
 
-    this.loading = true;
+
     Promise.all(this.resourcePromises).then(values => {
-      this.loading = false;
 
       const defaultScope = {};
       _.each(values, res => {
@@ -165,10 +164,12 @@ export class ResultsComponent extends ProjectComponent {
         this.addPagePrintRules(newState);
         this.parseCarddown();
         this.setCardDisplay();
+        this.loading = false;
 
       } catch(e) {
         console.error(e);
         console.error('Error near', newParser.preParse().substring(e.offset - 5, e.offset + 5));
+        this.loading = false;
       }
     });
   }
@@ -186,7 +187,8 @@ export class ResultsComponent extends ProjectComponent {
 
     const currentScript = this.internalProject.scripts[this.displayScript || this.internalProject.activeScript];
 
-    this.renderScript(currentScript);
+    this.loading = true;
+    setTimeout(() => this.renderScript(currentScript), 100);
   }
 
 }
