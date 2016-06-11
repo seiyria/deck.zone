@@ -188,6 +188,8 @@ export class ResultsComponent extends ProjectComponent {
     const currentScript = this.internalProject.scripts[this.displayScript || this.internalProject.activeScript];
 
     this.loading = true;
+
+    // small delay so loading shows up
     setTimeout(() => this.renderScript(currentScript), 100);
   }
 

@@ -29,5 +29,5 @@ CheckStart ->
 CheckEnd -> "endcheck" {% nuller %}
 
 CheckBody ->
-  _ CheckEnd               {% joiner %}
+  CheckEnd                 {% joiner %}
 | LineOfCode _ CheckBody   {% function(d) { return d[0].concat(d[2]) } %}

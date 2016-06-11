@@ -51,7 +51,14 @@ export class DecklangParser {
   }
 
   results(script) {
-    return _(this.parser.feed(script).results[0]).flattenDeep().compact().value();
+    const instructions = this.parser.feed(script).results[0];
+    return _(instructions).flattenDeep().compact().value();
+  }
+
+  countResults() {
+    const script = this.preParse();
+    const instructions = this.parser.feed(script).results;
+    return instructions.length;
   }
 
   getCheckResult({ left, operator, right }, scope) {

@@ -32,7 +32,7 @@ LoopStart ->
 LoopEnd -> "endloop" {% nuller %}
 
 LoopBody ->
-  _ LoopEnd               {% joiner %}
+  LoopEnd                 {% joiner %}
 | LineOfCode _ LoopBody   {% function(d) { return d[0].concat(d[2]) } %}
 
 LoopInGoalVariableSet ->
