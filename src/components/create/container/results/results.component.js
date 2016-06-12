@@ -144,11 +144,15 @@ export class ResultsComponent extends ProjectComponent {
   renderScript(currentScript) {
     if(!currentScript) return;
 
+    // no resources = insta-resolved promise
+    const checkPromises = !this.internalProject.resources
+                        || _.size(this.internalProject.resources) === 0 ? [new Promise(res => res())] : this.resourcePromises;
 
-    Promise.all(this.resourcePromises).then(values => {
+    Promise.all(checkPromises).then(values => {
 
       const defaultScope = {};
       _.each(values, res => {
+        if(!res) return;
         defaultScope[`resource:${res.name}`] = res.data || res.url;
       });
 
@@ -171,7 +175,7 @@ export class ResultsComponent extends ProjectComponent {
         console.error('Error near', newParser.preParse().substring(e.offset - 5, e.offset + 5));
         this.loading = false;
       }
-    });
+    }).catch(e => console.error(e));
   }
 
   ngOnChanges(data) {
