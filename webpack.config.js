@@ -36,7 +36,7 @@ module.exports = {
       },
       {
         test: /\.html/,
-        loader: 'html?caseSensitive=true'
+        loader: 'html?caseSensitive=true&minimize=false'
       }
     ]
   },
