@@ -14,7 +14,7 @@
       </div>
 
       <div class="card-text" *ngIf="internalProject && (scriptList | async)">
-        <p *ngIf="!(scriptList | async).length">No files in current project.</p>
+        <p *ngIf="!(scriptList | async).length" class="text-sm-center">No files in current project.</p>
 
         <ul class="nav nav-pills nav-stacked">
           <li class="nav-item"
@@ -28,11 +28,13 @@
               <div class="btn-group sidebar-buttons-on-top" *ngIf="isVisible['s'+scriptObj.key]">
 
                 <button class="btn btn-xs btn-info"
+                        *ngIf="auth.owns(project)"
                         (click)="editFile(scriptObj)">
                   <i fa [icon]="'edit'" [fw]="true"></i>
                 </button>
 
                 <button class="btn btn-xs btn-danger"
+                        *ngIf="auth.owns(project)"
                         (click)="deleteFile(scriptObj)">
                   <i fa [icon]="'trash'" [fw]="true"></i>
                 </button>
@@ -65,7 +67,7 @@
         </h4>
       </div>
       <div class="card-text" *ngIf="internalProject && (resourceList | async)">
-        <p *ngIf="!(resourceList | async).length">No resources in current project.</p>
+        <p *ngIf="!(resourceList | async).length" class="text-sm-center">No resources in current project.</p>
 
         <ul>
           <li class="nav-item"
@@ -82,6 +84,7 @@
                 </a>
 
                 <button class="btn btn-xs btn-danger"
+                        *ngIf="auth.owns(project)"
                         (click)="deleteResource(resourceObj)">
                   <i fa [icon]="'trash'" [fw]="true"></i>
                 </button>
