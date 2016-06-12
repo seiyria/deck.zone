@@ -125,9 +125,10 @@ export class DecklangParser {
 
           const curSheetItems = curResource[sheetEval];
 
+          newScope[`${varName}_length`] = curSheetItems.elements.length;
+
           _.each(curSheetItems.elements, (element, index) => {
             newScope[`${varName}_index`] = index;
-            newScope[`${varName}_length`] = curSheetItems.elements.length;
 
             _.each(curSheetItems.original_columns, column => {
               newScope[`${varName}_${column}`] = element[curSheetItems.pretty_columns[column]];
@@ -139,11 +140,13 @@ export class DecklangParser {
           // for...in loop
         } else if(iterations) {
 
+          newScope[`${varName}_length`] = iterations.length;
+
           _.each(iterations, (iteration, index) => {
             newScope[varName] = iteration.key;
             newScope[`${varName}_value`] = iteration.val;
             newScope[`${varName}_index`] = index;
-            newScope[`${varName}_length`] = iterations.length;
+
             this.runInstructions(wrapState, state, clonedInstruction.ops, _.clone(newScope));
           });
 
@@ -157,7 +160,7 @@ export class DecklangParser {
         const result = this.getCheckResult(clonedInstruction.checkStart, newScope);
         if(!result) return;
 
-        this.runInstructions(wrapState, state, clonedInstruction.ops, _.clone(newScope));
+        this.runInstructions(wrapState, state, clonedInstruction.ops, newScope);
 
       }
 

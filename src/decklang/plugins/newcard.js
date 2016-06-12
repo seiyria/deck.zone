@@ -14,7 +14,9 @@ snippet newcard
     super.operate(args, state, scope);
     const { name } = args;
 
-    scope[name] = state.cards.front.length + 1;
+    // the length will always be +1 to the cards, unless people are doing some strange math
+    // if they're doing strange math, they should probably not use this
+    scope[name] = state.cards.front.length;
   }
 
 }
