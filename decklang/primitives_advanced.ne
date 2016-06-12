@@ -78,4 +78,4 @@ VerticalAlignment ->
 
 # used by many text directives
 TextDecoration ->
-  [BUI]:* {% joiner %}
+  [BUIS]:* {% joiner %}

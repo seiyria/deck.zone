@@ -59,14 +59,15 @@ export class TextContainerComponent extends PluginComponent {
       'z-index':        20
     };
 
-    if(_.includes(font.decoration, 'I')) baseObject['font-style'] = 'italic';
-    else                                 baseObject['font-style'] = 'none';
+    if(_.includes(font.decoration, 'I'))      baseObject['font-style'] = 'italic';
+    else                                      baseObject['font-style'] = 'none';
 
-    if(_.includes(font.decoration, 'B')) baseObject['font-weight'] = 'bold';
-    else                                 baseObject['font-weight'] = 'none';
+    if(_.includes(font.decoration, 'B'))      baseObject['font-weight'] = 'bold';
+    else                                      baseObject['font-weight'] = 'none';
 
-    if(_.includes(font.decoration, 'U')) baseObject['text-decoration'] = 'underline';
-    else                                 baseObject['text-decoration'] = 'none';
+    if(_.includes(font.decoration, 'U'))      baseObject['text-decoration'] = 'underline';
+    else if(_.includes(font.decoration, 'S')) baseObject['text-decoration'] = 'line-through';
+    else                                      baseObject['text-decoration'] = 'none';
 
     this.assignStyle(baseObject);
 
