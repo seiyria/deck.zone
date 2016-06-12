@@ -1,0 +1,14 @@
+{
+  "rules": {
+    ".read": true,
+
+    "examples": {
+      ".write": false
+    },
+
+    "projects": {
+      ".write": true,
+      ".indexOn": "owner"
+    }
+  }
+}

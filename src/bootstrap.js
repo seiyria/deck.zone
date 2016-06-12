@@ -4,7 +4,7 @@ import 'zone.js/dist/zone';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import { ROUTER_PROVIDERS } from '@angular/router-deprecated';
-import { LocationStrategy, HashLocationStrategy, NgStyle } from '@angular/common';
+import { NgStyle } from '@angular/common';
 import { provide, PLATFORM_DIRECTIVES, enableProdMode } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { bootstrap } from '@angular/platform-browser-dynamic';
@@ -30,6 +30,5 @@ bootstrap(App, [
   ROUTER_PROVIDERS,
   FIREBASE_PROVIDERS,
   provide(PLATFORM_DIRECTIVES, { useValue: FontAwesomeDirective, multi: true }),
-  defaultFirebase('https://deckzone.firebaseio.com'),
-  provide(LocationStrategy, { useClass: HashLocationStrategy })
+  defaultFirebase('https://deckzone.firebaseio.com')
 ]);
