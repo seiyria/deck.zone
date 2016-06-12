@@ -12,6 +12,12 @@
               <a [routerLink]="['/Create', 'Create', { projectId: example.project }]">
                 <i fa [icon]="'external-link'"></i> See it in action
               </a>
+
+              <br>
+
+              <a target="_blank" href="{{example.blog}}" *ngIf="example.blog">
+                <i fa [icon]="'tumblr'"></i> Blog post
+              </a>
             </small>
           </p>
         </div>
