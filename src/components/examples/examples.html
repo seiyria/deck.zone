@@ -1,0 +1,21 @@
+
+<div class="container">
+  <div class="row">
+    <div class="card-columns">
+      <div class="card example-card text-sm-center" *ngFor="let example of examples | async">
+        <img class="card-img-top" src="{{example.image}}" height="200" width="150">
+        <div class="card-block">
+          <h4 class="card-title">{{example.name}}</h4>
+          <p class="card-text">{{example.description}}</p>
+          <p class="card-text">
+            <small class="text-muted">
+              <a [routerLink]="['/Create', 'Create', { projectId: example.project }]">
+                <i fa [icon]="'external-link'"></i> See it in action
+              </a>
+            </small>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
