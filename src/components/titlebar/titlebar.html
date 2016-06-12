@@ -14,6 +14,9 @@
       <li class="nav-item" [class.active]="router.isRouteActive(router.generate(['/Examples']))">
         <a class="nav-link" [routerLink]="['/Examples']">Examples</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="http://blog.deck.zone" target="_blank">Blog</a>
+      </li>
     </ul>
 
     <ul class="nav navbar-nav pull-xs-right" *ngIf="!(auth.angularFire.auth | async)">
