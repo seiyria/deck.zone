@@ -24,7 +24,6 @@ PaperSize ->
 CardSize ->
   "bridge"      {% function() { return { width: { val: 2.25, unit: 'in' },  height: { val: 3.5, unit: 'in' } } } %}
 | "business"    {% function() { return { width: { val: 2.0, unit: 'in' },   height: { val: 3.5, unit: 'in' } } } %}
-| "circle"      {% function() { return { width: { val: 3.5, unit: 'in' },   height: { val: 3.5, unit: 'in' } } } %}
 | "domino"      {% function() { return { width: { val: 1.75, unit: 'in' },  height: { val: 3.5, unit: 'in' } } } %}
 | "jumbo"       {% function() { return { width: { val: 3.5, unit: 'in' },   height: { val: 5.5, unit: 'in' } } } %}
 | "micro"       {% function() { return { width: { val: 1.25, unit: 'in' },  height: { val: 1.75, unit: 'in' } } } %}
