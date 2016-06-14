@@ -3,6 +3,7 @@ import _ from 'lodash';
 
 import { Component } from '@angular/core';
 import { RouteParams, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
+import { window } from '@angular/platform-browser/src/facade/browser';
 import { ResultsComponent } from '../../create/container/results/results.component';
 
 import { AceEditorDirective } from 'ng2-ace';
@@ -31,6 +32,8 @@ export class EmbedViewComponent {
       return;
     }
 
+    this.inIframe = window.self !== window.top;
+
     this.projectId = projectId;
     this.scriptId = scriptId;
     this.tabs = tabs.split(',');
@@ -52,7 +55,7 @@ export class EmbedViewComponent {
     });
 
     this.activeTab = this.tabs[0];
-    this.showPrint = _.includes(this.tabs, 'result');
+    this.showPrint = _.includes(this.tabs, 'result') && !this.inIframe;
   }
 
   markBad(reason) {
