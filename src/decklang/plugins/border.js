@@ -3,6 +3,8 @@ import { Plugin } from '../_base/_plugin';
 
 export class Border extends Plugin {
 
+  static get help() { return 'border = style [, csscolor [, width] ]'; }
+
   static get snippets() {
     return [`
 snippet border

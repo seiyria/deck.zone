@@ -3,6 +3,8 @@ import { Plugin } from '../_base/_plugin';
 
 export class CardMargins extends Plugin {
 
+  static get help() { return 'cardmargins = left, right, top, bottom'; }
+
   static get snippets() {
     return [`
 snippet cardmargins

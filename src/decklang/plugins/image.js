@@ -3,6 +3,8 @@ import { Plugin } from '../_base/_plugin';
 
 export class Image extends Plugin {
 
+  static get help() { return 'image = index, url, x, y, width, height'; }
+
   static get snippets() {
     return [`
 snippet image

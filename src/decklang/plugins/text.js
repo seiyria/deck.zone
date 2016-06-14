@@ -5,6 +5,8 @@ import { Plugin } from '../_base/_plugin';
 
 export class Text extends Plugin {
 
+  static get help() { return 'text = index, string, x, y, width, height [, horizontalalign [, verticalalign] ]'; }
+
   static get snippets() {
     return [`
 snippet text

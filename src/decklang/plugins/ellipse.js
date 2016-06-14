@@ -3,6 +3,8 @@ import { Plugin } from '../_base/_plugin';
 
 export class Ellipse extends Plugin {
 
+  static get help() { return 'ellipse = index, x, y, width, height [, thickness [, outercolor [, innercolor] ] ]'; }
+
   static get snippets() {
     return [`
 snippet ellipse

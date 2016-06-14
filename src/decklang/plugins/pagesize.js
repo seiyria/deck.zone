@@ -3,6 +3,8 @@ import { Plugin } from '../_base/_plugin';
 
 export class PageSize extends Plugin {
 
+  static get help() { return 'pagesize = width, height'; }
+
   static get snippets() {
     return [`
 snippet pagesize

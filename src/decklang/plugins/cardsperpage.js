@@ -3,6 +3,8 @@ import { Plugin } from '../_base/_plugin';
 
 export class CardsPerPage extends Plugin {
 
+  static get help() { return 'cardsperpage = cardsperrow, rowsperpage'; }
+
   static get snippets() {
     return [`
 snippet cardsperpage

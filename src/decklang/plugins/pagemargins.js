@@ -3,6 +3,8 @@ import { Plugin } from '../_base/_plugin';
 
 export class PageMargins extends Plugin {
 
+  static get help() { return 'pagemargins = left, right, top, bottom'; }
+
   static get snippets() {
     return [`
 snippet pagemargins

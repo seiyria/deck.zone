@@ -3,7 +3,7 @@ import * as Plugins from './plugins/_plugins';
 
 import _ from 'lodash';
 
-const PLUGINS = _.mapKeys(Plugins, (value, key) => key.toLowerCase());
+export const PLUGINS = _.mapKeys(Plugins, (value, key) => key.toLowerCase());
 
 const defaultState = {
   unit: 'cm',

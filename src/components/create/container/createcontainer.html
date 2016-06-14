@@ -28,7 +28,7 @@
 
     <div class="row">
       <div class="col-md-12 m-t-1">
-        <creator [project]="projectData | async" [projectId]="projectId" [api]="api"></creator>
+        <creator [project]="projectData | async" [projectId]="projectId" [api]="api" [parserErrorHandler]="parseError"></creator>
       </div>
     </div>
 
@@ -36,7 +36,7 @@
 
   <div class="col-md-4 col-xl-3" [class.hidden]="storage.hideResult">
     <div class="row">
-      <results [project]="projectData | async" [projectId]="projectId"></results>
+      <results [project]="projectData | async" [projectId]="projectId" [errorHandler]="parseError"></results>
     </div>
   </div>
 

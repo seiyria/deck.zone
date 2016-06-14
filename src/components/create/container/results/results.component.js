@@ -19,7 +19,7 @@ import { DecklangState } from '../../../../decklang/decklangstate';
   selector: 'results',
   providers: [StorageService],
   directives: [..._.values(Components), VsFor],
-  inputs: ['project', 'projectId', 'displayScript', 'usePageStyle'],
+  inputs: ['project', 'projectId', 'displayScript', 'usePageStyle', 'errorHandler'],
   template
 })
 export class ResultsComponent extends ProjectComponent {
@@ -32,6 +32,11 @@ export class ResultsComponent extends ProjectComponent {
     super();
     this.storage = storage.local;
     this.state = new DecklangState();
+  }
+
+  handleError({ message }) {
+    if(!this.errorHandler) return;
+    this.errorHandler.next({ message });
   }
 
   addPagePrintRules(state) {
@@ -141,6 +146,24 @@ export class ResultsComponent extends ProjectComponent {
     this.cardDisplayList = _.flattenDeep(_.zip(chunkedFront, chunkedBack));
   }
 
+  getScriptLineFromOffset(script, offset) {
+
+    let currentLength = 0;
+    let text = 'Unknown error';
+    _.each(script.split('\n'), (line, index) => {
+
+      if(offset <= line.length + currentLength) {
+        text = `Syntax error on line ${index}: ${line}`;
+        return false;
+      }
+
+      // +1 for the now-missing newline
+      currentLength += line.length + 1;
+    });
+
+    return text;
+  }
+
   renderScript(currentScript) {
     if(!currentScript) return;
 
@@ -169,13 +192,17 @@ export class ResultsComponent extends ProjectComponent {
         this.parseCarddown();
         this.setCardDisplay();
         this.loading = false;
+        this.handleError({ message: 'No errors.' });
 
       } catch(e) {
         console.error(e);
         console.error('Error near', newParser.preParse().substring(e.offset - 5, e.offset + 5));
         this.loading = false;
+        this.handleError({ message: this.getScriptLineFromOffset(currentScript.contents, e.offset) });
       }
-    }).catch(e => console.error(e));
+    }).catch(e => {
+      this.handleError({ message: e.message });
+    });
   }
 
   ngOnChanges(data) {

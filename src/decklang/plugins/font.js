@@ -3,6 +3,8 @@ import { Plugin } from '../_base/_plugin';
 
 export class Font extends Plugin {
 
+  static get help() { return 'font = font, fontsize [, style [, color] ]'; }
+
   static get snippets() {
     return [`
 snippet font

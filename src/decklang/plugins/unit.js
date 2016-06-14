@@ -3,6 +3,8 @@ import { Plugin } from '../_base/_plugin';
 
 export class Unit extends Plugin {
 
+  static get help() { return 'unit = cssunit'; }
+
   static get snippets() {
     return [`
 snippet unit

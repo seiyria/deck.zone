@@ -3,6 +3,8 @@ import { Plugin } from '../_base/_plugin';
 
 export class CardSize extends Plugin {
 
+  static get help() { return 'cardsize = width, height'; }
+
   static get snippets() {
     return [`
 snippet cardsize

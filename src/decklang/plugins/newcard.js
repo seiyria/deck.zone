@@ -3,6 +3,8 @@ import { Plugin } from '../_base/_plugin';
 
 export class NewCard extends Plugin {
 
+  static get help() { return 'newcard = indexname'; }
+
   static get snippets() {
     return [`
 snippet newcard

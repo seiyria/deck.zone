@@ -26,17 +26,7 @@ ace.define('ace/mode/decklang', (require, exports) => {
 
 ace.define('ace/snippets/decklang', (require, exports) => {
 
-  const baseSnippets = [`
-snippet loop
-\tloop = <\${1:i} = \${2:1}> to \${3:10}
-\t\t\${4}
-\tendloop
-
-snippet loopin
-\tloop = <\${1:item}> in { \${2} }
-\t\t\${3}
-\tendloop
-`];
+  const baseSnippets = [];
 
   exports.snippetText = _.flatten(baseSnippets.concat(_.map(_.values(Plugins), p => p.snippets))).join('');
 });

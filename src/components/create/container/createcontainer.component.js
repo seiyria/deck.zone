@@ -1,5 +1,5 @@
 
-import { Component } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
 import template from './createcontainer.html';
 import { RouteParams, Router } from '@angular/router-deprecated';
 
@@ -28,6 +28,8 @@ export class CreateContainerComponent {
     this.projectId = routeParams.params.projectId;
     this.storage = storage.local;
     this.authData = auth.authData;
+
+    this.parseError = new EventEmitter();
 
     if(!this.projectId) {
       return router.navigate(['/Home']);

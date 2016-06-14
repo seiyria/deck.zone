@@ -3,6 +3,8 @@ import { Plugin } from '../_base/_plugin';
 
 export class CardSide extends Plugin {
 
+  static get help() { return 'cardside = side'; }
+
   static get snippets() {
     return [`
 snippet cardside
