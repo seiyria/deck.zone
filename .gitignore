@@ -10,5 +10,6 @@ dist
 
 src/decklang/decklang.js
 src/decklang/plugins.json
+src/components/help/help.json
 decklang/_directives.ne
 issues/

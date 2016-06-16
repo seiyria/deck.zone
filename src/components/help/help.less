@@ -1,0 +1,17 @@
+
+.help-container {
+  min-height: calc(~"100vh - 70px");
+  height: calc(~"100vh - 70px");
+  max-height: calc(~"100vh - 70px");
+  overflow: scroll;
+}
+
+.help-symbol {
+  &.has-comma::before {
+    content: ', ';
+  }
+
+  .has-tooltip {
+    text-decoration: underline;
+  }
+}

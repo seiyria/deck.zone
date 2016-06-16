@@ -1,0 +1,1 @@
+console.log(JSON.stringify(require('glob').sync('decklang/plugins/*.ne').map(x => x.split('/')[2].split('.')[0])))

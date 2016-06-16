@@ -8,6 +8,7 @@ import { CreateComponent } from './create/create.component';
 import { EmbedViewContainerComponent } from './embed/embedviewcontainer.component';
 import { ProjectListComponent } from './projectlist/projectlist.component';
 import { ExamplesComponent } from './examples/examples.component';
+import { HelpComponent } from './help/help.component';
 
 import { RouteConfig, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 
@@ -18,6 +19,7 @@ import './app.less';
   { path: '/create/...',   name: 'Create',    component: CreateComponent },
   { path: '/projects',     name: 'Projects',  component: ProjectListComponent },
   { path: '/examples',     name: 'Examples',  component: ExamplesComponent },
+  { path: '/help',         name: 'Help',      component: HelpComponent },
   { path: '/embed/...',    name: 'Embed',     component: EmbedViewContainerComponent }
 ])
 @Component({

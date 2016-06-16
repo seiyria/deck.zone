@@ -25,10 +25,10 @@ bootstrap(App, [
   TitleChangerService,
   NgStyle,
   Auth,
-  provide(PLATFORM_DIRECTIVES, { useValue: TOOLTIP_DIRECTIVES, multi: true }),
-  provide(StorageSettings, { useValue: { prefix: 'dz' } }),
   ROUTER_PROVIDERS,
   FIREBASE_PROVIDERS,
+  provide(StorageSettings, { useValue: { prefix: 'dz' } }),
+  provide(PLATFORM_DIRECTIVES, { useValue: TOOLTIP_DIRECTIVES, multi: true }),
   provide(PLATFORM_DIRECTIVES, { useValue: FontAwesomeDirective, multi: true }),
   defaultFirebase('https://deckzone.firebaseio.com')
 ]);

@@ -11,7 +11,7 @@ import { TitleChangerService } from '../../services/titlechanger';
 })
 export class HomeComponent {
   static get parameters() {
-    return [[HomeBlocksService], TitleChangerService];
+    return [[HomeBlocksService], [TitleChangerService]];
   }
   constructor(homeblocks, titleChangerService) {
     titleChangerService.changeTitle(null);

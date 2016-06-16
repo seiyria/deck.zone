@@ -1,0 +1,40 @@
+
+<div class="container help-container">
+
+  <div class="row" *ngFor="let directive of directives">
+
+    <div class="col-md-12">
+
+      <div class="card-header">
+        {{directive}}
+      </div>
+
+      <div class="card card-block">
+
+        <p class="card-text help-text">
+          this is the help text for the directive
+        </p>
+
+        <ul>
+          <li class="card-text usage"
+              *ngFor="let use of help.directives[directive]">
+
+            <span *ngFor="let symbol of use"
+                  class="help-symbol"
+                  [class.has-comma]="symbol.commaBefore">
+
+              <span *ngIf="symbol.hasMore" class="has-tooltip" [tooltip]="help.secondarys[symbol.str]">{{ symbol.str }}</span>
+              <span *ngIf="!symbol.hasMore">{{ symbol.str }}</span>
+
+            </span>
+
+          </li>
+        </ul>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
