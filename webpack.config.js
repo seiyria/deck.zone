@@ -56,7 +56,9 @@ module.exports = {
     }
   },
   node: {
-    fs: 'empty'
+    fs: 'empty',
+    tls: 'empty',
+    net: 'empty'
   },
   plugins: [
     new OpenBrowserPlugin({ url: 'http://localhost:8080' })

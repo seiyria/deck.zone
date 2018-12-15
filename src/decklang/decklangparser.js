@@ -146,6 +146,10 @@ export class DecklangParser {
             throw new Error(`Resource ${resourceId} does not exist.`);
           }
 
+          if(!curResource[sheetEval]) {
+            throw new Error(`Spreadsheet ${resourceId} could not be loaded correctly.`);
+          }
+
           const curSheetItems = curResource[sheetEval];
 
           newScope[`${varName}_length`] = curSheetItems.elements.length;
@@ -153,8 +157,9 @@ export class DecklangParser {
           _.each(curSheetItems.elements, (element, index) => {
             newScope[`${varName}_index`] = index;
 
-            _.each(curSheetItems.original_columns, column => {
-              newScope[`${varName}_${column}`] = element[curSheetItems.pretty_columns[column]];
+            _.each(curSheetItems.originalColumns, column => {
+              newScope[`${varName}_${column}`] = element[curSheetItems.prettyColumns[column]];
+              newScope[`${varName}_${curSheetItems.prettyColumns[column]}`] = newScope[`${varName}_${column}`];
             });
 
             this.runInstructions(wrapState, state, clonedInstruction.ops, _.clone(newScope));

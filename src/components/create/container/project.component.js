@@ -23,7 +23,7 @@ export class ProjectComponent {
   loadResourcePromises() {
     this.resourcePromises = _.map(_.values(this.internalProject.resources), rsc => {
 
-      if(_.includes(rsc.url, 'docs.google.com/spreadsheet') && _.includes(rsc.url, 'pubhtml')) {
+      if(_.includes(rsc.url, 'docs.google.com/spreadsheet') && _.includes(rsc.url, 'sharing')) {
         return new Promise(resolve => {
           Tabletop.init({
             key: rsc.url,

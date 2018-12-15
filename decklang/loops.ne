@@ -36,7 +36,7 @@ LoopBody ->
 | LineOfCode _ LoopBody   {% function(d) { return d[0].concat(d[2]) } %}
 
 LoopInGoalVariableSet ->
-  LoopInGoalVariable                                {% id %}
+  LoopInGoalVariable                                {% function(d) { return _.flatten([d]); } %}
 | LoopInGoalVariableSet _ "," _ LoopInGoalVariable  {% function(d) { return _.compact(_.flatten([d[0], d[4]])); } %}
 
 LoopInGoalVariableHash ->
