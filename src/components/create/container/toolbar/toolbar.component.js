@@ -1,4 +1,3 @@
-
 import { Component } from '@angular/core';
 import template from './toolbar.html';
 import { ProjectComponent } from '../project.component';
@@ -22,7 +21,6 @@ import { saveAs } from 'filesaverjs';
   template
 })
 export class ToolbarComponent extends ProjectComponent {
-
   static get parameters() {
     return [[StorageService], [Auth], [CurrentProjectService], [Router]];
   }
@@ -33,13 +31,19 @@ export class ToolbarComponent extends ProjectComponent {
     this.router = router;
     this.currentProjectService = currentProjectService;
     this.storage = storage.local;
+    this.toggleLeft = false;
+    this.toggleRight = false;
   }
 
-  _replaceName(filename) { return filename.split('.deck').join('.txt'); }
+  _replaceName(filename) {
+    return filename.split('.deck').join('.txt');
+  }
 
   fork() {
     this.internalProject.projectId = this.projectId;
-    const id = this.currentProjectService.createNewProject(this.internalProject);
+    const id = this.currentProjectService.createNewProject(
+      this.internalProject
+    );
     this.router.navigate(['/create', id]);
   }
 
@@ -50,10 +54,8 @@ export class ToolbarComponent extends ProjectComponent {
       zip.file(this._replaceName(script.name), script.contents);
     });
 
-    zip.generateAsync({ type: 'blob' })
-      .then((blob) => {
-        saveAs(blob, `${this.internalProject.name}-${Date.now()}.zip`);
-      });
+    zip.generateAsync({ type: 'blob' }).then(blob => {
+      saveAs(blob, `${this.internalProject.name}-${Date.now()}.zip`);
+    });
   }
-
 }
