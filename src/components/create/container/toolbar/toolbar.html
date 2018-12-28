@@ -1,26 +1,44 @@
-<button type="button" class="btn btn-primary-outline" tooltipPlacement="bottom" (click)="storage.hideSidebar = !storage.hideSidebar">
+<button type="button"
+        class="btn btn-primary-outline"
+        tooltipPlacement="bottom"
+        (click)="storage.hideSidebar = !storage.hideSidebar">
   <i fa [icon]="storage.hideSidebar ? 'arrow-right' : 'arrow-left'" fw="true"></i>
 </button>
 
-<button type="button" class="btn btn-info-outline" tooltipPlacement="bottom" tooltip="Download a ZIP containing all of the resources and scripts for this project."
-  (click)="download()">
+<button type="button"
+        class="btn btn-info-outline"
+        tooltipPlacement="bottom"
+        tooltip="Download a ZIP containing all of the resources and scripts for this project."
+        (click)="download()">
   <i fa [icon]="'download'" fw="true"></i>
 </button>
 
-<button type="button" class="btn btn-info-outline" *ngIf="project?.visibility !== 'Private'" tooltipPlacement="bottom"
-  tooltip="Create a fork of this project." (click)="fork()">
+<button type="button"
+        class="btn btn-info-outline"
+        *ngIf="project?.visibility !== 'Private'"
+        tooltipPlacement="bottom"
+        tooltip="Create a fork of this project."
+        (click)="fork()">
   <i fa [icon]="'code-fork'" fw="true"></i>
 </button>
 
 
-<button type="button" class="btn btn-info-outline" *ngIf="auth.owns(project)" tooltipPlacement="bottom" tooltip="Change the settings for this project."
-  [routerLink]="['./', 'settings']">
+<button type="button"
+        class="btn btn-info-outline"
+        *ngIf="auth.owns(project)"
+        tooltipPlacement="bottom"
+        tooltip="Change the settings for this project."
+        [routerLink]="['./', 'settings']">
   <i fa [icon]="'cog'" fw="true"></i>
 </button>
 
 <div class="btn-group" dropdown>
-  <a class="btn btn-info-outline" target="_blank" [routerLink]="['/embed', projectId, { scriptId: project?.activeScript, tabs: 'result,code' }]"
-    tooltipPlacement="bottom" tooltipAppendToBody="true" tooltip="View result in an external window.">
+  <a class="btn btn-info-outline"
+     target="_blank"
+     [routerLink]="['/embed', projectId, { scriptId: project?.activeScript, tabs: 'result,code' }]"
+     tooltipPlacement="bottom"
+     tooltipAppendToBody="true"
+     tooltip="View result in an external window.">
     <i fa [icon]="'external-link'" fw="true"></i>
   </a>
   <button type="button" class="btn btn-info-outline dropdown-toggle" dropdownToggle>
@@ -28,18 +46,24 @@
   </button>
   <ul class="dropdown-menu">
     <li>
-      <a class="dropdown-item" target="_blank" [routerLink]="['/embed', projectId, { scriptId: project?.activeScript, tabs: 'code' }]">
+      <a class="dropdown-item"
+         target="_blank"
+         [routerLink]="['/embed', projectId, { scriptId: project?.activeScript, tabs: 'code' }]">
         <i fa [icon]="'code'" fw="true"></i> Code Only
       </a>
     </li>
     <li>
-      <a class="dropdown-item" target="_blank" [routerLink]="['/embed', projectId, { scriptId: project?.activeScript, tabs: 'result' }]">
+      <a class="dropdown-item"
+      target="_blank"
+      [routerLink]="['/embed', projectId, { scriptId: project?.activeScript, tabs: 'result' }]">
         <i fa [icon]="'photo'" fw="true"></i> Result Only
       </a>
     </li>
   </ul>
 </div>
 
-<button type="button" class="btn btn-primary-outline pull-md-right" (click)="storage.hideResult = !storage.hideResult">
+<button type="button"
+        class="btn btn-primary-outline pull-md-right"
+        (click)="storage.hideResult = !storage.hideResult">
   <i fa [icon]="storage.hideResult ? 'arrow-left' : 'arrow-right'" fw="true"></i>
 </button>
