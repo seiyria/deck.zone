@@ -1,1 +1,44 @@
 /* You can add global styles to this file, and also import other style files */
+
+.btn-xs {
+  padding: .15rem .45rem;
+  line-height: 1.25;
+  font-size: .875rem;
+  border-radius: .2rem;
+}
+
+.no-padding {
+  padding: 0;
+}
+
+.no-padding-bottom {
+  padding-bottom: 0;
+}
+
+.dropdown-item, .nav-link {
+  cursor: pointer;
+}
+
+.truncate-text {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.no-border {
+  border: 0;
+}
+
+.example-card {
+  padding: 10px;
+}
+
+@media print {
+  .no-print, .no-print * {
+    display: none !important;
+  }
+}

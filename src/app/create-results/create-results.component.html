@@ -1,0 +1,41 @@
+
+<div class="results-pane card mb-0 w-100 mr-1">
+
+  <div class="loading-overlay" *ngIf="loading">
+    <div class="centered-text-container">
+      <div class="centered-text">
+        <fa name="spinner" animation="spin"></fa> Loading...
+      </div>
+    </div>
+  </div>
+
+  <div class="game-card"
+        *ngFor="let card of cardDisplayList; let i = index"
+        [class.hidden]="!card._cardrender"
+        [class.page-break]="card._pagebreak"
+        [class.game-card-reverse]="usePageStyle && card._reverse"
+        [ngStyle]="state.internalState.options.card">
+
+
+    <div resultTextContainer
+          [args]="text"
+          *ngFor="let text of card.texts">
+
+      <span resultText
+            [args]="text"
+            [innerHTML]="text.string.split('\n').join('<br>')"></span>
+    </div>
+
+
+    <img resultImage
+          src="{{ image.url }}"
+          *ngFor="let image of card.images"
+          [args]="image" />
+
+    <span resultShape
+          *ngFor="let shape of card.shapes"
+          [args]="shape"></span>
+
+  </div>
+
+</div>

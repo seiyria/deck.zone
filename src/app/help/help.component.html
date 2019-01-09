@@ -1,0 +1,57 @@
+
+<div class="container help-container">
+
+    <div class="row mb-3" *ngFor="let directive of directives">
+  
+      <div class="col-md-12">
+
+        <div class="card">
+          <div class="card-header">
+            {{ directive }}
+          </div>
+  
+          <div class="card-body card-block">
+    
+            <p class="card-text help-text">
+              {{ directiveText(directive) }}
+            </p>
+    
+            <h6>Syntax:</h6>
+    
+            <ul>
+              <li class="card-text usage"
+                  *ngFor="let use of help.directives[directive]">
+    
+                <span *ngFor="let symbol of use"
+                      class="help-symbol"
+                      [class.has-comma]="symbol.commaBefore">
+    
+                  <span [class.has-tooltip]="symbol.hasMore"
+                        [class.is-optional]="symbol.optional"
+                        [isDisabled]="!symbol.hasMore"
+                        [tooltip]="help.secondarys[symbol.str]">{{ symbol.str }}</span>
+    
+                </span>
+    
+              </li>
+            </ul>
+    
+            <h6>Editor Help:</h6>
+            <ul>
+              <li>{{ helpText(directive) }}</li>
+            </ul>
+    
+            <h6>Example Usage:</h6>
+            <ul>
+              <li *ngFor="let use of exampleText(directive)">{{ use }}</li>
+            </ul>
+    
+          </div>
+    
+        </div>
+        
+      </div>
+  
+    </div>
+  
+  </div>

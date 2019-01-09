@@ -1,0 +1,458 @@
+{
+    "directives": {
+        "border": [
+            [
+                {
+                    "str": "border",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "=",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "BorderStyle",
+                    "commaBefore": false,
+                    "hasMore": true
+                },
+                {
+                    "str": "CssColor",
+                    "optional": true,
+                    "commaBefore": true,
+                    "hasMore": false
+                },
+                {
+                    "str": "CssValue",
+                    "optional": true,
+                    "commaBefore": true,
+                    "hasMore": false
+                }
+            ]
+        ],
+        "cardmargins": [
+            [
+                {
+                    "str": "cardmargins",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "=",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "CssMargin",
+                    "commaBefore": false,
+                    "hasMore": false
+                }
+            ]
+        ],
+        "cardrender": [
+            [
+                {
+                    "str": "cardrender",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "=",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "CardRender",
+                    "commaBefore": false,
+                    "hasMore": false
+                }
+            ]
+        ],
+        "cardside": [
+            [
+                {
+                    "str": "cardside",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "=",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "CardSide",
+                    "commaBefore": false,
+                    "hasMore": true
+                }
+            ]
+        ],
+        "cardsize": [
+            [
+                {
+                    "str": "cardsize",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "=",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "CssValue",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "CssValue",
+                    "commaBefore": true,
+                    "hasMore": false
+                }
+            ],
+            [
+                {
+                    "str": "cardsize",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "=",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "CardSize",
+                    "commaBefore": false,
+                    "hasMore": true
+                }
+            ]
+        ],
+        "cardsperpage": [
+            [
+                {
+                    "str": "cardsperpage",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "=",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "PositiveInteger",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "PositiveInteger",
+                    "commaBefore": true,
+                    "hasMore": false
+                }
+            ]
+        ],
+        "ellipse": [
+            [
+                {
+                    "str": "ellipse",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "=",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "PositiveInteger",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "CssValue",
+                    "commaBefore": true,
+                    "hasMore": false
+                },
+                {
+                    "str": "CssValue",
+                    "commaBefore": true,
+                    "hasMore": false
+                },
+                {
+                    "str": "CssValue",
+                    "commaBefore": true,
+                    "hasMore": false
+                },
+                {
+                    "str": "CssValue",
+                    "commaBefore": true,
+                    "hasMore": false
+                },
+                {
+                    "str": "CssValue",
+                    "optional": true,
+                    "commaBefore": true,
+                    "hasMore": false
+                },
+                {
+                    "str": "CssColor",
+                    "optional": true,
+                    "commaBefore": true,
+                    "hasMore": false
+                },
+                {
+                    "str": "CssColor",
+                    "optional": true,
+                    "commaBefore": true,
+                    "hasMore": false
+                }
+            ]
+        ],
+        "font": [
+            [
+                {
+                    "str": "font",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "=",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "\"Text\"",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "CssValue",
+                    "commaBefore": true,
+                    "hasMore": false
+                },
+                {
+                    "str": "TextDecoration",
+                    "optional": true,
+                    "commaBefore": true,
+                    "hasMore": true
+                },
+                {
+                    "str": "CssColor",
+                    "optional": true,
+                    "commaBefore": true,
+                    "hasMore": false
+                }
+            ]
+        ],
+        "image": [
+            [
+                {
+                    "str": "image",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "=",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "PositiveInteger",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "\"Text\"",
+                    "commaBefore": true,
+                    "hasMore": false
+                },
+                {
+                    "str": "CssValue",
+                    "commaBefore": true,
+                    "hasMore": false
+                },
+                {
+                    "str": "CssValue",
+                    "commaBefore": true,
+                    "hasMore": false
+                },
+                {
+                    "str": "CssValue",
+                    "commaBefore": true,
+                    "hasMore": false
+                },
+                {
+                    "str": "CssValue",
+                    "commaBefore": true,
+                    "hasMore": false
+                }
+            ]
+        ],
+        "newcard": [
+            [
+                {
+                    "str": "newcard",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "=",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "\"Text\"",
+                    "commaBefore": false,
+                    "hasMore": false
+                }
+            ]
+        ],
+        "pagemargins": [
+            [
+                {
+                    "str": "pagemargins",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "=",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "CssMargin",
+                    "commaBefore": false,
+                    "hasMore": false
+                }
+            ]
+        ],
+        "pagesize": [
+            [
+                {
+                    "str": "pagesize",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "=",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "CssValue",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "CssValue",
+                    "commaBefore": true,
+                    "hasMore": false
+                }
+            ],
+            [
+                {
+                    "str": "pagesize",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "=",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "PaperSize",
+                    "commaBefore": false,
+                    "hasMore": true
+                }
+            ]
+        ],
+        "text": [
+            [
+                {
+                    "str": "text",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "=",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "PositiveInteger",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "\"Text\"",
+                    "commaBefore": true,
+                    "hasMore": false
+                },
+                {
+                    "str": "CssValue",
+                    "commaBefore": true,
+                    "hasMore": false
+                },
+                {
+                    "str": "CssValue",
+                    "commaBefore": true,
+                    "hasMore": false
+                },
+                {
+                    "str": "CssValue",
+                    "commaBefore": true,
+                    "hasMore": false
+                },
+                {
+                    "str": "CssValue",
+                    "commaBefore": true,
+                    "hasMore": false
+                },
+                {
+                    "str": "HorizontalAlignment",
+                    "optional": true,
+                    "commaBefore": true,
+                    "hasMore": true
+                },
+                {
+                    "str": "VerticalAlignment",
+                    "optional": true,
+                    "commaBefore": true,
+                    "hasMore": true
+                }
+            ]
+        ],
+        "unit": [
+            [
+                {
+                    "str": "unit",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "=",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "CssUnit",
+                    "commaBefore": false,
+                    "hasMore": true
+                }
+            ]
+        ]
+    },
+    "secondarys": {
+        "BorderStyle": "dotted | dashed | solid | double | groove | ridge | inset | outset",
+        "CardSide": "front | back",
+        "CardSize": "bridge | business | domino | jumbo | micro | mini | poker | smallsquare | square | tarot",
+        "CssUnit": "em | ex | ch | rem | vh | vw | vmin | vmax | px | mm | cm | in | pt | pc",
+        "PaperSize": "a4 | legal | letter",
+        "HorizontalAlignment": "empty | left | right | center",
+        "TextDecoration": "B,U,I,S",
+        "VerticalAlignment": "empty | top | bottom | middle"
+    }
+}

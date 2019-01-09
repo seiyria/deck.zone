@@ -1,0 +1,151 @@
+
+<div class="row">
+  <div class="col-md-12">
+
+    <div class="card">
+      <div class="card-header no-padding-bottom">
+        <h4 class="card-title">
+          Scripts
+          <button type="button"
+                  class="pull-right btn btn-xs btn-outline-primary"
+                  *ngIf="authService.owns(project)"
+                  [swal]="addScriptSwal">
+            <fa name="plus" fixed="true"></fa>
+          </button>
+        </h4>
+      </div>
+
+      <div class="card-text" *ngIf="scripts">
+        <p *ngIf="!scripts.length" class="text-sm-center">No files in current project.</p>
+
+        <nav class="nav nav-pills flex-column">
+          <a class="nav-item nav-link script-line"
+            *ngFor="let scriptObj of scripts; let i = index"
+            (mouseenter)="isVisible['s'+scriptObj.$key] = true"
+            (mouseleave)="isVisible['s'+scriptObj.$key] = false"
+            (click)="activeScript.emit(scriptObj.$key)"
+            [ngClass]="{active: scriptObj.$key === project.activeScript}">
+
+            <div class="btn-group sidebar-buttons-on-top" *ngIf="isVisible['s'+scriptObj.$key]">
+
+              <button class="btn btn-xs btn-info"
+                      *ngIf="authService.owns(project)"
+                      (click)="editScriptName(scriptObj.$key)">
+                <fa name="edit" fixed="true"></fa>
+              </button>
+
+              <button class="btn btn-xs btn-danger"
+                      *ngIf="authService.owns(project)"
+                      (click)="deleteScriptFile(scriptObj.$key)">
+                <fa name="trash" fixed="true"></fa>
+              </button>
+            </div>
+
+            <span>{{ scriptObj.script.name }}</span>
+          </a>
+        </nav>
+      </div>
+      <div class="card-text" *ngIf="!scripts">
+        <p>Loading...</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-md-12">
+    <div class="card">
+
+      <div class="card-header no-padding-bottom">
+        <h4 class="card-title">
+          Resources
+          <button type="button"
+                  class="pull-right btn btn-xs btn-outline-primary"
+                  (click)="addResourceSwal.show()"
+                  *ngIf="authService.owns(project)">
+            <fa name="plus" fixed="true"></fa>
+          </button>
+        </h4>
+      </div>
+
+      <div class="card-text pt-3" *ngIf="resources">
+        <p *ngIf="!resources.length" class="text-sm-center">No resources in current project.</p>
+
+        <ul>
+          <li class="nav-item"
+              *ngFor="let resourceObj of resources"
+              (mouseenter)="isVisible['r'+resourceObj.$key] = true"
+              (mouseleave)="isVisible['r'+resourceObj.$key] = false">
+
+            <a class="nav-link p-0">
+
+              <div class="btn-group sidebar-buttons-on-top" *ngIf="isVisible['r'+resourceObj.$key]">
+
+                <a class="btn btn-xs btn-info" [href]="resourceObj.resource.url" target="_blank">
+                  <fa name="external-link" fixed="true"></fa>
+                </a>
+
+                <button class="btn btn-xs btn-danger"
+                        *ngIf="authService.owns(project)"
+                        (click)="deleteResourceRef(resourceObj.$key)">
+                  <fa name="trash" fixed="true"></fa>
+                </button>
+              </div>
+
+              <span>{{ resourceObj.resource.name }}</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="card-text" *ngIf="!resources">
+        <p>Loading...</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<swal #addScriptSwal 
+      title="Add Script" 
+      text="Enter your file name:" 
+      input="text"
+      showCancelButton="true"
+      [inputValidator]="validateScriptFilenameFn"
+      (confirm)="addNewScript($event)"></swal>
+
+<swal #editScriptSwal  
+      title="Change File Name" 
+      text="Enter your file name:" 
+      input="text"
+      showCancelButton="true"
+      [inputValidator]="validateScriptFilenameFn"></swal>
+
+<swal #deleteScriptSwal 
+      title="Are You Sure?" 
+      text="Deleting this file is irreversible!"
+      showCancelButton="true"></swal>
+
+<swal #addResourceSwal 
+      title="Add Resource" 
+      text="Enter your file name and URL:"
+      showCancelButton="true"
+      [preConfirm]="validateResourceNameFn"
+      (confirm)="addNewResource($value)">
+
+    <div *swalPartial>
+      <div class="text-center">Resource Name</div>
+      <input class="swal2-input" [(ngModel)]="newResourceName" />
+
+      <div class="text-center">Resource URL</div>
+      <input class="swal2-input" [(ngModel)]="newResourceUrl" />
+
+      <div class="swal2-validation-message" [class.d-flex]="!validateResourceName()">
+        {{ validationNameResourceString() }}
+      </div>
+    </div>
+
+</swal>
+
+<swal #deleteResourceSwal 
+      title="Are You Sure?" 
+      text="Deleting this resource is irreversible!"
+      showCancelButton="true"></swal>

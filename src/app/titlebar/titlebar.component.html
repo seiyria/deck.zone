@@ -1,0 +1,51 @@
+<nav class="navbar navbar-static-top sticky-top navbar-dark bg-dark mb-3 navbar-expand-lg" *ngIf="showSelf">
+  <a class="navbar-brand" [routerLink]="['/']">deck.zone</a>
+
+  <ul class="nav navbar-nav mr-auto" *ngIf="!hasRouteActive('create')">
+    <li class="nav-item">
+      <a class="nav-link" (click)="createProject()">Create</a>
+    </li>
+    <li class="nav-item" [class.active]="hasRouteActive('help')">
+      <a class="nav-link" [routerLink]="['/help']">Docs</a>
+    </li>
+    <li class="nav-item" [class.active]="hasRouteActive('examples')">
+      <a class="nav-link" [routerLink]="['/examples']">Examples</a>
+    </li>
+    <li class="nav-item" [class.active]="hasRouteActive('contact')">
+      <a class="nav-link" [routerLink]="['/contact']">Contact</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="http://blog.deck.zone" target="_blank">Blog</a>
+    </li>
+  </ul> 
+
+  <ul class="nav navbar-nav ml-auto" *ngIf="authService.afAuth.user | async as user">
+    <li class="nav-item" dropdown container="body" placement="bottom right">
+      <a class="nav-link active" dropdownToggle>{{ user.displayName }} <b class="caret"></b></a>
+      <ul *dropdownMenu class="dropdown-menu dropdown-menu-right">
+        <li>
+          <a class="dropdown-item" [routerLink]="['/projects']">My Projects</a>
+        </li>
+        <li class="dropdown-divider"></li>
+        <li>
+          <a class="dropdown-item" (click)="logout()">Logout</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul class="nav navbar-nav pull-right" *ngIf="!(authService.afAuth.user | async)">
+    <li class="nav-item dropdown" dropdown container="body" placement="bottom right">
+      <a class="nav-link" dropdownToggle>
+        Login <span class="caret"></span>
+      </a>
+
+      <div *dropdownMenu class="dropdown-menu dropdown-menu-right">
+        <button *ngFor="let choice of authTypes" 
+                class="dropdown-item"
+                (click)="login(choice)">Login with {{ choice }}</button>
+      </div>
+
+    </li>
+  </ul>
+</nav>

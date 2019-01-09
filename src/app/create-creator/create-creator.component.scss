@@ -1,0 +1,21 @@
+.editor {
+  display: block;
+  min-height: calc(100vh - 180px) !important;
+  height: calc(100vh - 180px) !important;
+  width: 100%;
+
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+}
+
+.below-editor {
+  min-height: 50px;
+  border: 1px solid #ccc;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.hidden-editor {
+  display: none;
+}

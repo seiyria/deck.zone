@@ -1,0 +1,36 @@
+{
+  "rules": {
+    ".read": true,
+
+    "examples": {
+      ".write": false
+    },
+
+    "projects": {
+      ".indexOn": "owner",
+
+      "$uid": {
+        ".write": "!data.parent().child('owner').exists() || (auth != null && data.child('owner').hasChild('auth.uid'))",
+        "name": {
+          ".validate": "newData.isString() && newData.val().length <= 30"
+        },
+
+        "scripts": {
+          "$sid": {
+            "name": {
+              ".validate": "newData.isString() && newData.val().length <= 20"
+            }
+          }
+        },
+
+        "resources": {
+          "$rid": {
+            "name": {
+              ".validate": "newData.isString() && newData.val().length <= 20"
+            }
+          }
+        }
+      }
+    }
+  }
+}

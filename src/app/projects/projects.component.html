@@ -1,0 +1,81 @@
+
+<div class="container">
+  <div class="row">
+
+    <div class="col-4">
+      <div class="card text-white bg-dark project-card">
+        <div class="card-header">
+          <h4 class="text-center">New Project</h4>
+        </div>
+
+        <div class="card-text d-flex justify-content-center flex-column">
+
+          <div class="row mt-3">
+            <div class="col-10 offset-1">
+              <input type="text" class="form-control" [(ngModel)]="projectName" placeholder="Project Name" />
+            </div>
+          </div>
+
+          <div class="row mt-3">
+            <div class="col-10 offset-1 text-center">
+              <button class="btn btn-outline-light" [disabled]="!projectName" (click)="createProject(projectName)">Create Project</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-4" *ngIf="!loadedProjects">
+      <div class="card project-card">
+        <div class="card-text">
+
+          <div class="row mt-3">
+            <div class="col-10 offset-1 text-center">
+              <h4>Loading Projects...</h4>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4" *ngFor="let project of projects | async">
+      
+      <div class="card project-card mb-3">
+
+        <div class="card-header row align-items-center m-0">
+          <div class="col-10">
+            <h4 class="card-title truncate-text mb-0">
+              <a [routerLink]="['/create', project.$key]">{{ project.name }}</a>
+            </h4>
+          </div>
+          <div class="col-2">
+            <button type="button"
+                    class="pull-right btn btn-xs btn-outline-primary"
+                    [routerLink]="['/create', project.$key, 'settings']">
+              <fa name="cog" [fixed]="true"></fa>
+            </button>
+          </div>
+        </div>
+
+        <div class="card-body p-1 my-3">
+
+          <div class="row">
+            <div class="col-6 text-center">Scripts: {{ size(project.scripts) }}</div>
+            <div class="col-6 text-center">Resources: {{ size(project.resources) }}</div>
+          </div>
+
+          <div class="row mt-3" *ngIf="size(project.scripts) > 0">
+            <div class="col text-center">{{ firstScriptName(project.scripts) }}</div>
+          </div>
+
+        </div>
+
+        <div class="card-footer text-center text-muted">
+          Created {{ project.createdAt | date:"MM/dd/yy" }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+
+.sidebar-buttons-on-top {
+  position: absolute;
+  right: 10px;
+  z-index: 100;
+}
+
+.script-line {
+  border-radius: 0;
+  border-top: 1px solid #ccc;
+
+  &:last-child {
+    border-bottom: 1px solid #ccc;
+  }
+}

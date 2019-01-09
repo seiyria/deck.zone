@@ -1,0 +1,77 @@
+
+<div class="col-2">
+    <button type="button"
+            class="btn btn-outline-primary"
+            placement="bottom"
+            (click)="hideSidebar = !hideSidebar">
+      <fa [name]="hideSidebar ? 'arrow-right' : 'arrow-left'" fixed="true"></fa>
+    </button>
+</div>
+
+<div class="col-8 text-center">
+  <button type="button"
+        class="btn btn-outline-info mx-2"
+        placement="bottom"
+        tooltip="Download a ZIP containing all of the resources and scripts for this project."
+        (click)="download()">
+  <fa name="download" fixed="true"></fa>
+  </button>
+
+  <button type="button"
+          class="btn btn-outline-info mx-2"
+          *ngIf="project?.visibility !== 'Private'"
+          placement="bottom"
+          tooltip="Create a fork of this project."
+          (click)="fork()">
+    <fa name="code-fork" fixed="true"></fa>
+  </button>
+
+  <button type="button"
+          class="btn btn-outline-info mx-2"
+          *ngIf="authService.owns(project)"
+          placement="bottom"
+          tooltip="Change the settings for this project."
+          [routerLink]="['./settings']">
+    <fa name="cog" fixed="true"></fa>
+  </button>
+
+  <div class="btn-group mx-2" dropdown>
+
+    <a class="btn btn-outline-info"
+      target="_blank"
+      [routerLink]="['/embed', projectId, { scriptId: project?.activeScript, tabs: 'result,code' }]"
+      placement="bottom"
+      tooltip="View result in an external window.">
+      <fa name="external-link" fixed="true"></fa>
+    </a>
+
+    <button type="button" class="btn btn-outline-info dropdown-toggle" dropdownToggle>
+      <span class="caret"></span>
+    </button>
+
+    <ul class="dropdown-menu" *dropdownMenu>
+      <li>
+        <a class="dropdown-item"
+          target="_blank"
+          [routerLink]="['/embed', projectId, { scriptId: project?.activeScript, tabs: 'code' }]">
+          <fa name="code" fixed="true"></fa> Code Only
+        </a>
+      </li>
+      <li>
+        <a class="dropdown-item"
+          target="_blank"
+          [routerLink]="['/embed', projectId, { scriptId: project?.activeScript, tabs: 'result' }]">
+          <fa name="photo" fixed="true"></fa> Result Only
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="col-2">
+  <button type="button"
+          class="btn btn-outline-primary pull-right"
+          (click)="hideResult = !hideResult">
+    <fa [name]="hideResult ? 'arrow-left' : 'arrow-right'" fixed="true"></fa>
+  </button>
+</div>

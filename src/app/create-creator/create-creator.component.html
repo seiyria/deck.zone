@@ -1,0 +1,17 @@
+<div>
+  <ace class="editor"
+       *ngFor="let scriptObj of scripts; let i = index"
+       [ngClass]="{'hidden-editor': scriptObj.$key !== activeScriptId}"
+       [value]="scriptObj.contents"
+       [mode]="'decklang'"
+       [theme]="'decklang-light'"
+       [config]="editorOptions"
+       [disabled]="!authService.owns(project)"
+       [useAceClass]="true"
+       (valueChange)="onChange($event, scriptObj.$key)"></ace>
+
+  <div class="below-editor">
+    <div>{{ help || '&nbsp;' }}</div>
+    <div>{{ errorMessage }}</div>
+  </div>
+</div>

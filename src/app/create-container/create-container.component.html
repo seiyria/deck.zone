@@ -1,0 +1,55 @@
+
+<div class="row" *ngIf="project">
+
+  <div class="col-md-4 col-xl-3" [class.hidden]="hideSidebar">
+
+    <div class="row">
+      <div class="col-md-12">
+        <!--
+        <claimer [project]="projectData | async" [api]="api"></claimer>
+        -->
+      </div>
+    </div>
+
+    <div class="row" *ngIf="project">
+      <div class="col-md-12">
+        <app-create-sidebar [project]="project" 
+                            [projectId]="projectId" 
+                            [resourceList]="resourceList" 
+                            [scriptList]="scriptList"
+                            (newScript)="api.newFile($event)"
+                            (editScript)="api.editFile($event)"
+                            (deleteScript)="api.deleteFile($event)"
+                            (activeScript)="api.changeActiveScript($event)"
+                            (newResource)="api.newResource($event)"
+                            (deleteResource)="api.deleteResource($event)"></app-create-sidebar>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="col-md-4 col-xl-6" [ngClass]="{
+    'col-md-8 col-xl-9':    hideSidebar || hideResult,
+    'col-md-12 col-xl-12':  hideSidebar && hideResult
+  }">
+      
+    <app-create-toolbar class="col-12 row" [projectId]="projectId" [project]="project"></app-create-toolbar>
+      
+    <div class="row">
+      <div class="col-12 mt-1">
+        <app-create-creator [project]="project" 
+                            [projectId]="projectId" 
+                            [scriptList]="scriptList"
+                            (updateFile)="api.writeFile($event)"></app-create-creator>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="col-md-4 col-xl-3" [class.hidden]="hideResult">
+    <app-create-results [project]="project"     
+                        [projectId]="projectId"></app-create-results>
+  </div>
+
+</div>
+  
