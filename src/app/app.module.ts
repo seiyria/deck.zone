@@ -40,6 +40,7 @@ import { CreateResultsComponent } from './create-results/create-results.componen
 import { TextDirective, TextContainerDirective, ImageDirective, ShapeDirective } from './text.directive';
 import { CreateClaimerComponent } from './create-claimer/create-claimer.component';
 import { EmbedComponent } from './embed/embed.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { EmbedComponent } from './embed/embed.component';
     ImageDirective,
     ShapeDirective,
     CreateClaimerComponent,
-    EmbedComponent
+    EmbedComponent,
+    PrivacyPolicyComponent
   ],
   imports: [
     BrowserModule,

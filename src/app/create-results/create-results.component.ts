@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { LocalStorage } from 'ngx-webstorage';
 
 import * as _ from 'lodash';
