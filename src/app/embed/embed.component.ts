@@ -68,7 +68,7 @@ export class EmbedComponent implements OnInit {
 
       if(value.visibility === 'Private') {
         this.markBad('isPrivate');
-        return; 
+        return;
       }
 
       if(!value.scripts[this.scriptId]) {

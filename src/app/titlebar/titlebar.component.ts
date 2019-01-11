@@ -17,8 +17,8 @@ export class TitlebarComponent implements OnInit {
   public authTypes = ['Facebook', 'Google'];
 
   constructor(
-    private router: Router, 
-    public authService: AuthService, 
+    private router: Router,
+    public authService: AuthService,
     private currentProjectService: CurrentProjectService
   ) { }
 

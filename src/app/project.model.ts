@@ -12,7 +12,7 @@ export class Script {
 }
 
 export class Project {
-  activeScript: string = '0';
+  activeScript = '0';
   projectId: string;
   forkedFrom: string;
   createdAt: number;

@@ -1,11 +1,10 @@
 
 import * as _ from 'lodash';
-import { ElementRef, Directive, Renderer2, Input } from '@angular/core';
+import { ElementRef, Directive, Renderer2, Input, OnChanges } from '@angular/core';
 
 @Directive({
-  selector: ''
 })
-export class PluginDirective {
+export class PluginDirective implements OnChanges {
 
   constructor(public elementRef: ElementRef, public renderer: Renderer2) {}
 
@@ -65,7 +64,7 @@ export class TextContainerDirective extends PluginDirective {
 
   @Input()
   public args: any;
-  
+
   style() {
     const args = this.args;
     const font = args.font;

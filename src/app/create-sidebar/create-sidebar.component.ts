@@ -19,7 +19,7 @@ export class CreateSidebarComponent implements OnInit, OnDestroy {
 
   @Input()
   public projectId: string;
-  
+
   @Input()
   public project: Project;
 
@@ -49,13 +49,13 @@ export class CreateSidebarComponent implements OnInit, OnDestroy {
   @Output()
   public deleteResource = new EventEmitter();
 
-  @ViewChild('editScriptSwal') 
+  @ViewChild('editScriptSwal')
   private editScriptSwal: SwalComponent;
 
-  @ViewChild('deleteScriptSwal') 
+  @ViewChild('deleteScriptSwal')
   private deleteScriptSwal: SwalComponent;
 
-  @ViewChild('deleteResourceSwal') 
+  @ViewChild('deleteResourceSwal')
   private deleteResourceSwal: SwalComponent;
 
   public isVisible = {};
@@ -106,11 +106,19 @@ export class CreateSidebarComponent implements OnInit, OnDestroy {
   }
 
   sortedScripts(scriptList) {
-    return _(scriptList).keys().map(key => ({ $key: scriptList[key].$key, script: scriptList[key] })).sortBy(obj => obj.script.name).value();
+    return _(scriptList)
+      .keys()
+      .map(key => ({ $key: scriptList[key].$key, script: scriptList[key] }))
+      .sortBy(obj => obj.script.name)
+      .value();
   }
 
   sortedResources(resourceList) {
-    return _(resourceList).keys().map(key => ({ $key: resourceList[key].$key, resource: resourceList[key] })).sortBy(obj => obj.resource.name).value();
+    return _(resourceList)
+      .keys()
+      .map(key => ({ $key: resourceList[key].$key, resource: resourceList[key] }))
+      .sortBy(obj => obj.resource.name)
+      .value();
   }
 
   // SCRIPT FUNCTIONS
@@ -140,7 +148,7 @@ export class CreateSidebarComponent implements OnInit, OnDestroy {
   async deleteScriptFile(index: string) {
     const { value } = await this.deleteScriptSwal.show();
     if(!value) return;
-    
+
     this.deleteScript.emit(index);
   }
 
@@ -159,7 +167,6 @@ export class CreateSidebarComponent implements OnInit, OnDestroy {
     if(duplicateName())              error = 'You already have a resource named that!';
 
     if(error) {
-      Swal.showValidationMessage(error);
       return error;
     }
   }

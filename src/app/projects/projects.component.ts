@@ -19,7 +19,7 @@ export class ProjectsComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private authService: AuthService, 
+    private authService: AuthService,
     private currentProjectService: CurrentProjectService
     ) { }
 
@@ -33,7 +33,7 @@ export class ProjectsComponent implements OnInit {
           return { $key: item.payload.key, ...item.payload.val() };
         });
       }));
-      
+
       this.loadedProjects = true;
     });
   }

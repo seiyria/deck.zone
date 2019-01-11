@@ -10,12 +10,12 @@ import { Project, Resource, Script } from './project.model';
 import { AuthService } from './auth.service';
 import { Subject } from 'rxjs';
 
-interface ProjectOpts { 
+interface ProjectOpts {
   name?: string;
   projectId?: string;
   scripts?: Script[];
-  resources?: Resource[]; 
-  activeScript?: string; 
+  resources?: Resource[];
+  activeScript?: string;
 }
 
 @Injectable({
@@ -56,7 +56,7 @@ export class CurrentProjectService {
     const newProject = projects.push(newProjectData);
 
     const split = newProject.toString().split('/');
-    return split[split.length-1];
+    return split[split.length - 1];
   }
 
   getScriptList(id: string) {

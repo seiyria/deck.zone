@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, Output, EventEmitter, ViewChildren } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, Output, EventEmitter, ViewChildren, OnDestroy } from '@angular/core';
 import { Project } from '../project.model';
 
 import * as _ from 'lodash';
@@ -16,21 +16,21 @@ import { AceComponent } from 'ngx-ace-wrapper';
   templateUrl: './create-creator.component.html',
   styleUrls: ['./create-creator.component.scss']
 })
-export class CreateCreatorComponent implements OnInit, OnChanges {
+export class CreateCreatorComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input()
   public project: Project;
 
   @Input()
   public projectId: string;
-  
+
   @Input()
   public scriptList: any;
 
   @Output()
   public updateFile = new EventEmitter();
 
-  @ViewChildren(AceComponent) 
+  @ViewChildren(AceComponent)
   public componentRefs: AceComponent[];
 
   public scripts: any[];
@@ -120,7 +120,7 @@ export class CreateCreatorComponent implements OnInit, OnChanges {
 
     editor.on('changeSelection', fn);
     this.editorCbs[id] = fn;
-  };
+  }
 
   private directiveHelp(line) {
     const directive = line.split('=')[0].split('`').join('').trim();

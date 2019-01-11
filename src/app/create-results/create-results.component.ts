@@ -14,7 +14,7 @@ import { DecklangState } from '../../decklang/decklangstate';
   templateUrl: './create-results.component.html',
   styleUrls: ['./create-results.component.scss']
 })
-export class CreateResultsComponent {
+export class CreateResultsComponent implements OnChanges {
 
   @LocalStorage()
   public hideResult: boolean;
@@ -51,7 +51,7 @@ export class CreateResultsComponent {
     this.resourcePromises = this.currentProjectService.loadResourcePromises(this.project);
 
     if(Object.keys(this.project.scripts || {}).length === 0) return;
-    
+
     const currentScript = this.project.scripts[this.displayScript || this.project.activeScript];
 
     this.loading = true;
@@ -99,7 +99,7 @@ export class CreateResultsComponent {
         .container-fluid, .container {
           margin: 0;
         }
-        
+
       }
     `;
   }
@@ -146,7 +146,7 @@ export class CreateResultsComponent {
 
     const { cardsPerRow, rowsPerPage } = this.state.internalState.options.page.cardsPerPage;
 
-    const cardsPerPage = this.usePageStyle ? cardsPerRow*rowsPerPage : 1;
+    const cardsPerPage = this.usePageStyle ? cardsPerRow * rowsPerPage : 1;
 
     const chunkSizePredicate = chunk => {
       if(cardsPerPage === 1) return chunk;
