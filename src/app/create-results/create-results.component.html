@@ -1,5 +1,5 @@
 
-<div class="results-pane card mb-0 w-100 mr-1">
+<div class="results-pane mb-0 w-100 p-0">
 
   <div class="loading-overlay" *ngIf="loading">
     <div class="centered-text-container">
@@ -28,7 +28,7 @@
 
 
     <img resultImage
-          src="{{ image.url }}"
+          [src]="image.url"
           *ngFor="let image of card.images"
           [args]="image" />
 

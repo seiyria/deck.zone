@@ -29,7 +29,8 @@ export class CreateContainerComponent implements OnInit {
 
   constructor(
     private router: Router, private route: ActivatedRoute, private auth: AuthService,
-    private currentProjectService: CurrentProjectService) { }
+    private currentProjectService: CurrentProjectService
+  ) { }
 
   ngOnInit() {
     this.projectId = this.route.snapshot.paramMap.get('projectId');

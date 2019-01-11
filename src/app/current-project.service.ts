@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 
-import { size, truncate, cloneDeep } from 'lodash';
+import Tabletop from 'tabletop/src/tabletop.js';
+
+import { size, truncate, cloneDeep, values, includes } from 'lodash';
 import { hri } from 'human-readable-ids';
 
 import { Project, Resource, Script } from './project.model';
@@ -95,5 +97,25 @@ export class CurrentProjectService {
     }
 
     return this.angularFire.object(`/projects/${id}`);
+  }
+
+  public loadResourcePromises(project: Project) {
+    return values(project.resources).map(rsc => {
+
+      if(includes(rsc.url, 'docs.google.com/spreadsheet') && includes(rsc.url, 'sharing')) {
+        return new Promise(resolve => {
+          Tabletop.init({
+            key: rsc.url,
+            parseNumbers: true,
+            callback: (data) => {
+              rsc.data = data;
+              resolve(rsc);
+            }
+          });
+        });
+      }
+
+      return new Promise(resolve => resolve(rsc));
+    });
   }
 }

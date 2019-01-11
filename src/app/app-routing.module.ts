@@ -10,6 +10,7 @@ import { CreateComponent } from './create/create.component';
 import { CreateContainerComponent } from './create-container/create-container.component';
 import { CreateInvalidComponent } from './create-invalid/create-invalid.component';
 import { CreateSettingsComponent } from './create-settings/create-settings.component';
+import { EmbedComponent } from './embed/embed.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -24,6 +25,7 @@ const routes: Routes = [
     { path: ':projectId/404', component: CreateInvalidComponent },
     { path: ':projectId/settings', component: CreateSettingsComponent }
   ] },
+  { path: 'embed/:projectId', component: EmbedComponent },
   { path: '**', redirectTo: '' }
 ];
 

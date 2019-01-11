@@ -5,9 +5,7 @@
 
     <div class="row">
       <div class="col-md-12">
-        <!--
-        <claimer [project]="projectData | async" [api]="api"></claimer>
-        -->
+        <app-create-claimer [project]="project" (claim)="api.ownProject($event)"></app-create-claimer>
       </div>
     </div>
 
@@ -47,7 +45,8 @@
   </div>
 
   <div class="col-md-4 col-xl-3" [class.hidden]="hideResult">
-    <app-create-results [project]="project"     
+    <app-create-results class="mr-1"
+                        [project]="project"     
                         [projectId]="projectId"></app-create-results>
   </div>
 

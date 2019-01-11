@@ -1,0 +1,9 @@
+<div *ngIf="!project.owner">
+  <alert type="info" *ngIf="!(auth.afAuth.user | async)">
+    This project is unclaimed. Sign in now to claim it!
+  </alert>
+
+  <alert type="info" *ngIf="auth.afAuth.user | async">
+    This project is unclaimed. If it's yours, you can <button class="btn btn-sm btn-outline-primary" (click)="claimProject()">claim it</button>.
+  </alert>
+</div>

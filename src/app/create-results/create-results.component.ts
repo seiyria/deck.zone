@@ -2,7 +2,6 @@ import { Component, Input } from '@angular/core';
 import { LocalStorage } from 'ngx-webstorage';
 
 import * as _ from 'lodash';
-import Tabletop from 'tabletop/src/tabletop.js';
 
 import { CurrentProjectService } from '../current-project.service';
 import { Project } from '../project.model';
@@ -49,34 +48,16 @@ export class CreateResultsComponent {
     // don't render if the result window is hidden
     if(this.hideResult && !this.displayScript) return;
 
-    this.loadResourcePromises();
+    this.resourcePromises = this.currentProjectService.loadResourcePromises(this.project);
 
+    if(Object.keys(this.project.scripts || {}).length === 0) return;
+    
     const currentScript = this.project.scripts[this.displayScript || this.project.activeScript];
 
     this.loading = true;
 
     // small delay so loading shows up
     setTimeout(() => this.renderScript(currentScript), 100);
-  }
-
-  private loadResourcePromises() {
-    this.resourcePromises = _.map(_.values(this.project.resources), rsc => {
-
-      if(_.includes(rsc.url, 'docs.google.com/spreadsheet') && _.includes(rsc.url, 'sharing')) {
-        return new Promise(resolve => {
-          Tabletop.init({
-            key: rsc.url,
-            parseNumbers: true,
-            callback: (data) => {
-              rsc.data = data;
-              resolve(rsc);
-            }
-          });
-        });
-      }
-
-      return new Promise(resolve => resolve(rsc));
-    });
   }
 
   handleError({ message }) {
@@ -107,16 +88,18 @@ export class CreateResultsComponent {
 
       @media print {
         body {
-          padding: 0;
+          min-width: 0px !important;
         }
 
-        .results-pane {
+        html, body, .results-pane {
           padding: 0;
+          margin: 0 !important;
         }
 
-        .container-fluid {
+        .container-fluid, .container {
           margin: 0;
         }
+        
       }
     `;
   }

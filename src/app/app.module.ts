@@ -7,6 +7,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 import { AceModule } from 'ngx-ace-wrapper';
 
@@ -37,6 +38,8 @@ import { CreateSidebarComponent } from './create-sidebar/create-sidebar.componen
 import { CreateCreatorComponent } from './create-creator/create-creator.component';
 import { CreateResultsComponent } from './create-results/create-results.component';
 import { TextDirective, TextContainerDirective, ImageDirective, ShapeDirective } from './text.directive';
+import { CreateClaimerComponent } from './create-claimer/create-claimer.component';
+import { EmbedComponent } from './embed/embed.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +61,9 @@ import { TextDirective, TextContainerDirective, ImageDirective, ShapeDirective }
     TextDirective,
     TextContainerDirective,
     ImageDirective,
-    ShapeDirective
+    ShapeDirective,
+    CreateClaimerComponent,
+    EmbedComponent
   ],
   imports: [
     BrowserModule,
@@ -69,6 +74,7 @@ import { TextDirective, TextContainerDirective, ImageDirective, ShapeDirective }
     NgxWebstorageModule.forRoot(),
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
+    AlertModule.forRoot(),
     AceModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,

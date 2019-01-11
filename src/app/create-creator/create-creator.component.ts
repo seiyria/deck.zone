@@ -90,7 +90,7 @@ export class CreateCreatorComponent implements OnInit, OnChanges {
     this.activeScriptId = projectData.activeScript;
 
     // don't refresh view if just text changes
-    const numFiles = Object.keys(projectData.scripts).length;
+    const numFiles = Object.keys(projectData.scripts || {}).length;
     if(numFiles === this.oldFileCount) return;
     this.oldFileCount = numFiles;
   }

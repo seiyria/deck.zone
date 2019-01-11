@@ -1,0 +1,73 @@
+
+<nav class="navbar navbar-static-top sticky-top navbar-dark bg-dark no-print navbar-expand-lg" *ngIf="isBad || project">
+  
+  <a class="navbar-brand" target="_blank" [routerLink]="['/create', projectId]">deck.zone</a>
+
+  <ul class="nav navbar-nav mr-auto">
+    <li class="nav-item">
+      <a class="nav-link"> {{ scriptName }}</a>
+    </li>
+  </ul>
+
+  <ul class="nav navbar-nav ml-auto" *ngIf="!isBad">
+    <li class="nav-item" [class.active]="activeTab === 'code'" *ngIf="tabs.length > 1">
+      <a class="nav-link" (click)="activeTab = 'code'">Code</a>
+    </li>
+    <li class="nav-item" [class.active]="activeTab === 'result'" *ngIf="tabs.length > 1">
+      <a class="nav-link" (click)="activeTab = 'result'">Result</a>
+    </li>
+    <li class="nav-item" [class.active]="printStyles" *ngIf="showPrint">
+      <a class="nav-link" (click)="printStyles = !printStyles">
+        <fa name="print"></fa>
+      </a>
+    </li>
+  </ul>
+  
+</nav>
+  
+<div class="container-fluid" *ngIf="isBad">
+  <div class="col-4 offset-4 text-xs-center mt-2">
+
+    <div *ngIf="isMisconfigured" class="text-center">
+      <fa name="gears" size="5x"></fa>
+      <div class="mt-1">
+        This embed appears to be misconfigured. Double check the URL to make sure it contains a valid project, scriptId, and tabs.
+      </div>
+    </div>
+
+    <div *ngIf="isPrivate" class="text-center">
+      <fa name="user-secret" size="5x"></fa>
+      <div class="mt-1">
+        This project is marked private.
+      </div>
+    </div>
+
+    <div *ngIf="is404" class="text-center">
+      <fa name="frown-o" size="5x"></fa>
+      <div class="mt-1">
+        This project doesn't exist.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="container-fluid embed-view p-0" *ngIf="!isBad && project">
+
+  <ace class="big-editor"
+    [class.hidden]="activeTab !== 'code'"
+    [value]="project.scripts[scriptId].contents"
+    [mode]="'decklang'"
+    [theme]="'decklang-light'"
+    [config]="editorOptions"
+    [disabled]="true"
+    [useAceClass]="true"></ace>
+
+  <app-create-results [class.hidden]="activeTab !== 'result'"
+                      [class.printable]="printStyles"
+                      [displayScript]="scriptId"
+                      [usePageStyle]="printStyles"
+                      [project]="project"
+                      [projectId]="projectId"></app-create-results>
+
+</div>

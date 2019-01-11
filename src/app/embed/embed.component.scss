@@ -1,0 +1,13 @@
+
+.big-editor, .ace_editor {
+  display: block;
+  width: 100%;
+  min-height: calc(100vh - 54px);
+  height: calc(100vh - 54px);
+}
+
+.embed-view {
+  .results-pane {
+    min-height: calc(100vh - 54px);
+  }
+}

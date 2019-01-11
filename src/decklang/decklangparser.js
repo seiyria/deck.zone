@@ -3,9 +3,10 @@ import { Plugin } from './_base/_plugin';
 
 import grammar from './decklang';
 import nearley from 'nearley';
-import * as _ from 'lodash';
 
-import * as workerPath from "file-loader?name=[name].js!./decklang.worker";
+import _ from 'lodash';
+
+import DecklangWorker from './decklang.worker';
 
 
 const REGEXES = {
@@ -60,9 +61,9 @@ export class DecklangParser {
   workerResults(script) {
     return new Promise((resolve, reject) => {
       
-      const worker = new Worker(workerPath);
+      const worker = new DecklangWorker();
+      
       worker.onmessage = (msg) => {
-
         if(msg.data.error) {
           return reject(msg.data.error);
         }
@@ -128,7 +129,7 @@ export class DecklangParser {
         const endEval = Plugin.eval(end, scope) || 0;
 
         // for...to loop
-        if(isNumber(varStart) && isNumber(endEval)) {
+        if(_.isNumber(varStart) && _.isNumber(endEval)) {
 
           if (varStart > endEval) return; // throw new Error(`Loop start must be lower than the end value (given ${varStart}, ${endEval})`);
 

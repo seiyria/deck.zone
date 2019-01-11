@@ -34,7 +34,7 @@
     </li>
   </ul>
 
-  <ul class="nav navbar-nav pull-right" *ngIf="!(authService.afAuth.user | async)">
+  <ul class="nav navbar-nav ml-auto" *ngIf="!(authService.afAuth.user | async)">
     <li class="nav-item dropdown" dropdown container="body" placement="bottom right">
       <a class="nav-link" dropdownToggle>
         Login <span class="caret"></span>

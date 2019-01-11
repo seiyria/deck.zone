@@ -9,6 +9,3 @@
 # Todo
 
 - privacy policy page
-- create page
-- embed view
-- project settings page
