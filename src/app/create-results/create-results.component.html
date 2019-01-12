@@ -1,5 +1,5 @@
 
-<div class="row">
+<div class="row" *ngIf="!hideToolbar">
   <div class="col-8">
     <div class="btn-group">
       <button type="button"
@@ -33,9 +33,9 @@
   </div>
 </div>
 
-<div class="row mt-1">
-  <div class="col">
-    <div class="results-pane mb-0 w-100 p-0">
+<div class="row" [class.mt-1]="!hideToolbar">
+  <div class="col" [class.p-0]="hideToolbar">
+    <div class="results-pane mb-0 w-100 p-0" [class.hidden-toolbar]="hideToolbar">
 
         <div class="loading-overlay" *ngIf="loading">
           <div class="centered-text-container">

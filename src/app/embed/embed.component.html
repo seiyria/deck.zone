@@ -52,7 +52,7 @@
   </div>
 </div>
 
-<div class="container-fluid embed-view p-0" *ngIf="!isBad && project">
+<div class="container-fluid embed-view" *ngIf="!isBad && project">
 
   <ace class="big-editor"
     [class.hidden]="activeTab !== 'code'"
@@ -65,6 +65,7 @@
 
   <app-create-results [class.hidden]="activeTab !== 'result'"
                       [class.printable]="printStyles"
+                      [hideToolbar]="true"
                       [displayScript]="scriptId"
                       [usePageStyle]="printStyles"
                       [project]="project"

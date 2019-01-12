@@ -35,6 +35,9 @@ export class CreateResultsComponent implements OnChanges {
   @Input()
   public usePageStyle: boolean;
 
+  @Input()
+  public hideToolbar: boolean;
+
   @ViewChildren('gameCard')
   public gameCards: any[];
 
@@ -286,17 +289,6 @@ export class CreateResultsComponent implements OnChanges {
     saveAs(blob, `${this.project.name}-${scriptName}-${Date.now()}.zip`);
 
     this.isDownloading = false;
-
-    // this.gameCards.forEach((card, index) => {
-      // 
-      // zip.file(`${index}.png`, script.contents);
-    // })
-
-    /*
-    zip.generateAsync({ type: 'blob' })
-      .then((blob) => {
-        saveAs(blob, `${this.project.name}-${scriptName}-${Date.now()}.zip`);
-      });*/
   }
 
 }

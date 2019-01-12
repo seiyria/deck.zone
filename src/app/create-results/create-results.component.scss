@@ -23,6 +23,12 @@
 
   display: inline-block;
   border: 1px solid #ccc;
+
+  &.hidden-toolbar {
+    border: none;
+    min-height: calc(100vh - 62px);
+    max-height: calc(100vh - 62px);
+  }
 }
 
 .game-card {
