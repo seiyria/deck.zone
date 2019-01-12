@@ -21,7 +21,7 @@
                "path": "./webpack.config.js"
             },
             "baseHref" : "/",
-            "outputPath": "dist/deck-zone-ng7",
+            "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -35,7 +35,9 @@
               "./node_modules/font-awesome/css/font-awesome.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/jszip/dist/jszip.min.js"
+            ]
           },
           "configurations": {
             "production": {

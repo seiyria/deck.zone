@@ -3,8 +3,9 @@ import * as _ from 'lodash';
 import { ElementRef, Directive, Renderer2, Input, OnChanges } from '@angular/core';
 
 @Directive({
+  selector: '[pluginText]'
 })
-export class PluginDirective implements OnChanges {
+class PluginDirective implements OnChanges {
 
   constructor(public elementRef: ElementRef, public renderer: Renderer2) {}
 

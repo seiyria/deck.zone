@@ -83,3 +83,10 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
+
+const w = (window as any);
+w.process = {
+  env: { DEBUG: undefined },
+};
+w.process = { env: { DEBUG: undefined }, version: [] };
+w.global = w;
