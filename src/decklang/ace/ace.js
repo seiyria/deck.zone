@@ -24,6 +24,10 @@ ace.define('ace/mode/decklang', (require, exports) => {
   exports.Mode = Mode;
 });
 
+ace.define('ace/snippets/text', (require, exports) => {
+  exports.snippetText = '';
+});
+
 ace.define('ace/snippets/decklang', (require, exports) => {
 
   const baseSnippets = [];
