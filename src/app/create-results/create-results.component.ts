@@ -273,11 +273,11 @@ export class CreateResultsComponent implements OnChanges {
     let curBack = 0;
     let curFront = 0;
 
-    for(let value of gameCards) {
+    for(const value of gameCards) {
       const cardRef = this.cardDisplayList[curIdx];
       const imgString = await domtoimage.toBlob(value);
 
-      let num = cardRef._front ? curFront : curBack;
+      const num = cardRef._front ? curFront : curBack;
       zip.file(`${cardRef._front ? 'front' : 'back'}/${num}.png`, imgString);
 
       if(cardRef._front) curFront++;
