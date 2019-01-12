@@ -13,5 +13,6 @@ export { NewCard } from './newcard';
 export { Image } from './image';
 export { PageMargins } from './pagemargins';
 export { PageSize } from './pagesize';
+export { Rect } from './rect';
 export { Text } from './text';
 export { Unit } from './unit';

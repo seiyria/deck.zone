@@ -369,6 +369,63 @@
                 }
             ]
         ],
+        "rect": [
+            [
+                {
+                    "str": "rect",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "=",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "PositiveInteger",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "CssValue",
+                    "commaBefore": true,
+                    "hasMore": false
+                },
+                {
+                    "str": "CssValue",
+                    "commaBefore": true,
+                    "hasMore": false
+                },
+                {
+                    "str": "CssValue",
+                    "commaBefore": true,
+                    "hasMore": false
+                },
+                {
+                    "str": "CssValue",
+                    "commaBefore": true,
+                    "hasMore": false
+                },
+                {
+                    "str": "CssValue",
+                    "optional": true,
+                    "commaBefore": true,
+                    "hasMore": false
+                },
+                {
+                    "str": "CssColor",
+                    "optional": true,
+                    "commaBefore": true,
+                    "hasMore": false
+                },
+                {
+                    "str": "CssColor",
+                    "optional": true,
+                    "commaBefore": true,
+                    "hasMore": false
+                }
+            ]
+        ],
         "text": [
             [
                 {

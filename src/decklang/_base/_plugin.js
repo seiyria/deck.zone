@@ -9,7 +9,9 @@ export class Plugin {
     return test || state.options.unit;
   }
 
-  static combineForUnit({ val, unit }, state) {
+  static combineForUnit(opts, state) {
+    if(!opts) opts = { val: 1, unit: this.resolveUnit(null, state) };
+    const { val, unit } = opts;
     return `${val}${this.resolveUnit(unit, state)}`;
   }
 

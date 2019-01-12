@@ -2,7 +2,8 @@ import { OnChanges, ElementRef, Renderer2 } from '@angular/core';
 
 export class PluginDirective implements OnChanges {
 
-  constructor(public elementRef: ElementRef, public renderer: Renderer2) {}
+  public renderer: Renderer2;
+  public elementRef: ElementRef;
 
   setStyle() { this.style(); }
 

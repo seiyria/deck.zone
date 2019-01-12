@@ -197,6 +197,40 @@ function id(x) { return x[0]; }
           }
         }
         },
+    {"name": "rect$string$1", "symbols": [{"literal":"r"}, {"literal":"e"}, {"literal":"c"}, {"literal":"t"}], "postprocess": function joiner(d) {return d.join('');}},
+    {"name": "rect$ebnf$1$subexpression$1$ebnf$1$subexpression$1", "symbols": ["PositiveCssValue"]},
+    {"name": "rect$ebnf$1$subexpression$1$ebnf$1", "symbols": ["rect$ebnf$1$subexpression$1$ebnf$1$subexpression$1"], "postprocess": id},
+    {"name": "rect$ebnf$1$subexpression$1$ebnf$1", "symbols": [], "postprocess": function(d) {return null;}},
+    {"name": "rect$ebnf$1$subexpression$1", "symbols": ["_", {"literal":","}, "_", "rect$ebnf$1$subexpression$1$ebnf$1"]},
+    {"name": "rect$ebnf$1", "symbols": ["rect$ebnf$1$subexpression$1"], "postprocess": id},
+    {"name": "rect$ebnf$1", "symbols": [], "postprocess": function(d) {return null;}},
+    {"name": "rect$ebnf$2$subexpression$1$ebnf$1$subexpression$1", "symbols": ["CssColor"]},
+    {"name": "rect$ebnf$2$subexpression$1$ebnf$1", "symbols": ["rect$ebnf$2$subexpression$1$ebnf$1$subexpression$1"], "postprocess": id},
+    {"name": "rect$ebnf$2$subexpression$1$ebnf$1", "symbols": [], "postprocess": function(d) {return null;}},
+    {"name": "rect$ebnf$2$subexpression$1", "symbols": ["_", {"literal":","}, "_", "rect$ebnf$2$subexpression$1$ebnf$1"]},
+    {"name": "rect$ebnf$2", "symbols": ["rect$ebnf$2$subexpression$1"], "postprocess": id},
+    {"name": "rect$ebnf$2", "symbols": [], "postprocess": function(d) {return null;}},
+    {"name": "rect$ebnf$3$subexpression$1$ebnf$1$subexpression$1", "symbols": ["CssColor"]},
+    {"name": "rect$ebnf$3$subexpression$1$ebnf$1", "symbols": ["rect$ebnf$3$subexpression$1$ebnf$1$subexpression$1"], "postprocess": id},
+    {"name": "rect$ebnf$3$subexpression$1$ebnf$1", "symbols": [], "postprocess": function(d) {return null;}},
+    {"name": "rect$ebnf$3$subexpression$1", "symbols": ["_", {"literal":","}, "_", "rect$ebnf$3$subexpression$1$ebnf$1"]},
+    {"name": "rect$ebnf$3", "symbols": ["rect$ebnf$3$subexpression$1"], "postprocess": id},
+    {"name": "rect$ebnf$3", "symbols": [], "postprocess": function(d) {return null;}},
+    {"name": "rect", "symbols": ["rect$string$1", "_", {"literal":"="}, "_", "PositiveIntegerVariable", "_", {"literal":","}, "_", "PositiveCssVariable", "_", {"literal":","}, "_", "PositiveCssVariable", "_", {"literal":","}, "_", "PositiveCssVariable", "_", {"literal":","}, "_", "PositiveCssVariable", "rect$ebnf$1", "rect$ebnf$2", "rect$ebnf$3"], "postprocess": 
+        function(d) {
+          return {
+            call: d[0],
+            index: d[4],
+            x1: d[8],
+            y1: d[12],
+            x2: d[16],
+            y2: d[20],
+            thickness: d[21] && d[21][3] ? d[21][3][0] : { val: 1, unit: 'px' },
+            lineColor: d[22] && d[22][3] ? d[22][3][0] : '#000',
+            fillColor: d[23] && d[23][3] ? d[23][3][0] : '#000'
+          }
+        }
+        },
     {"name": "text$string$1", "symbols": [{"literal":"t"}, {"literal":"e"}, {"literal":"x"}, {"literal":"t"}], "postprocess": function joiner(d) {return d.join('');}},
     {"name": "text$ebnf$1$subexpression$1", "symbols": ["_", {"literal":","}, "_", "HorizontalAlignment"]},
     {"name": "text$ebnf$1", "symbols": ["text$ebnf$1$subexpression$1"], "postprocess": id},
@@ -240,6 +274,7 @@ function id(x) { return x[0]; }
     {"name": "Directive", "symbols": ["newcard"]},
     {"name": "Directive", "symbols": ["pagemargins"]},
     {"name": "Directive", "symbols": ["pagesize"]},
+    {"name": "Directive", "symbols": ["rect"]},
     {"name": "Directive", "symbols": ["text"]},
     {"name": "Directive", "symbols": ["unit"]},
     {"name": "Operand", "symbols": [{"literal":"*"}], "postprocess": id},

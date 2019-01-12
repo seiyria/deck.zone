@@ -20,7 +20,7 @@ snippet ellipse
     super.operate(args, state, scope);
 
     const { x, y, w, h, thickness, outerColor, innerColor } = args;
-
+    
     const card = state.getCard(args.index);
     card.shapes.push({
       shape: 'ellipse',

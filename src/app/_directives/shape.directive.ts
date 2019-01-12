@@ -1,10 +1,12 @@
-import { Directive, Input } from '@angular/core';
+import { Directive, Input, ElementRef, Renderer2 } from '@angular/core';
 import { PluginDirective } from './_plugin.directive';
 
 @Directive({
   selector: '[resultShape]'
 })
 export class ShapeDirective extends PluginDirective {
+
+  constructor(public elementRef: ElementRef, public renderer: Renderer2) { super(); }
 
   @Input()
   public args: any;
@@ -16,6 +18,13 @@ export class ShapeDirective extends PluginDirective {
       args.position = 'absolute';
       args['border-style'] = 'solid';
       args['border-radius'] = '50%';
+      this.assignStyle(args);
+      return;
+    }
+
+    if(args.shape === 'rect') {
+      args.position = 'absolute';
+      args['border-style'] = 'solid';
       this.assignStyle(args);
       return;
     }

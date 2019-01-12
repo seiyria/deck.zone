@@ -42,3 +42,14 @@
     display: none !important;
   }
 }
+
+.nav-pills .nav-link {
+
+  &:not(.active):hover {
+    background-color: #ccc;
+  }
+
+  &.active:hover {
+    color: #fff !important;
+  }
+}

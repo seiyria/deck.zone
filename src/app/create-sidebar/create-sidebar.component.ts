@@ -85,7 +85,7 @@ export class CreateSidebarComponent implements OnInit, OnDestroy {
       this.scripts = this.sortedScripts(scripts);
       this.validateScriptFilenameFn = this.validateScriptFilename.bind(this);
 
-      if(this.scripts[0] && !_.find(this.scripts, { activeScript: this.activeScript })) {
+      if(this.scripts[0] && !_.find(this.scripts, { $key: this.project.activeScript })) {
         this.activeScript.emit(this.scripts[0].$key);
       }
     });

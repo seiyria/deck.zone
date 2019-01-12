@@ -29,7 +29,7 @@ export class CreateToolbarComponent {
 
   constructor(public authService: AuthService) { }
 
-  private replaceName(filename) { return filename.split('.deck').join('.txt'); }
+  private replaceName(filename) { return filename; }
 
   download() {
     const zip = new JSZip();

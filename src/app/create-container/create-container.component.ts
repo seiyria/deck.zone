@@ -43,6 +43,8 @@ export class CreateContainerComponent implements OnInit {
     this.projectData = this.currentProjectService.getContent(this.projectId);
     this.projectData.valueChanges().subscribe(value => {
 
+      console.log(value, value.activeScriptId)
+
       this.project = value;
 
       const ownsProject = this.auth.owns(value);
@@ -57,7 +59,9 @@ export class CreateContainerComponent implements OnInit {
     this.resourceList = this.currentProjectService.getResourceList(this.projectId);
 
     this.api = {
-      changeActiveScript: (index)               => this.projectData.update({ activeScript: index }),
+      changeActiveScript: (index)               => {
+        return this.projectData.update({ activeScript: index });
+      },
       writeFile:          ({ contents, index }) => {
         const script = this.currentProjectService.getScript(this.projectId, index);
         return script.update({ contents });

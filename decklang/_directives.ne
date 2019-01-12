@@ -10,6 +10,7 @@
 @include "plugins/newcard.ne"
 @include "plugins/pagemargins.ne"
 @include "plugins/pagesize.ne"
+@include "plugins/rect.ne"
 @include "plugins/text.ne"
 @include "plugins/unit.ne"
-Directive -> border|cardmargins|cardrender|cardside|cardsize|cardsperpage|ellipse|font|image|newcard|pagemargins|pagesize|text|unit
+Directive -> border|cardmargins|cardrender|cardside|cardsize|cardsperpage|ellipse|font|image|newcard|pagemargins|pagesize|rect|text|unit

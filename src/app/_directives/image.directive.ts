@@ -1,10 +1,12 @@
-import { Directive, Input } from '@angular/core';
+import { Directive, Input, Renderer2, ElementRef } from '@angular/core';
 import { PluginDirective } from './_plugin.directive';
 
 @Directive({
   selector: '[resultImage]'
 })
 export class ImageDirective extends PluginDirective {
+
+  constructor(public elementRef: ElementRef, public renderer: Renderer2) { super(); }
 
   @Input()
   public args: any;
