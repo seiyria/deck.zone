@@ -30,8 +30,12 @@
     'col-md-8 col-xl-9':    hideSidebar || hideResult,
     'col-md-12 col-xl-12':  hideSidebar && hideResult
   }">
-      
-    <app-create-toolbar class="col-12 row" [projectId]="projectId" [project]="project"></app-create-toolbar>
+    
+    <div class="row">
+      <div class="col-12">
+          <app-create-toolbar class="row" [projectId]="projectId" [project]="project"></app-create-toolbar>
+      </div>
+    </div>
       
     <div class="row">
       <div class="col-12 mt-1">
