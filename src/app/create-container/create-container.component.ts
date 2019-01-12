@@ -43,8 +43,6 @@ export class CreateContainerComponent implements OnInit {
     this.projectData = this.currentProjectService.getContent(this.projectId);
     this.projectData.valueChanges().subscribe(value => {
 
-      console.log(value, value.activeScriptId)
-
       this.project = value;
 
       const ownsProject = this.auth.owns(value);
