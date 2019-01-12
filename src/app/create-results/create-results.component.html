@@ -1,26 +1,26 @@
 
 <div class="row">
-  <div class="col-4">
+  <div class="col-8">
+    <div class="btn-group">
       <button type="button"
-            class="btn btn-outline-info px-1"
+            class="btn btn-outline-info"
             placement="bottom"
             tooltip="Show or hide the card fronts."
             [disabled]="isDownloading"
             (click)="showFront = !showFront">
         <span><fa [name]="showFront ? 'check-square' : 'square'" fixed="true"></fa> Fronts</span>
       </button>
-  </div>
-  <div class="col-4">
       <button type="button"
-            class="btn btn-outline-info px-1"
+            class="btn btn-outline-info"
             placement="bottom"
             tooltip="Show or hide the card backs."
             [disabled]="isDownloading"
             (click)="showBack = !showBack">
         <fa [name]="showBack ? 'check-square' : 'square'" fixed="true"></fa> Backs
       </button>
+    </div>
   </div>
-  <div class="col-4">
+  <div class="col-4 text-right">
     <button type="button"
           class="btn btn-outline-info"
           placement="bottom"
