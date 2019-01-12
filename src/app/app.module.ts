@@ -37,10 +37,13 @@ import { CreateToolbarComponent } from './create-toolbar/create-toolbar.componen
 import { CreateSidebarComponent } from './create-sidebar/create-sidebar.component';
 import { CreateCreatorComponent } from './create-creator/create-creator.component';
 import { CreateResultsComponent } from './create-results/create-results.component';
-import { TextDirective, TextContainerDirective, ImageDirective, ShapeDirective } from './text.directive';
 import { CreateClaimerComponent } from './create-claimer/create-claimer.component';
 import { EmbedComponent } from './embed/embed.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { TextDirective } from './_directives/text.directive';
+import { TextContainerDirective } from './_directives/text.container.directive';
+import { ImageDirective } from './_directives/image.directive';
+import { ShapeDirective } from './_directives/shape.directive';
 
 @NgModule({
   declarations: [
