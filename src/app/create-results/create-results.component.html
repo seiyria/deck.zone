@@ -1,41 +1,80 @@
 
-<div class="results-pane mb-0 w-100 p-0">
+<div class="row">
+  <div class="col-4">
+      <button type="button"
+            class="btn btn-outline-info px-1"
+            placement="bottom"
+            tooltip="Show or hide the card fronts."
+            [disabled]="isDownloading"
+            (click)="showFront = !showFront">
+        <span><fa [name]="showFront ? 'check-square' : 'square'" fixed="true"></fa> Fronts</span>
+      </button>
+  </div>
+  <div class="col-4">
+      <button type="button"
+            class="btn btn-outline-info px-1"
+            placement="bottom"
+            tooltip="Show or hide the card backs."
+            [disabled]="isDownloading"
+            (click)="showBack = !showBack">
+        <fa [name]="showBack ? 'check-square' : 'square'" fixed="true"></fa> Backs
+      </button>
+  </div>
+  <div class="col-4">
+    <button type="button"
+          class="btn btn-outline-info"
+          placement="bottom"
+          tooltip="Download a ZIP containing all of the images for this script."
+          [disabled]="isDownloading"
+          (click)="downloadImages()">
+        <fa name="picture-o" fixed="true" *ngIf="!isDownloading"></fa>
+        <fa name="spinner" fixed="true" animation="spin" *ngIf="isDownloading"></fa>
+    </button>
+  </div>
+</div>
 
-  <div class="loading-overlay" *ngIf="loading">
-    <div class="centered-text-container">
-      <div class="centered-text">
-        <fa name="spinner" animation="spin"></fa> Loading...
+<div class="row mt-1">
+  <div class="col">
+    <div class="results-pane mb-0 w-100 p-0">
+
+        <div class="loading-overlay" *ngIf="loading">
+          <div class="centered-text-container">
+            <div class="centered-text">
+              <fa name="spinner" animation="spin"></fa> Loading...
+            </div>
+          </div>
+        </div>
+      
+        <div class="game-card"
+              #gameCard
+              *ngFor="let card of cardDisplayList; let i = index"
+              [class.hidden]="!card._cardrender || (card._back && !showBack) || (card._front && !showFront)"
+              [class.page-break]="card._pagebreak"
+              [class.game-card-reverse]="usePageStyle && card._reverse"
+              [ngStyle]="state.internalState.options.card">
+      
+      
+          <div resultTextContainer
+                [args]="text"
+                *ngFor="let text of card.texts">
+      
+            <span resultText
+                  [args]="text"
+                  [innerHTML]="text.string.split('\n').join('<br>')"></span>
+          </div>
+      
+      
+          <img resultImage
+                [src]="image.url"
+                *ngFor="let image of card.images"
+                [args]="image" />
+      
+          <span resultShape
+                *ngFor="let shape of card.shapes"
+                [args]="shape"></span>
+      
+        </div>
+      
       </div>
-    </div>
   </div>
-
-  <div class="game-card"
-        *ngFor="let card of cardDisplayList; let i = index"
-        [class.hidden]="!card._cardrender"
-        [class.page-break]="card._pagebreak"
-        [class.game-card-reverse]="usePageStyle && card._reverse"
-        [ngStyle]="state.internalState.options.card">
-
-
-    <div resultTextContainer
-          [args]="text"
-          *ngFor="let text of card.texts">
-
-      <span resultText
-            [args]="text"
-            [innerHTML]="text.string.split('\n').join('<br>')"></span>
-    </div>
-
-
-    <img resultImage
-          [src]="image.url"
-          *ngFor="let image of card.images"
-          [args]="image" />
-
-    <span resultShape
-          *ngFor="let shape of card.shapes"
-          [args]="shape"></span>
-
-  </div>
-
 </div>

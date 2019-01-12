@@ -15,19 +15,21 @@
 }
 
 .results-pane {
-  max-height: calc(100vh - 77px);
-  min-height: calc(100vh - 77px);
+  max-height: calc(100vh - 130px);
+  min-height: calc(100vh - 130px);
   overflow: scroll;
 
   padding: 1px;
 
   display: inline-block;
+  border: 1px solid #ccc;
 }
 
 .game-card {
   position: relative;
   overflow: hidden;
   float: left;
+  background-color: #fff;
 }
 
 .loading-overlay {

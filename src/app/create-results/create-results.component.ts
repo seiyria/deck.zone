@@ -1,7 +1,11 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges, ViewChildren } from '@angular/core';
 import { LocalStorage } from 'ngx-webstorage';
 
 import * as _ from 'lodash';
+
+import * as domtoimage from 'dom-to-image';
+import * as JSZip from 'jszip/dist/jszip.min.js';
+import { saveAs } from 'file-saver';
 
 import { CurrentProjectService } from '../current-project.service';
 import { Project } from '../project.model';
@@ -31,10 +35,16 @@ export class CreateResultsComponent implements OnChanges {
   @Input()
   public usePageStyle: boolean;
 
+  @ViewChildren('gameCard')
+  public gameCards: any[];
+
   private state: DecklangState = new DecklangState();
   public loading: boolean;
 
   public cardDisplayList: any = [];
+  public showFront = true;
+  public showBack = true;
+  public isDownloading = false;
 
   private resourcePromises: Promise<any>[];
 
@@ -137,6 +147,9 @@ export class CreateResultsComponent implements OnChanges {
     let { front, back } = this.state.internalState.cards;
     front = _.cloneDeep(front);
     back = _.cloneDeep(back);
+
+    front.forEach(card => card._front = true);
+    back.forEach(card => card._back = true);
 
     // can't do this
     if(front.length !== back.length) {
@@ -243,6 +256,47 @@ export class CreateResultsComponent implements OnChanges {
       this.loading = false;
       this.handleError({ message: e.message });
     });
+  }
+
+  public async downloadImages() {
+    this.isDownloading = true;
+
+    const scriptName = this.project.scripts[this.displayScript || this.project.activeScript].name;
+
+    const zip = new JSZip();
+
+    const gameCards = this.gameCards.map(x => x.nativeElement);
+    let curIdx = 0;
+    let curBack = 0;
+    let curFront = 0;
+
+    for(let value of gameCards) {
+      const cardRef = this.cardDisplayList[curIdx];
+      const imgString = await domtoimage.toBlob(value);
+
+      let num = cardRef._front ? curFront : curBack;
+      zip.file(`${cardRef._front ? 'front' : 'back'}/${num}.png`, imgString);
+
+      if(cardRef._front) curFront++;
+      else               curBack++;
+      curIdx++;
+    }
+
+    const blob = await zip.generateAsync({ type: 'blob' });
+    saveAs(blob, `${this.project.name}-${scriptName}-${Date.now()}.zip`);
+
+    this.isDownloading = false;
+
+    // this.gameCards.forEach((card, index) => {
+      // 
+      // zip.file(`${index}.png`, script.contents);
+    // })
+
+    /*
+    zip.generateAsync({ type: 'blob' })
+      .then((blob) => {
+        saveAs(blob, `${this.project.name}-${scriptName}-${Date.now()}.zip`);
+      });*/
   }
 
 }
