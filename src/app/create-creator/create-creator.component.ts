@@ -69,7 +69,17 @@ export class CreateCreatorComponent implements OnInit, OnChanges, OnDestroy {
         return { $key: item.payload.key, ...item.payload.val() };
       });
     })).subscribe(scripts => {
-      this.scripts = scripts;
+      if(!this.scripts) this.scripts = scripts;
+
+      scripts.forEach(scriptObj => {
+        const scriptRef = _.find(this.scripts, { $key: scriptObj.$key });
+        if(!scriptRef) {
+          this.scripts.push(scriptObj);
+        } else {
+          scriptRef.name = scriptObj.name;
+          scriptRef.contents = scriptObj.contents;
+        }
+      });
       setTimeout(() => this.updateAceInstances(), 0);
     });
 
