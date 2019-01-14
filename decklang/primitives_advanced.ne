@@ -2,6 +2,8 @@
 CssColor ->
   "#" hexdigit hexdigit hexdigit hexdigit hexdigit hexdigit {% joiner %}
 | "#" hexdigit hexdigit hexdigit {% joiner %}
+| dqstring {% joiner %}
+| rgbcolor {% joiner %}
 
 PositiveCssValue ->
   PositiveDecimal (CssUnit):? {% function(d) { return { val: d[0], unit: d[1] ? d[1][0] : undefined }; } %}

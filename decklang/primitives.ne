@@ -23,6 +23,10 @@ __ ->
 hexdigit ->
   [a-fA-F0-9]
 
+rgbcolor ->
+  "rgb(" _ PositiveIntegerVariable _ "," _ PositiveIntegerVariable _ "," _ PositiveIntegerVariable _ ")" {% joiner %}
+| "rgba(" _ PositiveIntegerVariable _ "," _ PositiveIntegerVariable _ "," _ PositiveIntegerVariable _ "," _ PositiveDecimalVariable _ ")" {% joiner %}
+
 # primitive types
 String          -> dqstring         {% id %}
 PositiveInteger -> unsigned_int     {% id %}
