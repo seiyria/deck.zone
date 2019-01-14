@@ -3,7 +3,7 @@ import { Plugin } from '../_base/_plugin';
 
 export class CardBackground extends Plugin {
 
-  static get help() { return 'cardbackground = [cardindex ,] #fff'; }
+  static get help() { return 'cardbackground = [cardindex ,] color'; }
 
   static get docs() { return 'The cardbackground directive is used to set the background color of all following cards, or all cards globally.'; }
 
