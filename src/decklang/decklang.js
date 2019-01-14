@@ -30,6 +30,25 @@ function id(x) { return x[0]; }
           }
         }
         },
+    {"name": "cardbackground$string$1", "symbols": [{"literal":"c"}, {"literal":"a"}, {"literal":"r"}, {"literal":"d"}, {"literal":"b"}, {"literal":"a"}, {"literal":"c"}, {"literal":"k"}, {"literal":"g"}, {"literal":"r"}, {"literal":"o"}, {"literal":"u"}, {"literal":"n"}, {"literal":"d"}], "postprocess": function joiner(d) {return d.join('');}},
+    {"name": "cardbackground", "symbols": ["cardbackground$string$1", "_", {"literal":"="}, "_", "CssColor"], "postprocess": 
+        function(d) {
+          return {
+            call: d[0],
+            color: d[4]
+          }
+        }
+          },
+    {"name": "cardbackground$string$2", "symbols": [{"literal":"c"}, {"literal":"a"}, {"literal":"r"}, {"literal":"d"}, {"literal":"b"}, {"literal":"a"}, {"literal":"c"}, {"literal":"k"}, {"literal":"g"}, {"literal":"r"}, {"literal":"o"}, {"literal":"u"}, {"literal":"n"}, {"literal":"d"}], "postprocess": function joiner(d) {return d.join('');}},
+    {"name": "cardbackground", "symbols": ["cardbackground$string$2", "_", {"literal":"="}, "_", "PositiveIntegerVariable", "_", {"literal":","}, "_", "CssColor"], "postprocess": 
+        function(d) {
+          return {
+            call: d[0],
+            index: d[4],
+            color: d[8]
+          }
+        }
+          },
     {"name": "cardmargins$string$1", "symbols": [{"literal":"c"}, {"literal":"a"}, {"literal":"r"}, {"literal":"d"}, {"literal":"m"}, {"literal":"a"}, {"literal":"r"}, {"literal":"g"}, {"literal":"i"}, {"literal":"n"}, {"literal":"s"}], "postprocess": function joiner(d) {return d.join('');}},
     {"name": "cardmargins", "symbols": ["cardmargins$string$1", "_", {"literal":"="}, "_", "CssMargin"], "postprocess": 
         function(d) {
@@ -263,6 +282,7 @@ function id(x) { return x[0]; }
         }
         },
     {"name": "Directive", "symbols": ["border"]},
+    {"name": "Directive", "symbols": ["cardbackground"]},
     {"name": "Directive", "symbols": ["cardmargins"]},
     {"name": "Directive", "symbols": ["cardrender"]},
     {"name": "Directive", "symbols": ["cardside"]},

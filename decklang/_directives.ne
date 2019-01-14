@@ -1,4 +1,5 @@
 @include "plugins/border.ne"
+@include "plugins/cardbackground.ne"
 @include "plugins/cardmargins.ne"
 @include "plugins/cardrender.ne"
 @include "plugins/cardside.ne"
@@ -13,4 +14,4 @@
 @include "plugins/rect.ne"
 @include "plugins/text.ne"
 @include "plugins/unit.ne"
-Directive -> border|cardmargins|cardrender|cardside|cardsize|cardsperpage|ellipse|font|image|newcard|pagemargins|pagesize|rect|text|unit
+Directive -> border|cardbackground|cardmargins|cardrender|cardside|cardsize|cardsperpage|ellipse|font|image|newcard|pagemargins|pagesize|rect|text|unit

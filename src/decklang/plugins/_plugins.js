@@ -1,5 +1,6 @@
 
 export { Border } from './border';
+export { CardBackground } from './cardbackground';
 export { CardMargins } from './cardmargins';
 export { CardRender } from './cardrender';
 export { CardSide } from './cardside';

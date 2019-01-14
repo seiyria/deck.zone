@@ -31,6 +31,47 @@
                 }
             ]
         ],
+        "cardbackground": [
+            [
+                {
+                    "str": "cardbackground",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "=",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "CssColor",
+                    "commaBefore": false,
+                    "hasMore": false
+                }
+            ],
+            [
+                {
+                    "str": "cardbackground",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "=",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "PositiveInteger",
+                    "commaBefore": false,
+                    "hasMore": false
+                },
+                {
+                    "str": "CssColor",
+                    "commaBefore": true,
+                    "hasMore": false
+                }
+            ]
+        ],
         "cardmargins": [
             [
                 {

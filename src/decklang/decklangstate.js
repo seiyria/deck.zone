@@ -79,7 +79,7 @@ class InternalState {
   }
 
   newCard() {
-    return { texts: [], images: [], shapes: [], _cardrender: true };
+    return { texts: [], images: [], shapes: [], css: {}, _cardrender: true };
   }
 }
 

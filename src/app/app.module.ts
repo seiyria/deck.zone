@@ -44,6 +44,7 @@ import { TextDirective } from './_directives/text.directive';
 import { TextContainerDirective } from './_directives/text.container.directive';
 import { ImageDirective } from './_directives/image.directive';
 import { ShapeDirective } from './_directives/shape.directive';
+import { GameCardContainerDirective } from './_directives/gamecard.directive';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { ShapeDirective } from './_directives/shape.directive';
     TextContainerDirective,
     ImageDirective,
     ShapeDirective,
+    GameCardContainerDirective,
     CreateClaimerComponent,
     EmbedComponent,
     PrivacyPolicyComponent

@@ -47,11 +47,13 @@
       
         <div class="game-card"
               #gameCard
+              gameCardContainer
               *ngFor="let card of cardDisplayList; let i = index"
               [class.hidden]="!card._cardrender || (card._back && !showBack) || (card._front && !showFront)"
               [class.page-break]="card._pagebreak"
               [class.game-card-reverse]="usePageStyle && card._reverse"
-              [ngStyle]="state.internalState.options.card">
+              [baseStyle]="state.internalState.options.card"
+              [specificStyle]="card.css">
       
       
           <div resultTextContainer
