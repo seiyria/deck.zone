@@ -31,7 +31,7 @@ export class TextContainerDirective extends PluginDirective {
       'font-size':      `${font.size}${font.unit}`,
       color:            font.color,
       'text-align':     args.horizAlign,
-      'z-index':        20
+      'z-index':        args['z-index']
     };
 
     if(includes(font.decoration, 'I'))      baseObject['font-style'] = 'italic';

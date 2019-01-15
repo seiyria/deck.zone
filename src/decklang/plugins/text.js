@@ -34,6 +34,8 @@ snippet text
       horizAlign, vertAlign, state, string,
       'z-index': scope.blockLevelOps
     });
+
+    console.log('tetx', scope.blockLevelOps, args);
   }
 
 }

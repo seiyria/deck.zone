@@ -33,6 +33,7 @@ snippet ellipse
       'background-color': innerColor,
       'z-index': scope.blockLevelOps
     });
+    console.log('ellipse', scope.blockLevelOps);
   }
 
 }
