@@ -35,25 +35,25 @@
 
 <div class="row" [class.mt-1]="!hideToolbar">
   <div class="col" [class.p-0]="hideToolbar">
-    <div class="results-pane mb-0 w-100 p-0" [class.hidden-toolbar]="hideToolbar">
+    <div class="results-pane mb-0 w-100 p-0" [class.hidden-toolbar]="hideToolbar" #pane>
 
-        <div class="loading-overlay" *ngIf="loading">
-          <div class="centered-text-container">
-            <div class="centered-text">
-              <fa name="spinner" animation="spin"></fa> Loading...
-            </div>
+      <div class="loading-overlay" *ngIf="loading" [style.top]="pane.scrollTop + 'px'">
+        <div class="centered-text-container">
+          <div class="centered-text">
+            <fa name="spinner" animation="spin"></fa> Loading...
           </div>
         </div>
+      </div>
       
-        <div class="game-card"
-              #gameCard
-              gameCardContainer
-              *ngFor="let card of cardDisplayList; let i = index"
-              [class.hidden]="!card._cardrender || (card._back && !showBack) || (card._front && !showFront)"
-              [class.page-break]="card._pagebreak"
-              [class.game-card-reverse]="usePageStyle && card._reverse"
-              [baseStyle]="state.internalState.options.card"
-              [specificStyle]="card.css">
+      <div class="game-card"
+            #gameCard
+            gameCardContainer
+            *ngFor="let card of cardDisplayList; let i = index"
+            [class.hidden]="!card._cardrender || (card._back && !showBack) || (card._front && !showFront)"
+            [class.page-break]="card._pagebreak"
+            [class.game-card-reverse]="usePageStyle && card._reverse"
+            [baseStyle]="state.internalState.options.card"
+            [specificStyle]="card.css">
       
       
           <div resultTextContainer
