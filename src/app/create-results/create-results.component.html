@@ -25,7 +25,7 @@
           class="btn btn-outline-info"
           placement="bottom"
           tooltip="Download a ZIP containing all of the images for this script."
-          [disabled]="isDownloading"
+          [disabled]="isDownloading || loading"
           (click)="downloadImages()">
         <fa name="picture-o" fixed="true" *ngIf="!isDownloading"></fa>
         <fa name="spinner" fixed="true" animation="spin" *ngIf="isDownloading"></fa>

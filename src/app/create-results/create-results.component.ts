@@ -273,17 +273,30 @@ export class CreateResultsComponent implements OnChanges {
     let curBack = 0;
     let curFront = 0;
 
-    for(const value of gameCards) {
-      const cardRef = this.cardDisplayList[curIdx];
-      const imgString = await domtoimage.toBlob(value);
+    const convertPromises = [];
+
+    gameCards.forEach(async value => {
+      const cardRef = this.cardDisplayList[curIdx++];
+      const imgStringPromise = domtoimage.toBlob(value);
 
       const num = cardRef._front ? curFront : curBack;
-      zip.file(`${cardRef._front ? 'front' : 'back'}/${num}.png`, imgString);
 
       if(cardRef._front) curFront++;
       else               curBack++;
-      curIdx++;
-    }
+      
+      convertPromises.push(imgStringPromise);
+
+      const imgString = await imgStringPromise;
+
+      const front = zip.folder('front');
+      const back = zip.folder('back');
+
+      if(cardRef._front) front.file(`${num}.png`, imgString);
+      else               back.file(`${num}.png`, imgString);
+
+    });
+
+    await Promise.all(convertPromises);
 
     const blob = await zip.generateAsync({ type: 'blob' });
     saveAs(blob, `${this.project.name}-${scriptName}-${Date.now()}.zip`);
