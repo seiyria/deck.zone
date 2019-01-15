@@ -33,7 +33,8 @@ snippet rect
       height: `calc(${super.combineForUnit(y2, state)} - ${top})`,
       'border-width': super.combineForUnit(thickness, state),
       'border-color': lineColor,
-      background: fillColor || 'transparent'
+      background: fillColor || 'transparent',
+      'z-index': scope.blockLevelOps
     });
   }
 

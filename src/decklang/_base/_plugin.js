@@ -15,7 +15,7 @@ export class Plugin {
     return `${val}${this.resolveUnit(unit, state)}`;
   }
 
-  static operate(args, state, scope) {
+  static operate(args, state, scope = {}) {
     const keys = _.reject(_.keys(args), key => _.includes(['state', 'call'], key));
 
     _.each(keys, key => {

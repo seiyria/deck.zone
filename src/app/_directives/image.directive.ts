@@ -19,7 +19,8 @@ export class ImageDirective extends PluginDirective {
       top:              `${args.top}`,
       left:             `${args.left}`,
       width:            `${args.width}`,
-      height:           `${args.height}`
+      height:           `${args.height}`,
+      'z-index':        args['z-index']
     };
 
     this.assignStyle(baseObject);

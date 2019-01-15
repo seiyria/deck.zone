@@ -21,7 +21,8 @@ export class TextDirective extends PluginDirective {
       width:            '100%',
       height:           '100%',
       display:          'table-cell',
-      'vertical-align': args.vertAlign
+      'vertical-align': args.vertAlign,
+      'z-index':        args['z-index']
     };
 
     if(includes(font.decoration, 'I')) baseObject['font-style'] = 'italic';

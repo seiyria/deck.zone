@@ -103,13 +103,25 @@ export class DecklangParser {
   }
 
   runInstructions(wrapState, state, instructions, scope = {}) {
+
+    // used to track the number of ops that have elapsed so far, linearly (used for layering)
+    let blockLevelOps = scope.blockLevelOps || 0;
+
+    // used to have a scope that is passed from one op to the next in a loop instead of having it be mutable
+    let nextScope = scope;
+
     instructions.forEach(instruction => {
 
       // clone otherwise the objects in arrays are the same ref
       const clonedInstruction = _.clone(instruction);
+      const newScope = _.clone(nextScope);
+
+      blockLevelOps++;
+      newScope.blockLevelOps = blockLevelOps;
 
       if(!clonedInstruction.ops) {
-        wrapState.runPlugin(state, clonedInstruction, scope);
+        wrapState.runPlugin(state, clonedInstruction, newScope);
+        nextScope = newScope;
         return;
       }
 
@@ -118,15 +130,13 @@ export class DecklangParser {
         return;
       }
 
-      const newScope = _.clone(scope);
-
       // loop statements
       if(clonedInstruction.loopStart) {
 
         const { start, iterations, end } = clonedInstruction.loopStart;
         const { varStart, varName, resourceId, sheet } = start;
 
-        const endEval = Plugin.eval(end, scope) || 0;
+        const endEval = Plugin.eval(end, newScope) || 0;
 
         // for...to loop
         if(_.isNumber(varStart) && _.isNumber(endEval)) {
@@ -135,8 +145,11 @@ export class DecklangParser {
 
           for (let i = varStart; i <= endEval; i++) {
             newScope[varName] = i;
-            this.runInstructions(wrapState, state, clonedInstruction.ops, _.clone(newScope));
+            this.runInstructions(wrapState, state, clonedInstruction.ops, newScope);
           }
+
+          blockLevelOps += clonedInstruction.ops.length;
+          newScope.blockLevelOps = blockLevelOps;
 
           // for...in loop with resources
         } else if(sheet && resourceId) {
@@ -177,8 +190,11 @@ export class DecklangParser {
             newScope[`${varName}_value`] = iteration.val;
             newScope[`${varName}_index`] = index;
 
-            this.runInstructions(wrapState, state, clonedInstruction.ops, _.clone(newScope));
+            this.runInstructions(wrapState, state, clonedInstruction.ops, newScope);
           });
+
+          blockLevelOps += clonedInstruction.ops.length;
+          newScope.blockLevelOps = blockLevelOps;
 
         // not sure if this can even happen
         } else {
@@ -191,6 +207,8 @@ export class DecklangParser {
         if(!result) return;
 
         this.runInstructions(wrapState, state, clonedInstruction.ops, newScope);
+        blockLevelOps += clonedInstruction.ops.length;
+        newScope.blockLevelOps = blockLevelOps;
 
       }
 

@@ -27,7 +27,8 @@ snippet image
       left: super.combineForUnit(x, state),
       width: super.combineForUnit(w, state),
       height: super.combineForUnit(h, state),
-      url
+      url,
+      'z-index': scope.blockLevelOps
     });
   }
 

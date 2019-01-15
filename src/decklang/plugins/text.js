@@ -31,7 +31,8 @@ snippet text
       width: super.combineForUnit(w, state),
       height: super.combineForUnit(h, state),
       font: _.cloneDeep(state.options.font),
-      horizAlign, vertAlign, state, string
+      horizAlign, vertAlign, state, string,
+      'z-index': scope.blockLevelOps
     });
   }
 

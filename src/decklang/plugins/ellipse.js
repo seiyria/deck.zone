@@ -30,7 +30,8 @@ snippet ellipse
       height: super.combineForUnit(h, state),
       'border-width': super.combineForUnit(thickness, state),
       'border-color': outerColor,
-      'background-color': innerColor
+      'background-color': innerColor,
+      'z-index': scope.blockLevelOps
     });
   }
 
